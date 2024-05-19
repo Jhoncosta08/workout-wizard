@@ -1,6 +1,8 @@
+@use "src/theme/custom-theme" as *;
 
 .welcome-grid {
   height: 100%;
+  background-color: $primary-green;
 }
 
 .welcome-container {

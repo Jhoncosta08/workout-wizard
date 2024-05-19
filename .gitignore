@@ -4,6 +4,7 @@
 *~
 *.sw[mnpcod]
 .tmp
+.firebase
 *.tmp
 *.tmp.*
 UserInterfaceState.xcuserstate
