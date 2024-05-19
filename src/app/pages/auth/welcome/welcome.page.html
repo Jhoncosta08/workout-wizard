@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true">
+  <ion-grid class="welcome-grid">
+    <ion-row class="welcome-container">
+
+      <ion-col class="welcome-box">
+        <div class="full-item">
+          <p>Icon</p>
+          <p>workout wizard</p>
+        </div>
+      </ion-col>
+
+      <ion-col class="welcome-box">
+        <div class="full-item">
+          <p>Welcome</p>
+          <ion-button expand="full" (click)="moveRouteForward('/create-account')">Sign up</ion-button>
+          <ion-button expand="full" (click)="moveRouteForward('/login')">Sign in</ion-button>
+        </div>
+      </ion-col>
+
+      <ion-col class="welcome-box">
+        <p>C</p>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>
