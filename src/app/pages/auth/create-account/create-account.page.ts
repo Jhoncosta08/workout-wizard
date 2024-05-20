@@ -33,6 +33,7 @@ export class CreateAccountPage {
 
   onRegister(): void {
     const user: UserInterface = this.registerForm.value;
+    if (this.registerForm.invalid) return void this.toastService.presentErrorToast('O formulário está invalido!');
     if (user.password === user.confirmPassword) {
       this.authService.register(user).subscribe({
         next: (): void => {
