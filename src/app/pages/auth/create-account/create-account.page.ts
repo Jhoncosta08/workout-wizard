@@ -36,7 +36,8 @@ export class CreateAccountPage {
     if (user.password === user.confirmPassword) {
       this.authService.register(user).subscribe({
         next: (): void => {
-          this.toastService.presentSuccessToast(`Usuário ${user.name ?? ''} criado com sucesso.`).then(() => {
+          this.registerForm.reset();
+          this.toastService.presentSuccessToast(`Usuário ${user.name ?? ''} criado com sucesso.`).then((): void => {
             void this.navControl.navigateForward(['/home']);
           });
         },
