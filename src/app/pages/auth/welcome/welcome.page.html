@@ -1,24 +1,27 @@
 <ion-content [fullscreen]="true">
-  <ion-grid class="welcome-grid">
+  <ion-grid class="welcome-grid gradient">
     <ion-row class="welcome-container">
 
       <ion-col class="welcome-box">
         <div class="full-item">
-          <p>Icon</p>
-          <p>workout wizard</p>
+          <ion-icon name="barbell-outline" size="large" class="welcome-icons"></ion-icon>
+          <h1 class="title">Workout Wizard</h1>
         </div>
       </ion-col>
 
       <ion-col class="welcome-box">
         <div class="full-item">
-          <p>Welcome</p>
-          <ion-button expand="full" (click)="moveRouteForward('/create-account')">Sign up</ion-button>
-          <ion-button expand="full" (click)="moveRouteForward('/login')">Sign in</ion-button>
+          <h2 class="sub-title">Bem vindo</h2>
+          <button class="welcome-btn sign-in-btn" (click)="moveRouteForward('/login')">ENTRAR</button>
+          <button class="welcome-btn sign-up-btn" (click)="moveRouteForward('/create-account')">CADASTRO</button>
         </div>
       </ion-col>
 
       <ion-col class="welcome-box">
-        <p>C</p>
+        <div class="social-box full-item">
+          <p class="text">Entrar com mídias sociais</p>
+          <ion-icon name="logo-google" class="welcome-icons"></ion-icon>
+        </div>
       </ion-col>
 
     </ion-row>

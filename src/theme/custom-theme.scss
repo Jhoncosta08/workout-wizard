@@ -1,32 +1,77 @@
 
-// Warning colors
-$success: #10dc60;
-$warning: #ffce00;
-$danger: #f04141;
-$light: #f4f5f8;
-$dark: #222428;
+:root {
+  // Warning colors
+  --success: #10dc60;
+  --warning: #ffce00;
+  --danger: #f04141;
+  --light: #f4f5f8;
+  --dark: #222428;
 
+  // Main Colors
+  --primary-dark: #010A13;
+  --primary-green: #556B2F;
 
-// Main Colors
-$primary-blue: #007bff;
-$primary-green: #556B2F;
+  // Secondary Colors
+  --secondary-dark-gray: #343a40;
+  --secondary-black: #000000;
 
-// Secondary Colors
-$secondary-dark-gray: #343a40;
-$secondary-black: #000000;
+  // Highlight (Accent) Colors
+  --accent-yellow: #FFD700;
+  --accent-orange: #FFA500;
 
-// Highlight (Accent) Colors
-$accent-yellow: #FFD700;
-$accent-orange: #FFA500;
+  // Alternative Highlight Color
+  --accent-alternative-red: #FF0000;
 
-// Alternative Highlight Color
-$accent-alternative-red: #FF0000;
+  // Neutral Colors
+  --neutral-white: #FFFFFF;
+  --neutral-light-gray: #F8F9FA;
+  --neutral-dark-gray: #343a40;
 
-// Neutral Colors
-$neutral-white: #FFFFFF;
-$neutral-light-gray: #F8F9FA;
-$neutral-dark-gray: #343a40;
+  // Text Colors
+  --text-black: #000000;
+  --text-dark-gray: #343a40;
+}
 
-// Text Colors
-$text-black: #000000;
-$text-dark-gray: #343a40;
+//main-background
+.gradient {
+  background: linear-gradient(to right, var(--primary-dark) 5%, var(--primary-green) 100%);
+}
+
+// GLOBAL APP FONT STYLES
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('.././assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
+p, h1, h2, h3, h4, h5, h6, label, button, span, a, small, ul, table {
+  font-family: 'BebasNeue', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+::placeholder {
+  font-family: 'BebasNeue', sans-serif;
+}
+
+// text styles
+.title {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  line-height: 24px;
+  color: var(--neutral-white);
+}
+
+.sub-title {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  line-height: 24px;
+  color: var(--neutral-white);
+}
+
+.text {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  line-height: 24px;
+  color: var(--neutral-white);
+}
+
