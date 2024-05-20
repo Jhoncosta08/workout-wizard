@@ -20,3 +20,7 @@
   letter-spacing: 2px;
   line-height: 24px;
 }
+
+.submit-button:disabled {
+  opacity: 0.8;
+}

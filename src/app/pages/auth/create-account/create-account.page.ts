@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
-import {UserInterface} from "../../../interfaces/user.interface";
+import {UserInterface} from '../../../interfaces/user.interface';
+import {ToastService} from '../../../services/toast.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-create-account',
@@ -13,7 +15,9 @@ export class CreateAccountPage {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService,
+    private navControl: NavController,
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -31,8 +35,10 @@ export class CreateAccountPage {
     const user: UserInterface = this.registerForm.value;
     if (user.password === user.confirmPassword) {
       this.authService.register(user).subscribe({
-        next: () => {
-          console.log('User registered and Firestore document created');
+        next: (): void => {
+          this.toastService.presentSuccessToast(`Usuário ${user.name ?? ''} criado com sucesso.`).then(() => {
+            void this.navControl.navigateForward(['/home']);
+          });
         },
         error: err => {
           console.error('Registration error: ', err);
