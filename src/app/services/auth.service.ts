@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {from, Observable} from 'rxjs';
-import {UserInterface} from "../interfaces/user.interface";
+import {from, Observable, throwError} from 'rxjs';
+import {UserInterface} from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,9 @@ export class AuthService {
   ) { }
 
   register(user: UserInterface): Observable<void> {
+    if (!user.password || user.password.trim().length === 0) {
+      return throwError(() => new Error('Password is required'));
+    }
     return from (
       this.afAuth.createUserWithEmailAndPassword(user.email, user.password).then(userCredential => {
         const userId = userCredential.user?.uid;
