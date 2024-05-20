@@ -1,13 +1,4 @@
-<!--<ion-header [translucent]="true">-->
-<!--  <ion-toolbar>-->
-<!--    <ion-buttons slot="start">-->
-<!--      <ion-back-button defaultHref="/login"></ion-back-button>-->
-<!--    </ion-buttons>-->
-<!--    <ion-title>Create Account</ion-title>-->
-<!--  </ion-toolbar>-->
-<!--</ion-header>-->
-
-<ion-content>
+<ion-content [fullscreen]="true">
   <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
     <ion-input id="email" formControlName="email" label="Email" labelPlacement="stacked" placeholder="Enter your email"></ion-input>
     <ion-input id="password" formControlName="password" type="password" label="Password" labelPlacement="stacked" placeholder="Enter your password">
