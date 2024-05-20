@@ -1,0 +1,22 @@
+
+.create-account-form-row {
+  background-color: var(--neutral-white);
+  height: auto;
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding-bottom: 5rem;
+}
+
+.create-account-title-box {
+  padding: 1rem 1rem;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--primary-green);
+  color: var(--neutral-white);
+  padding: 1rem 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  line-height: 24px;
+}

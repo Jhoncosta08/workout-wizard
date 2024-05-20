@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
+import {UserInterface} from "../../../interfaces/user.interface";
 
 @Component({
   selector: 'app-create-account',
@@ -16,14 +17,20 @@ export class CreateAccountPage {
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', [Validators.required]],
+      age: ['', [Validators.required]],
+      weight: ['', [Validators.required]],
+      height: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
     });
   }
 
   onRegister(): void {
-    if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value;
-      this.authService.register(email, password).subscribe({
+    const user: UserInterface = this.registerForm.value;
+    if (user.password === user.confirmPassword) {
+      this.authService.register(user).subscribe({
         next: () => {
           console.log('User registered and Firestore document created');
         },
@@ -31,6 +38,8 @@ export class CreateAccountPage {
           console.error('Registration error: ', err);
         }
       });
+    } else {
+      console.log('senhas diferentes');
     }
   }
 
