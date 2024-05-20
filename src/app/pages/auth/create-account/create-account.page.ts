@@ -42,11 +42,12 @@ export class CreateAccountPage {
           });
         },
         error: err => {
+          void this.toastService.presentErrorToast('Ocorreu um erro ao registrar!');
           console.error('Registration error: ', err);
         }
       });
     } else {
-      console.log('senhas diferentes');
+      void this.toastService.presentErrorToast('As senhas estão diferentes!');
     }
   }
 
