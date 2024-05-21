@@ -7,4 +7,6 @@ export interface UserInterface {
   weight: string;
   height: string;
   gender: string;
+  id?: string;
+  token?: string;
 }

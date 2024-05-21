@@ -39,7 +39,7 @@ export class CreateAccountPage {
       return void this.toastService.presentErrorToast('O formulário está invalido!')
     }
     if (user.password === user.confirmPassword) {
-      this.spinnerControl.show('Carregango...');
+      this.spinnerControl.show('Carregando...');
       this.authService.register(user).subscribe({
         next: (): void => {
           this.registerForm.reset();
@@ -58,6 +58,10 @@ export class CreateAccountPage {
     } else {
       void this.toastService.presentErrorToast('As senhas estão diferentes!');
     }
+  }
+
+  moveRouteBack(url: string): void {
+    void this.navControl.navigateBack(url);
   }
 
 }

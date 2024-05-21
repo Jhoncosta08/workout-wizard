@@ -52,7 +52,18 @@
             <button type="submit" class="submit-button">Cadastrar</button>
           </div>
         </form>
+
+        <ion-row>
+          <ion-col class="have-account-container">
+            <div class="have-account-box">
+              <p class="text">Já possui uma conta?</p>
+              <a class="text" (click)="moveRouteBack('/login')">Entrar</a>
+            </div>
+          </ion-col>
+        </ion-row>
       </ion-col>
+
+
     </ion-row>
   </ion-grid>
 </ion-content>

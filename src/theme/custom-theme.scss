@@ -32,12 +32,18 @@
   --text-dark-gray: #343a40;
 }
 
+ion-content {
+  --ion-background-color: var(--neutral-white);
+}
+
 //main-background
 .gradient {
   background: linear-gradient(to right, var(--primary-dark) 5%, var(--primary-green) 100%);
   height: 100%;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 // GLOBAL APP FONT STYLES

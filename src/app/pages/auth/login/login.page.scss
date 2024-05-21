@@ -1,0 +1,50 @@
+
+
+.login-form-row {
+  background-color: var(--neutral-white);
+  flex-grow: 1;
+  border-radius: 1.5rem 1.5rem 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 3rem;
+}
+
+.form-title-box {
+  padding: 1rem 1rem;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--primary-green);
+  color: var(--neutral-white);
+  padding: 1rem 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  line-height: 24px;
+}
+
+.have-account-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.have-account-box {
+  text-align: end;
+  margin-bottom: 2rem;
+}
+
+.have-account-box p {
+  color: var(--primary-dark);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.have-account-box a {
+  color: var(--primary-green);
+}
+
+

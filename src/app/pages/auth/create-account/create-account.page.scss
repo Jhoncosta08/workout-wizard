@@ -3,7 +3,7 @@
   background-color: var(--neutral-white);
   height: auto;
   border-radius: 1.5rem 1.5rem 0 0;
-  padding-bottom: 5rem;
+  padding-top: 3rem;
 }
 
 .create-account-title-box {
@@ -19,4 +19,24 @@
   font-size: 1.2rem;
   letter-spacing: 2px;
   line-height: 24px;
+}
+
+.have-account-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.have-account-box {
+  text-align: end;
+  margin-top: 2rem;
+}
+
+.have-account-box p {
+  color: var(--primary-dark);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.have-account-box a {
+  color: var(--primary-green);
 }
