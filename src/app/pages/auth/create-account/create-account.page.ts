@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {UserInterface} from '../../../interfaces/user.interface';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
+import {SpinnerService} from '../../../services/spinner.service';
 
 @Component({
   selector: 'app-create-account',
@@ -18,6 +19,7 @@ export class CreateAccountPage {
     private authService: AuthService,
     private toastService: ToastService,
     private navControl: NavController,
+    private spinnerControl: SpinnerService
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -33,16 +35,22 @@ export class CreateAccountPage {
 
   onRegister(): void {
     const user: UserInterface = this.registerForm.value;
-    if (this.registerForm.invalid) return void this.toastService.presentErrorToast('O formulário está invalido!');
+    if (this.registerForm.invalid) {
+      return void this.toastService.presentErrorToast('O formulário está invalido!')
+    }
     if (user.password === user.confirmPassword) {
+      this.spinnerControl.show('Carregango...');
       this.authService.register(user).subscribe({
         next: (): void => {
           this.registerForm.reset();
           this.toastService.presentSuccessToast(`Usuário ${user.name ?? ''} criado com sucesso.`).then((): void => {
-            void this.navControl.navigateForward(['/home']);
+            this.navControl.navigateForward(['/home']).then((): void => {
+              this.spinnerControl.hide();
+            });
           });
         },
         error: err => {
+          this.spinnerControl.hide();
           void this.toastService.presentErrorToast('Ocorreu um erro ao registrar!');
           console.error('Registration error: ', err);
         }
