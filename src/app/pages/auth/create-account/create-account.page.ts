@@ -39,22 +39,7 @@ export class CreateAccountPage {
       return void this.toastService.presentErrorToast('O formulário está invalido!')
     }
     if (user.password === user.confirmPassword) {
-      this.spinnerControl.show('Carregando...');
-      this.authService.register(user).subscribe({
-        next: (): void => {
-          this.registerForm.reset();
-          this.toastService.presentSuccessToast(`Usuário ${user.name ?? ''} criado com sucesso.`).then((): void => {
-            this.navControl.navigateForward(['/home']).then((): void => {
-              this.spinnerControl.hide();
-            });
-          });
-        },
-        error: err => {
-          this.spinnerControl.hide();
-          void this.toastService.presentErrorToast('Ocorreu um erro ao registrar!');
-          console.error('Registration error: ', err);
-        }
-      });
+      void this.authService.register(user);
     } else {
       void this.toastService.presentErrorToast('As senhas estão diferentes!');
     }

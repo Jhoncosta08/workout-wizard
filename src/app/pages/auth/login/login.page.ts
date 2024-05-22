@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LoginInterface} from '../../../interfaces/login.interface';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
-import {SpinnerService} from '../../../services/spinner.service';
 import {AuthService} from '../../../services/auth.service';
 
 @Component({
@@ -18,7 +17,6 @@ export class LoginPage {
     private fb: FormBuilder,
     private toastService: ToastService,
     private navControl: NavController,
-    private spinnerControl: SpinnerService,
     private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
@@ -31,21 +29,8 @@ export class LoginPage {
     if (this.loginForm.invalid) {
       return void this.toastService.presentErrorToast('O formulário está invalido!');
     }
-    this.spinnerControl.show();
     const user: LoginInterface = this.loginForm.value;
-    this.authService.login(user).subscribe({
-      next: (): void => {
-        this.toastService.presentSuccessToast('Login efetuado com sucesso!').then((): void => {
-          this.navControl.navigateForward('/home').then((): void => {
-            this.spinnerControl.hide();
-          })
-        })
-      },
-      error: err => {
-        this.spinnerControl.hide();
-        console.error('Error in login', err);
-      }
-    })
+    this.authService.login(user);
   }
 
   moveRouteBack(url: string): void {
