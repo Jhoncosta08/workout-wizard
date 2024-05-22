@@ -25,14 +25,14 @@
           </div>
         </form>
       </ion-col>
-
-      <ion-col class="have-account-container">
-        <div class="have-account-box">
-          <p class="text">Não possui uma conta?</p>
-          <a class="text" (click)="moveRouteBack('/create-account')">Cadastrar</a>
-        </div>
-      </ion-col>
+      <ion-row class="have-account-row">
+        <ion-col class="have-account-container">
+          <div class="have-account-box">
+            <p class="text">Não possui uma conta?</p>
+            <a class="text" (click)="moveRouteBack('/create-account')">Cadastrar</a>
+          </div>
+        </ion-col>
+      </ion-row>
     </ion-row>
-
   </ion-grid>
 </ion-content>
