@@ -3,7 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import {ToastService} from "../services/toast.service";
+import {ToastService} from '../services/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,9 @@ export class AuthGuard implements CanActivate {
         if (authState) {
           return true;
         } else {
-          void this.toast.presentErrorToast('Usuário não logado!');
-          void this.router.navigate(['/login']);
+          this.router.navigate(['/login']).then((): void => {
+            void this.toast.presentErrorToast('Usuário não logado!');
+          })
           return false;
         }
       })

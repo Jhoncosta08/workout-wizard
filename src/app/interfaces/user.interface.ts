@@ -9,4 +9,5 @@ export interface UserInterface {
   gender: string;
   id?: string;
   token?: string;
+  profilePicture?: string
 }

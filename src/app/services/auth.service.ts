@@ -11,6 +11,7 @@ import {SpinnerService} from './spinner.service';
   providedIn: 'root'
 })
 export class AuthService {
+  public user: UserInterface;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -18,7 +19,9 @@ export class AuthService {
     private navControl: NavController,
     private toastService: ToastService,
     private spinnerControl: SpinnerService,
-  ) { }
+  ) {
+    this.user = JSON.parse(localStorage.getItem('user')!);
+  }
 
   async register(user: UserInterface): Promise<void> {
     if (!user.password || user.password.trim().length === 0) {
@@ -92,6 +95,7 @@ export class AuthService {
 
   logout(): void {
     this.afAuth.signOut().then((): void => {
+      localStorage.clear();
       void this.navControl.navigateBack('/login');
     }).catch((error): void => {
       console.error('Erro ao fazer logout:', error);

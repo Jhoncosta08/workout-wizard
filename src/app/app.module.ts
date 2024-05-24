@@ -4,13 +4,14 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {AngularFireModule} from "@angular/fire/compat";
-import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
-import {environment} from "../environments/environment";
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
+import {environment} from '../environments/environment';
+import {NavItemsComponent} from './components/nav-items/nav-items.component';
 
 @NgModule({
-  declarations: [AppComponent],
+    declarations: [AppComponent, NavItemsComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

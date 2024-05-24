@@ -36,6 +36,10 @@ ion-content {
   --ion-background-color: var(--neutral-white);
 }
 
+ion-refresher.refresher-native ion-spinner {
+  color: var(--primary-green);
+}
+
 //main-background
 .gradient {
   background: linear-gradient(to right, var(--primary-dark) 5%, var(--primary-green) 100%);
