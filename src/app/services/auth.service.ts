@@ -16,10 +16,10 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private navControl: NavController,
+    public navControl: NavController,
     private toastService: ToastService,
     private spinnerControl: SpinnerService,
-    private menuController: MenuController,
+    private menuController: MenuController
   ) {
     this.user = JSON.parse(localStorage.getItem('user')!);
   }
@@ -99,9 +99,9 @@ export class AuthService {
     this.menuController.close().then((): void => {
       this.afAuth.signOut().then((): void => {
         localStorage.clear();
-        this.navControl.navigateBack('/login').then((): void => {
+        this.navControl.navigateForward('/login', {animated: true, animationDirection: 'back'}).then((): void => {
           this.spinnerControl.hide();
-        })
+        });
       });
     });
   }

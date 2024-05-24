@@ -11,7 +11,7 @@ export class NavItemsComponent {
 
   constructor(
     private navControl: NavController,
-    private authService: AuthService,
+    private authService: AuthService
   ) { }
 
 

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from './guards/auth.guard';
-import {LoggedUserGuard} from './guards/logged-user.guard';
-
 const routes: Routes = [
   {
     path: '',
@@ -11,18 +9,15 @@ const routes: Routes = [
   },
   {
     path: 'welcome',
-    loadChildren: () => import('./pages/auth/welcome/welcome.module').then( m => m.WelcomePageModule),
-    canActivate: [LoggedUserGuard]
+    loadChildren: () => import('./pages/auth/welcome/welcome.module').then( m => m.WelcomePageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule),
-    canActivate: [LoggedUserGuard]
+    loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'create-account',
-    loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule),
-    canActivate: [LoggedUserGuard]
+    loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule)
   },
   {
     path: 'home',

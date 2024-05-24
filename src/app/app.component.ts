@@ -13,7 +13,7 @@ export class AppComponent {
     setTimeout((): void => {
       window.location.reload();
       event.target.complete();
-    }, 1500);
+    }, 1000);
   }
 
   showNavMenu(): boolean {
