@@ -99,11 +99,20 @@ export class AuthService {
     this.menuController.close().then((): void => {
       this.afAuth.signOut().then((): void => {
         localStorage.clear();
-        this.navControl.navigateForward('/login', {animated: true, animationDirection: 'back'}).then((): void => {
+        this.navControl.navigateForward('/login').then((): void => {
           this.spinnerControl.hide();
         });
       });
     });
+  }
+
+  redirectLoggedUser(): void {
+    if (this.user) {
+      this.spinnerControl.show('Carregando...')
+      this.navControl.navigateRoot('/home').then((): void => {
+        this.spinnerControl.hide();
+      });
+    }
   }
 
 }

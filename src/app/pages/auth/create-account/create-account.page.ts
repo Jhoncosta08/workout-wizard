@@ -31,6 +31,10 @@ export class CreateAccountPage {
     });
   }
 
+  ionViewWillEnter(): void {
+    this.authService.redirectLoggedUser();
+  }
+
   onRegister(): void {
     const user: UserInterface = this.registerForm.value;
     if (this.registerForm.invalid) {

@@ -25,6 +25,10 @@ export class LoginPage {
     });
   }
 
+  ionViewWillEnter(): void {
+    this.authService.redirectLoggedUser();
+  }
+
   onLogin(): void {
     if (this.loginForm.invalid) {
       return void this.toastService.presentErrorToast('O formulário está invalido!');

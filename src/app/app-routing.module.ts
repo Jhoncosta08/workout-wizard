@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -17,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'create-account',
-    loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule)
+    loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule),
   },
   {
     path: 'home',

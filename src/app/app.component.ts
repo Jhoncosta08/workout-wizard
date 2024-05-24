@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
   constructor(private router: Router) {}
 
   handleRefresh(event: any): void {
