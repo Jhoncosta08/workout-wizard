@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MenuController, NavController} from '@ionic/angular';
+import {NavController} from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -12,14 +12,11 @@ export class NavItemsComponent {
   constructor(
     private navControl: NavController,
     private authService: AuthService,
-    private menuController: MenuController
   ) { }
 
 
-  logout(): void {
-    this.menuController.close().then((): void => {
-      this.authService.logout();
-    });
+  onLogout(): void {
+    this.authService.logout();
   }
 
   moveUrlForward(url: string): void {

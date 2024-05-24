@@ -3,7 +3,7 @@ import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 import {UserInterface} from '../interfaces/user.interface';
 import {LoginInterface} from '../interfaces/login.interface';
-import {NavController} from '@ionic/angular';
+import {MenuController, NavController} from '@ionic/angular';
 import {ToastService} from './toast.service';
 import {SpinnerService} from './spinner.service';
 
@@ -19,6 +19,7 @@ export class AuthService {
     private navControl: NavController,
     private toastService: ToastService,
     private spinnerControl: SpinnerService,
+    private menuController: MenuController,
   ) {
     this.user = JSON.parse(localStorage.getItem('user')!);
   }
@@ -61,7 +62,7 @@ export class AuthService {
       this.afAuth.signInWithEmailAndPassword(user.email, user.password).then((userCredential: any): void => {
         const userId: string | undefined = userCredential.user?.uid;
         if (userId && userCredential) {
-          this.getUserById(userId, userCredential);
+          this.setUserLocal(userId, userCredential);
         }
         this.toastService.presentSuccessToast('Login efetuado com sucesso').then((): void => {
           void this.navControl.navigateForward('/home');
@@ -75,7 +76,7 @@ export class AuthService {
     }
   }
 
-  getUserById(userId: string, userCredential: any): void {
+  setUserLocal(userId: string, userCredential: any): void {
     const userRef: AngularFirestoreDocument = this.firestore.collection('users').doc(userId);
     userRef.get().subscribe({
       next: (userData: any) => {
@@ -94,11 +95,14 @@ export class AuthService {
   }
 
   logout(): void {
-    this.afAuth.signOut().then((): void => {
-      localStorage.clear();
-      void this.navControl.navigateBack('/login');
-    }).catch((error): void => {
-      console.error('Erro ao fazer logout:', error);
+    this.spinnerControl.show('Saindo...');
+    this.menuController.close().then((): void => {
+      this.afAuth.signOut().then((): void => {
+        localStorage.clear();
+        this.navControl.navigateBack('/login').then((): void => {
+          this.spinnerControl.hide();
+        })
+      });
     });
   }
 

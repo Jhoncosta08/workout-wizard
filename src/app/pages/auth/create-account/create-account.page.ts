@@ -4,7 +4,6 @@ import {AuthService} from '../../../services/auth.service';
 import {UserInterface} from '../../../interfaces/user.interface';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
-import {SpinnerService} from '../../../services/spinner.service';
 
 @Component({
   selector: 'app-create-account',
@@ -18,13 +17,12 @@ export class CreateAccountPage {
     private fb: FormBuilder,
     private authService: AuthService,
     private toastService: ToastService,
-    private navControl: NavController,
-    private spinnerControl: SpinnerService
+    private navControl: NavController
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
       name: ['', [Validators.required]],
       age: ['', [Validators.required]],
       weight: ['', [Validators.required]],

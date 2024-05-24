@@ -32,12 +32,20 @@
   --text-dark-gray: #343a40;
 }
 
-ion-content {
-  --ion-background-color: var(--neutral-white);
+@font-face {
+  font-family: 'Poppins';
+  src: url('.././assets/fonts/Poppins-Regular.ttf') format('truetype');
 }
 
-ion-refresher.refresher-native ion-spinner {
-  color: var(--primary-green);
+p, h1, h2, h3, h4, h5, h6, label, button, span, a, small, ul, table {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+::placeholder {
+  font-family: 'Poppins', sans-serif;
 }
 
 //main-background
@@ -50,24 +58,14 @@ ion-refresher.refresher-native ion-spinner {
   flex-direction: column;
 }
 
-// GLOBAL APP FONT STYLES
-@font-face {
-  font-family: 'BebasNeue';
-  src: url('.././assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+ion-content {
+  --ion-background-color: var(--neutral-white);
 }
 
-p, h1, h2, h3, h4, h5, h6, label, button, span, a, small, ul, table {
-  font-family: 'BebasNeue', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: transparent;
+ion-refresher.refresher-native ion-spinner {
+  color: var(--primary-green);
 }
 
-::placeholder {
-  font-family: 'BebasNeue', sans-serif;
-}
-
-// text styles
 .title {
   font-size: 2rem;
   letter-spacing: 2px;
