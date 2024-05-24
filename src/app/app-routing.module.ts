@@ -25,6 +25,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'admin',
+    children: [
+      {
+        path: 'create-workout',
+        loadChildren: () => import('./pages/admin/create-workout/create-workout.module').then( m => m.CreateWorkoutPageModule)
+      }
+    ],
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
