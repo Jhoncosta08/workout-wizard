@@ -1,6 +1,6 @@
 <ion-menu contentId="main-content">
-  <ion-content class="ion-padding">
-    <app-nav-items></app-nav-items>
+  <ion-content>
+    <app-nav></app-nav>
   </ion-content>
 </ion-menu>
 
@@ -15,7 +15,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding">
+  <ion-content>
       <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>

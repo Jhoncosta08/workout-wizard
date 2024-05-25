@@ -21,11 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule),
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'admin',
     children: [
       {
@@ -33,6 +28,16 @@ const routes: Routes = [
         loadChildren: () => import('./pages/admin/create-workout/create-workout.module').then( m => m.CreateWorkoutPageModule)
       }
     ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard]
   },
 ];

@@ -7,7 +7,7 @@ export interface UserInterface {
   weight: string;
   height: string;
   gender: string;
-  id?: string;
+  uid?: string;
   token?: string;
   profilePicture?: string
 }
