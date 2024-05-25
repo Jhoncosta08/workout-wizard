@@ -17,7 +17,7 @@ export class NavItemsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.showAdminNav = !!this.user?.uid;
+    this.showAdminNav = this.user?.uid === 'ZyUFjKqr07fqmUUTw1WnQJAIbjW2';
   }
 
   moveUrlForward(url: string): void {
