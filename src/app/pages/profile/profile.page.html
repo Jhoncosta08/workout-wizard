@@ -2,7 +2,11 @@
   <ion-grid class="gradient">
     <ion-row>
       <ion-col>
-        <p>Profile</p>
+        <div class="profile-img-container">
+          <a (click)="onUploadProfilePicture()">
+            <img [src]="profileImg" alt=""/>
+          </a>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

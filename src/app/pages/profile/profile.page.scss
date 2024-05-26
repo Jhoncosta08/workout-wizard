@@ -1,0 +1,14 @@
+
+.profile-img-container {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0.4rem;
+}
+
+.profile-img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

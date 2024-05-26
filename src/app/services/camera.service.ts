@@ -17,7 +17,7 @@ export class CameraService {
     private authService: AuthService,
     private storage: AngularFireStorage,
     private firestore: AngularFirestore,
-    private toastService: ToastService,
+    private toastService: ToastService
   ) {
     this.authService.user.subscribe((userData: UserInterface | null): void => {
       this.user = userData;
@@ -45,10 +45,9 @@ export class CameraService {
           finalize(async () => {
             const downloadURL = await fileRef.getDownloadURL().toPromise();
             await this.firestore.collection('users').doc(userId).update({ profilePicture: downloadURL });
+            this.authService.setUserLocal(userId, this.user);
           })
-        ).subscribe((): void => {
-          this.authService.setUserLocal(userId, this.user);
-        });
+        ).subscribe();
       } else {
         void this.toastService.presentErrorToast('Ocorreu um erro id!');
       }

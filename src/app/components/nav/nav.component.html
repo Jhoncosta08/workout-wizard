@@ -3,9 +3,7 @@
     <ion-row class="nav-header">
       <ion-col class="profile-info-box" (click)="goToProfile()">
         <div class="profile-img-container">
-          <a (click)="onUploadProfilePicture()">
-            <img [src]="profileImg" alt=""/>
-          </a>
+          <img [src]="profileImg" alt=""/>
         </div>
         <p class="profile-name">{{ user ? user.name : '' }}</p>
       </ion-col>

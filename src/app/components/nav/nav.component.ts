@@ -1,24 +1,24 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MenuController, NavController} from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
 import {UserInterface} from '../../interfaces/user.interface';
-import {CameraService} from '../../services/camera.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
   public user: UserInterface | null = null;
   public profileImg: string = 'https://ionicframework.com/docs/img/demos/avatar.svg'
 
   constructor(
     private authService: AuthService,
     private menuControl: MenuController,
-    private navControl: NavController,
-    private cameraService: CameraService
-  ) {
+    private navControl: NavController
+  ) {}
+
+  ngOnInit():void  {
     this.authService.user.subscribe((userData: UserInterface | null): void => {
       this.user = userData;
       if ( this.user && this.user.profilePicture) {
@@ -38,10 +38,6 @@ export class NavComponent {
   goToProfile(): void {
     this.closeMenu();
     void this.navControl.navigateForward('/profile');
-  }
-
-  async onUploadProfilePicture(): Promise<void> {
-    await this.cameraService.uploadProfilePicture();
   }
 
 }
