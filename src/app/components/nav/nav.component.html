@@ -2,7 +2,11 @@
 
     <ion-row class="nav-header">
       <ion-col class="profile-info-box" (click)="goToProfile()">
-        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt=""/>
+        <div class="profile-img-container">
+          <a (click)="onUploadProfilePicture()">
+            <img [src]="profileImg" alt=""/>
+          </a>
+        </div>
         <p class="profile-name">{{ user ? user.name : '' }}</p>
       </ion-col>
 

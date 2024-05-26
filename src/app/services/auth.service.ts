@@ -85,7 +85,7 @@ export class AuthService {
         if (userData) {
           localStorage.setItem('user', JSON.stringify({
             ...userData.data(),
-            uid: userCredential.user?.uid,
+            uid: userId ? userId : userCredential.user?.uid,
             token: userCredential.user?.refreshToken
           }));
           this.user.next(JSON.parse(localStorage.getItem('user')!));

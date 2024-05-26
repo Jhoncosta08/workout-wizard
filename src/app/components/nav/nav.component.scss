@@ -19,14 +19,28 @@
   overflow: hidden;
 }
 
-
-.profile-info-box img {
-  height: 100%;
-  max-height: 3rem;
-  width: auto;
+.profile-img-container {
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
+  overflow: hidden;
   margin: 0.4rem;
 }
+
+.profile-img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+//.profile-info-box img {
+//  height: auto;
+//  max-height: 100%;
+//  max-width: 100%;
+//  border-radius: 50%;
+//  display: block;
+//  margin: 0 auto;
+//}
 
 .profile-name {
   font-size: 1rem;
