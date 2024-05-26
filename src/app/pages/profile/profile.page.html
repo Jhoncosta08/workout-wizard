@@ -1,12 +1,18 @@
 <ion-content>
   <ion-grid class="gradient">
     <ion-row>
-      <ion-col>
-        <div class="profile-img-container">
+      <ion-col class="profile-picture-container">
+        <div class="profile-img">
           <a (click)="onUploadProfilePicture()">
             <img [src]="profileImg" alt=""/>
           </a>
         </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="profile-name">
+        <p class="text">{{ user ? user.name : '---'  }}</p>
       </ion-col>
     </ion-row>
   </ion-grid>
