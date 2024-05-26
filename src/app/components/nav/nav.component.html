@@ -3,7 +3,7 @@
     <ion-row class="nav-header">
       <ion-col class="profile-info-box" (click)="goToProfile()">
         <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt=""/>
-        <p class="profile-name">{{ user.name }}</p>
+        <p class="profile-name">{{ user ? user.name : '' }}</p>
       </ion-col>
 
       <ion-col size="auto">
@@ -13,7 +13,7 @@
 
   <ion-row class="nav-item-row">
     <ion-col>
-      <app-nav-items [user]="user"></app-nav-items>
+      <app-nav-items></app-nav-items>
     </ion-col>
 
     <ion-col class="logout-footer">

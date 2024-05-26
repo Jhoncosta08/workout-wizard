@@ -6,12 +6,13 @@ import {LoginInterface} from '../interfaces/login.interface';
 import {MenuController, NavController} from '@ionic/angular';
 import {ToastService} from './toast.service';
 import {SpinnerService} from './spinner.service';
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public user: UserInterface;
+  public user = new BehaviorSubject<UserInterface | null>(null);
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -21,7 +22,7 @@ export class AuthService {
     private spinnerControl: SpinnerService,
     private menuController: MenuController
   ) {
-    this.user = JSON.parse(localStorage.getItem('user')!);
+    this.user.next(JSON.parse(localStorage.getItem('user')!));
   }
 
   async register(user: UserInterface): Promise<void> {
@@ -44,6 +45,7 @@ export class AuthService {
         };
         await this.firestore.collection('users').doc(userId).set(userData);
         await this.toastService.presentSuccessToast('Usuário criado com sucesso');
+        this.setUserLocal(userId, userCredential);
         await this.navControl.navigateForward('/home');
         this.spinnerControl.hide();
       }
@@ -86,6 +88,7 @@ export class AuthService {
             uid: userCredential.user?.uid,
             token: userCredential.user?.refreshToken
           }));
+          this.user.next(JSON.parse(localStorage.getItem('user')!));
         }
       },
       error: err => {

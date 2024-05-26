@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MenuController, NavController} from '@ionic/angular';
 import {AuthService} from '../../services/auth.service';
-import {UserInterface} from "../../interfaces/user.interface";
+import {UserInterface} from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-nav',
@@ -9,16 +9,17 @@ import {UserInterface} from "../../interfaces/user.interface";
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
-  public user!: UserInterface;
+  public user: UserInterface | null = null;
 
   constructor(
     private authService: AuthService,
     private menuControl: MenuController,
     private navControl: NavController
   ) {
-    this.user = this.authService.user;
+    this.authService.user.subscribe((userData: UserInterface | null): void => {
+      this.user = userData;
+    });
   }
-
 
   onLogout(): void {
     this.authService.logout();
