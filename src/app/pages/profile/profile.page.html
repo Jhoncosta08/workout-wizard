@@ -15,5 +15,15 @@
         <p class="text">{{ user ? user.name : '---'  }}</p>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="profile-info-text">Email: <span class="profile-info-value">{{ user ? user.email : '---'  }}</span></p>
+        <p class="profile-info-text">Idade: <span class="profile-info-value">{{ user ? user.age : '---'  }}</span></p>
+        <p class="profile-info-text">Sexo: <span class="profile-info-value">{{ user ? user.gender : '---'  }}</span></p>
+        <p class="profile-info-text">Peso: <span class="profile-info-value">{{ user ? user.weight : '---'  }}</span></p>
+        <p class="profile-info-text">Altura: <span class="profile-info-value">{{ user ? user.height : '---'  }}</span></p>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
