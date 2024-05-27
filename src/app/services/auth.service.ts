@@ -110,8 +110,9 @@ export class AuthService {
   }
 
   redirectLoggedUser(): void {
-    if (this.user) {
-      this.spinnerControl.show('Carregando...')
+    const user: string | null = localStorage.getItem('user');
+    if (user) {
+      this.spinnerControl.show('Carregando...');
       this.navControl.navigateRoot('/home').then((): void => {
         this.spinnerControl.hide();
       });

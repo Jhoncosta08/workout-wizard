@@ -10,6 +10,7 @@ export class AppComponent {
 
   constructor(private router: Router) {}
 
+
   handleRefresh(event: any): void {
     setTimeout((): void => {
       window.location.reload();
