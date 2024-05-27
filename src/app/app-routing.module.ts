@@ -9,6 +9,20 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'admin',
+    children: [
+      {
+        path: 'create-workout',
+        loadChildren: () => import('./pages/admin/create-workout/create-workout.module').then( m => m.CreateWorkoutPageModule)
+      },
+      {
+        path: 'create-exercise/:id',
+        loadChildren: () => import('./pages/admin/create-exercise/create-exercise.module').then( m => m.CreateExercisePageModule)
+      },
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'welcome',
     loadChildren: () => import('./pages/auth/welcome/welcome.module').then( m => m.WelcomePageModule)
   },
@@ -21,16 +35,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule),
   },
   {
-    path: 'admin',
-    children: [
-      {
-        path: 'create-workout',
-        loadChildren: () => import('./pages/admin/create-workout/create-workout.module').then( m => m.CreateWorkoutPageModule)
-      }
-    ],
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]
@@ -40,6 +44,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
+  }
 ];
 
 @NgModule({
