@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -9,12 +9,13 @@ import { CreateExercisePageRoutingModule } from './create-exercise-routing.modul
 import { CreateExercisePage } from './create-exercise.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CreateExercisePageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        CreateExercisePageRoutingModule,
+        ReactiveFormsModule
+    ],
   declarations: [CreateExercisePage]
 })
 export class CreateExercisePageModule {}

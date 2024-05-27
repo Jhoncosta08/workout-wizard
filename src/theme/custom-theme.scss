@@ -87,7 +87,7 @@ ion-refresher.refresher-native ion-spinner {
   color: var(--neutral-white);
 }
 
-ion-input.custom-input {
+ion-input.custom-input, ion-textarea.custom-input {
   margin: 1.2rem 0;
   --border-color: var(--primary-dark);
   --color: var(--primary-green);
@@ -112,4 +112,15 @@ ion-toast {
   height: 100%;
   border-radius: 1.5rem 1.5rem 0 0;
   padding-top: 3rem;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--primary-green);
+  color: var(--neutral-white);
+  padding: 1rem 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  line-height: 24px;
 }

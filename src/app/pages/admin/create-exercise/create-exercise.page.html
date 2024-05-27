@@ -1,13 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>create-exercise</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-grid class="gradient">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">create-exercise</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-row>
+      <ion-col class="title-box">
+        <h1 class="title">Adicione um <br/> Exercicio</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="form-row">
+      <ion-col *ngIf="workoutName">
+        <p class="exercise-icon">Treino de {{ workoutName }}</p>
+        <form [formGroup]="exercisesForm" (ngSubmit)="onSaveExercise()">
+          <div class="form-group">
+            <ion-input id="name" type="text" class="custom-input" formControlName="name" label="Nome" labelPlacement="stacked" fill="outline" placeholder="Digite o nome"></ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-input id="photo" type="text" class="custom-input" formControlName="photo" label="Foto" labelPlacement="stacked" fill="outline" placeholder="Digite a url da foto"></ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-textarea id="description" type="text" class="custom-input" formControlName="description" label="Descrição" labelPlacement="stacked" fill="outline" placeholder="Digite a descrição"></ion-textarea>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="submit-button">Salvar</button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

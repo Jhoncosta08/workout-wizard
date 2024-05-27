@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
+import {WorkoutService} from '../../../services/workout.service';
 
 @Component({
   selector: 'app-create-workout',
@@ -13,13 +14,23 @@ export class CreateWorkoutPage {
 
   constructor(
     private toastService: ToastService,
-    private navControl: NavController
+    private navControl: NavController,
+    private workoutService: WorkoutService
   ) {}
 
   onSaveWorkout(): void {
     const workoutName = this.workout.value;
     if (workoutName) {
-      console.log('treino: ', workoutName);
+      this.workoutService.createWorkout(workoutName).then((res: any): void => {
+        this.toastService.presentSuccessToast('Treino criado com sucesso').then((): void => {
+          void this.navControl.navigateForward(`admin/create-exercise/${res.id}`);
+        });
+      }).catch(err => {
+        console.error('error in create workout: ', err);
+        void this.toastService.presentErrorToast('Ocorreu um erro!');
+      })
+    } else {
+      void this.toastService.presentErrorToast('Formulário inválido!');
     }
   }
 
