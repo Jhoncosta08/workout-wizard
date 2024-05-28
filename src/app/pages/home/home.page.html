@@ -1,9 +1,46 @@
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-grid class="gradient">
+
     <ion-row>
-      <ion-col>
-        <p>Home</p>
+      <ion-col class="title-container">
+        <h1 class="title">Meus Treinos</h1>
+        <ion-icon name="add" size="large" (click)="moveRouteForward('/user-add-workout')"></ion-icon>
       </ion-col>
     </ion-row>
+
+    <ion-row class="workout-card-container">
+      <ion-col class="workout-card">
+        <div class="workout-icons-group">
+          <img src="assets/icon/body.png" alt="" />
+          <img src="assets/icon/body.png" alt="" />
+          <img src="assets/icon/body.png" alt="" />
+        </div>
+
+        <div class="workout-name-group">
+          <p>Peito</p>
+          <p>Costa</p>
+          <p>Perna</p>
+        </div>
+
+        <button class="submit-button workout-detail-btn">Ver treino</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="workout-card-container">
+      <ion-col class="workout-card">
+        <div class="workout-icons-group">
+          <img src="assets/icon/body.png" alt="" />
+          <img src="assets/icon/body.png" alt="" />
+        </div>
+
+        <div class="workout-name-group">
+          <p>Cardio</p>
+          <p>Ombro</p>
+        </div>
+
+        <button class="submit-button workout-detail-btn">Ver treino</button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 </ion-content>

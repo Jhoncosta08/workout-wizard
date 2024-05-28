@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-grid class="gradient add-workout-grid">
+
+    <ion-row class="all-workouts-container" *ngIf="!selectedWorkout">
+      <ion-col>
+        <app-all-workouts (clickedWorkout)="getClickedWorkout($event)"></app-all-workouts>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="add-workout-container" *ngIf="selectedWorkout">
+      <ion-col>
+        <app-exercise-list [exercises]="selectedWorkout.exercises" [listType]="'add'"></app-exercise-list>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

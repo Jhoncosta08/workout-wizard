@@ -1,0 +1,33 @@
+
+.card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+}
+
+.exercise-card-title {
+  color: var(--primary-green);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.see-more-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.exercise-card-btn {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--primary-dark);
+  margin-right: 0.3rem;
+}
+
+.see-more-container ion-icon {
+  color: var(--primary-dark);
+}

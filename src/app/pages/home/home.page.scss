@@ -1,0 +1,64 @@
+
+.title-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-container ion-icon {
+  background-color: var(--neutral-white);
+  border-radius: 50%;
+  color: var(--primary-green);
+}
+
+.workout-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.workout-card {
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  background-color: var(--neutral-white);
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.workout-detail-btn {
+  padding: 0.5rem;
+  max-width: 50%;
+  margin-top: 1rem;
+}
+
+.workout-icons-group, .workout-name-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.workout-icons-group {
+  margin-top: 0.7rem;
+}
+
+.workout-icons-group img {
+  height: 3rem;
+  width: auto;
+  padding: 0.2rem;
+  margin: 0 0.3rem;
+  border-radius: 50%;
+  border: 2px solid var(--primary-green);
+}
+
+.workout-name-group p {
+  padding: 0.2rem;
+  margin: 0 0.3rem;
+  font-size: 1rem;
+  line-height: 24px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}

@@ -45,9 +45,26 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'user-add-workout',
+    loadChildren: () => import('./pages/user/user-add-workout/user-add-workout.module').then( m => m.UserAddWorkoutPageModule)
+  },
+  {
+    path: 'exercise',
+    children: [
+      {
+        path: ':id',
+        loadChildren: () => import('./pages/exercise/exercises/exercises.module').then( m => m.ExercisesPageModule)
+      },
+      {
+        path: 'detail/:id',
+        loadChildren: () => import('./pages/exercise/exercise-detail/exercise-detail.module').then( m => m.ExerciseDetailPageModule)
+      },
+    ],
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
-  }
+  },
 ];
 
 @NgModule({

@@ -13,8 +13,13 @@ export class WorkoutService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  createWorkout(workoutName: string): Promise<any> {
-    return this.firestore.collection('workouts').add({data: workoutName});
+  async createWorkout(workoutName: string): Promise<any> {
+    const collection: any = this.firestore.collection('workouts');
+    const docRef: any = await collection.add({ name: workoutName });
+    const id: string = docRef.id;
+    const workoutData = { id: id, name: workoutName };
+    await docRef.update(workoutData);
+    return workoutData;
   }
 
   addWorkoutExercises(workoutId: string, workoutExercises: ExercisesInterface[]): Promise<void> {
@@ -26,12 +31,32 @@ export class WorkoutService {
   getWorkoutName(workoutId: string): Observable<string> {
     return this.firestore.collection('workouts').doc(workoutId).valueChanges().pipe(map((workout: any) => {
       if (workout) {
-        return workout.data;
+        return workout.name;
       } else {
         throw new Error('Workout not found');
       }
     })
     );
+  }
+
+  getAllWorkouts(): Observable<any> {
+    return this.firestore.collection('workouts').valueChanges().pipe(map((workouts: any): void => {
+      if (workouts) {
+        return workouts;
+      } else {
+        throw new Error('Workouts not found');
+      }
+    }));
+  }
+
+  getWorkoutById(workoutId: string): Observable<void> {
+    return this.firestore.collection('workouts').doc(workoutId).valueChanges().pipe(map((workout: any): void => {
+      if (workout) {
+        return workout;
+      } else {
+        throw new Error('Workouts not found');
+      }
+    }));
   }
 
 
