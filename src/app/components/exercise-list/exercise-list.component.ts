@@ -77,18 +77,15 @@ export class ExerciseListComponent implements OnInit {
 
   setExercisesAlreadySaved(): void {
     if (this.workoutId && this.userWorkoutId) {
-      this.userWorkoutService.getUserWorkout(this.userWorkoutId, this.workoutId).subscribe({
-        next: (userWorkout: WorkoutInterface[]): void => {
-          const exercises: ExercisesInterface[] = userWorkout[0].exercises;
-          if (exercises.length > 0) {
-            exercises.map((exercise: ExercisesInterface): void => {
-              this.onSelectedExercise(exercise);
-            });
-          }
-        },
-        error: err => {
-          console.error('error: ', err);
+      this.userWorkoutService.getUserWorkout(this.userWorkoutId, this.workoutId).then((userWorkout: WorkoutInterface[]): void => {
+        const exercises: ExercisesInterface[] = userWorkout[0]?.exercises;
+        if (exercises && exercises.length > 0) {
+          exercises.map((exercise: ExercisesInterface): void => {
+            this.onSelectedExercise(exercise);
+          });
         }
+      }).catch(err => {
+        console.error('error: ', err);
       });
     }
   }

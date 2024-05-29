@@ -24,14 +24,11 @@ export class UserWorkoutPage {
 
   getUserWorkoutDoc(): void {
     if (this.workoutId) {
-      this.userWorkoutService.getUserWorkoutById(this.workoutId).subscribe({
-        next: (workout: UserWorkoutInterface): void => {
-          this.userWorkout = workout;
-          console.log('userWorkout', this.userWorkout);
-        },
-        error: err => {
-          console.error('Error: ', err);
-        }
+      this.userWorkoutService.getUserWorkoutById(this.workoutId).then((workout: UserWorkoutInterface): void => {
+        this.userWorkout = workout;
+        console.log('userWorkout', this.userWorkout);
+      }).catch(err => {
+        console.error('Error: ', err);
       });
     }
   }

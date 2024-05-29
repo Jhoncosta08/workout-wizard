@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-grid class="gradient">
+  <ion-grid class="gradient home-container">
 
     <ion-row>
       <ion-col class="title-container">
@@ -10,14 +10,12 @@
 
     <ion-row class="workout-card-container" *ngFor="let workout of userWorkouts">
       <ion-col class="workout-card">
-        <div class="workout-icons-group">
-          <img *ngFor="let workoutList of workout.workouts" src="assets/icon/body.png" alt="" />
-        </div>
-
-        <div class="workout-name-group">
-          <p *ngFor="let workoutList of workout.workouts">{{ workoutList.name }}</p>
-        </div>
-
+        <ion-row class="workout-icons-group">
+          <ion-col *ngFor="let workoutList of workout.workouts" class="workout-item" size="3">
+            <img [src]="workoutList.name | exerciseImg" alt="" />
+            <p>{{ workoutList.name }}</p>
+          </ion-col>
+        </ion-row>
         <button class="submit-button workout-detail-btn" (click)="moveRouteForward('/user-workout', workout.id)">Ver treino</button>
       </ion-col>
     </ion-row>

@@ -26,14 +26,12 @@ export class HomePage {
   }
 
   getAllWorkouts(): void {
-    this.userWorkoutService.getAllUserWorkout().subscribe({
-      next: (workouts: UserWorkoutInterface[]): void => {
-        this.userWorkouts = workouts;
-      },
-      error: err => {
-        console.error('Error: ', err);
-      }
-    })
+    this.userWorkoutService.getAllUserWorkout().then((workouts: UserWorkoutInterface[]): void => {
+      this.userWorkouts = workouts;
+      console.log('aaa', workouts);
+    }).catch(err => {
+      console.error('Error: ', err);
+    });
   }
 
 }
