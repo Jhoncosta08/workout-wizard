@@ -56,7 +56,7 @@ const routes: Routes = [
         loadChildren: () => import('./pages/exercise/exercises/exercises.module').then( m => m.ExercisesPageModule)
       },
       {
-        path: 'detail/:id',
+        path: 'detail/:name',
         loadChildren: () => import('./pages/exercise/exercise-detail/exercise-detail.module').then( m => m.ExerciseDetailPageModule)
       },
     ],

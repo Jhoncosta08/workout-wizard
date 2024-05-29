@@ -1,4 +1,10 @@
 
+.exercise-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card-description {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -30,4 +36,22 @@
 
 .see-more-container ion-icon {
   color: var(--primary-dark);
+}
+
+.add-exercise-icon, .remove-exercise-icon {
+  color: var(--neutral-white);
+  border-radius: 50%;
+}
+
+.add-exercise-icon {
+  background-color: var(--success);
+}
+
+.remove-exercise-icon {
+  background-color: var(--danger);
+}
+
+.save-exercises {
+  position: fixed;
+  bottom: 0;
 }
