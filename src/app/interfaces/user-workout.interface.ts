@@ -4,8 +4,8 @@ export interface UserWorkoutInterface extends ExercisesInterface {
   userId: string;
   workouts: [
     {
-      workoutId: string;
-      workoutName: string;
+      id: string;
+      name: string;
       exercises: ExercisesInterface[];
     }
   ];

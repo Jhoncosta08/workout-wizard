@@ -51,8 +51,7 @@ p, h1, h2, h3, h4, h5, h6, label, button, span, a, small, ul, table {
 //main-background
 .gradient {
   background: linear-gradient(to right, var(--primary-dark) 5%, var(--primary-green) 100%);
-  height: auto;
-  min-height: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
   display: flex;

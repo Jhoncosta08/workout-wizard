@@ -5,6 +5,7 @@ import * as firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {WorkoutInterface} from '../interfaces/workout.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +50,8 @@ export class WorkoutService {
     }));
   }
 
-  getWorkoutById(workoutId: string): Observable<void> {
-    return this.firestore.collection('workouts').doc(workoutId).valueChanges().pipe(map((workout: any): void => {
+  getWorkoutById(workoutId: string): Observable<WorkoutInterface> {
+    return this.firestore.collection('workouts').doc(workoutId).valueChanges().pipe(map((workout: any) => {
       if (workout) {
         return workout;
       } else {

@@ -6,6 +6,8 @@ import {UserWorkoutService} from '../../../services/user-workout.service';
 import {AuthService} from '../../../services/auth.service';
 import {UserInterface} from '../../../interfaces/user.interface';
 import {NavController} from '@ionic/angular';
+import {ActivatedRoute} from '@angular/router';
+import {WorkoutService} from '../../../services/workout.service';
 
 @Component({
   selector: 'app-user-add-workout',
@@ -15,16 +17,24 @@ import {NavController} from '@ionic/angular';
 export class UserAddWorkoutPage {
   @ViewChild(AllWorkoutsComponent) allWorkoutsComponent!: AllWorkoutsComponent;
   selectedWorkout: WorkoutInterface | null = null;
+  workoutId: string | null = null;
 
   constructor(
     private userWorkoutService: UserWorkoutService,
     private authService: AuthService,
-    private navControl: NavController
-  ) { }
+    private navControl: NavController,
+    private route: ActivatedRoute,
+    private workoutService: WorkoutService
+  ) {}
 
   ionViewWillEnter(): void {
-    if (this.allWorkoutsComponent) {
-      this.allWorkoutsComponent.getAllWorkouts();
+    this.workoutId = this.route.snapshot.paramMap.get('id');
+    if (this.workoutId) {
+      this.getUserWorkout();
+    } else {
+      if (this.allWorkoutsComponent) {
+        this.allWorkoutsComponent.getAllWorkouts();
+      }
     }
   }
 
@@ -40,12 +50,25 @@ export class UserAddWorkoutPage {
         this.userWorkoutService.saveNewWorkout(
           user.uid, this.selectedWorkout.id, this.selectedWorkout.name, exercises
         ).then((): void => {
-          this.navControl.navigateForward('/home');
+          void this.navControl.navigateForward('/home');
         }).catch(err => {
           console.error('Error: ', err);
         })
       }
     })
+  }
+
+  getUserWorkout(): void {
+    if (this.workoutId) {
+      this.workoutService.getWorkoutById(this.workoutId).subscribe({
+        next: (workouts: WorkoutInterface): void => {
+          this.selectedWorkout = workouts;
+        },
+        error: err => {
+          console.error('Error: ', err);
+        }
+      });
+    }
   }
 
 }

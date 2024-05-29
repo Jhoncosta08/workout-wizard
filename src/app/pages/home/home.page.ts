@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController} from '@ionic/angular';
+import {UserWorkoutService} from '../../services/user-workout.service';
+import {UserWorkoutInterface} from '../../interfaces/user-workout.interface';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +9,31 @@ import {NavController} from '@ionic/angular';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
+  userWorkouts: UserWorkoutInterface[] = [];
 
-  constructor(private navControl: NavController) { }
+  constructor(
+    private navControl: NavController,
+    private userWorkoutService: UserWorkoutService
+  ) { }
 
-  moveRouteForward(url: string): void {
-    void this.navControl.navigateForward(url);
+  moveRouteForward(url: string, params?: string): void {
+    const route: string = params ? `${url}/${params}` : url;
+    void this.navControl.navigateForward(route);
+  }
+
+  ionViewWillEnter(): void {
+    this.getAllWorkouts();
+  }
+
+  getAllWorkouts(): void {
+    this.userWorkoutService.getAllUserWorkout().subscribe({
+      next: (workouts: UserWorkoutInterface[]): void => {
+        this.userWorkouts = workouts;
+      },
+      error: err => {
+        console.error('Error: ', err);
+      }
+    })
   }
 
 }

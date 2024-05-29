@@ -8,37 +8,17 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="workout-card-container">
+    <ion-row class="workout-card-container" *ngFor="let workout of userWorkouts">
       <ion-col class="workout-card">
         <div class="workout-icons-group">
-          <img src="assets/icon/body.png" alt="" />
-          <img src="assets/icon/body.png" alt="" />
-          <img src="assets/icon/body.png" alt="" />
+          <img *ngFor="let workoutList of workout.workouts" src="assets/icon/body.png" alt="" />
         </div>
 
         <div class="workout-name-group">
-          <p>Peito</p>
-          <p>Costa</p>
-          <p>Perna</p>
+          <p *ngFor="let workoutList of workout.workouts">{{ workoutList.name }}</p>
         </div>
 
-        <button class="submit-button workout-detail-btn">Ver treino</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="workout-card-container">
-      <ion-col class="workout-card">
-        <div class="workout-icons-group">
-          <img src="assets/icon/body.png" alt="" />
-          <img src="assets/icon/body.png" alt="" />
-        </div>
-
-        <div class="workout-name-group">
-          <p>Cardio</p>
-          <p>Ombro</p>
-        </div>
-
-        <button class="submit-button workout-detail-btn">Ver treino</button>
+        <button class="submit-button workout-detail-btn" (click)="moveRouteForward('/user-workout', workout.id)">Ver treino</button>
       </ion-col>
     </ion-row>
 

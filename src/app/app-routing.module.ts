@@ -46,7 +46,8 @@ const routes: Routes = [
   },
   {
     path: 'user-add-workout',
-    loadChildren: () => import('./pages/user/user-add-workout/user-add-workout.module').then( m => m.UserAddWorkoutPageModule)
+    loadChildren: () => import('./pages/user/user-add-workout/user-add-workout.module').then( m => m.UserAddWorkoutPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'exercise',
@@ -60,6 +61,17 @@ const routes: Routes = [
         loadChildren: () => import('./pages/exercise/exercise-detail/exercise-detail.module').then( m => m.ExerciseDetailPageModule)
       },
     ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'user-workout',
+    children: [
+      {
+        path: ':id',
+        loadChildren: () => import('./pages/user/user-workout/user-workout.module').then( m => m.UserWorkoutPageModule)
+      }
+    ],
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
