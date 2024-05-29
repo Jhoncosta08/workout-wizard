@@ -1,55 +1,129 @@
 <ion-content [fullscreen]="true">
   <ion-grid class="gradient">
+
+
     <ion-row class="create-account-title-box">
       <ion-col>
         <h1 class="title">Crie sua <br/> conta</h1>
       </ion-col>
     </ion-row>
 
+
     <ion-row class="create-account-form-row">
       <ion-col>
+
         <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
           <div class="form-group">
-            <ion-input id="name" type="text" class="custom-input" formControlName="name" label="Nome" labelPlacement="stacked" fill="outline" placeholder="Digite seu nome"></ion-input>
+            <ion-input
+              id="name"
+              type="text"
+              class="custom-input"
+              formControlName="name"
+              label="Nome"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite seu nome">
+            </ion-input>
           </div>
 
           <div class="form-group">
-            <ion-input id="age" type="number" class="custom-input" formControlName="age" label="Idade" labelPlacement="stacked" fill="outline" placeholder="Digite sua idade"></ion-input>
+            <ion-input
+              id="age"
+              type="number"
+              class="custom-input"
+              formControlName="age"
+              label="Idade"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite sua idade">
+            </ion-input>
           </div>
 
           <div class="form-group">
-            <ion-input id="weight" type="number" class="custom-input" formControlName="weight" label="Peso" labelPlacement="stacked" fill="outline" placeholder="Digite seu peso"></ion-input>
+            <ion-input
+              id="weight"
+              type="number"
+              class="custom-input"
+              formControlName="weight"
+              label="Peso"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite seu peso">
+            </ion-input>
           </div>
 
           <div class="form-group">
-            <ion-input id="height" type="number" class="custom-input" formControlName="height" label="Altura" labelPlacement="stacked" fill="outline" placeholder="Digite sua altura"></ion-input>
+            <ion-input
+              id="height"
+              type="number"
+              class="custom-input"
+              formControlName="height"
+              label="Altura"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite sua altura">
+            </ion-input>
           </div>
 
           <div class="form-group">
-            <ion-input id="email" type="email" class="custom-input" formControlName="email" label="Email" labelPlacement="stacked" fill="outline" placeholder="Digite seu email"></ion-input>
+            <ion-input
+              id="email"
+              type="email"
+              class="custom-input"
+              formControlName="email"
+              label="Email"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite seu email">
+            </ion-input>
           </div>
 
           <div class="form-group">
-            <ion-select id="gender" formControlName="gender"  label="Sexo" class="custom-input" labelPlacement="stacked" fill="outline" placeholder="Selecione seu sexo">
+            <ion-select
+              id="gender"
+              formControlName="gender"
+              label="Sexo"
+              class="custom-input"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Selecione seu sexo">
               <ion-select-option value="masculino">masculino</ion-select-option>
               <ion-select-option value="feminino">feminino</ion-select-option>
             </ion-select>
           </div>
 
           <div class="form-group">
-            <ion-input id="password" class="custom-input" formControlName="password" type="password" label="Senha" fill="outline" labelPlacement="stacked" placeholder="Digite sua senha">
+            <ion-input
+              id="password"
+              class="custom-input"
+              formControlName="password"
+              type="password"
+              label="Senha"
+              fill="outline"
+              labelPlacement="stacked"
+              placeholder="Digite sua senha">
               <ion-input-password-toggle slot="end" color="dark"></ion-input-password-toggle>
             </ion-input>
           </div>
 
           <div class="form-group">
-            <ion-input id="confirm-password" class="custom-input" formControlName="confirmPassword" type="password" label="Confirmar Senha" fill="outline" labelPlacement="stacked" placeholder="Digite novamente a senha">
+            <ion-input
+              id="confirm-password"
+              class="custom-input"
+              formControlName="confirmPassword"
+              type="password"
+              label="Confirmar Senha"
+              fill="outline"
+              labelPlacement="stacked"
+              placeholder="Digite novamente a senha">
               <ion-input-password-toggle slot="end" color="dark"></ion-input-password-toggle>
             </ion-input>
           </div>
 
           <div class="form-group">
-            <button type="submit" class="submit-button">Cadastrar</button>
+            <button type="submit" class="submit-button">
+              Cadastrar
+            </button>
           </div>
         </form>
 
@@ -57,13 +131,18 @@
           <ion-col class="have-account-container">
             <div class="have-account-box">
               <p class="text">Já possui uma conta?</p>
-              <a class="text" (click)="moveRouteBack('/login')">Entrar</a>
+              <a class="text" (click)="moveRouteBack('/login')">
+                Entrar
+              </a>
             </div>
           </ion-col>
         </ion-row>
+
       </ion-col>
 
 
     </ion-row>
+
+
   </ion-grid>
 </ion-content>

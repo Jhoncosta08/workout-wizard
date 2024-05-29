@@ -3,6 +3,7 @@ import {MenuController, NavController} from '@ionic/angular';
 import {UserInterface} from '../../../interfaces/user.interface';
 import {AuthService} from '../../../services/auth.service';
 
+
 @Component({
   selector: 'app-nav-items',
   templateUrl: './nav-items.component.html',
@@ -11,6 +12,7 @@ import {AuthService} from '../../../services/auth.service';
 export class NavItemsComponent {
   public userData: UserInterface | null = null;
   public showAdminNav: boolean = false;
+
 
   constructor(
     private navControl: NavController,
@@ -23,10 +25,12 @@ export class NavItemsComponent {
     });
   }
 
+
   moveUrlForward(url: string): void {
     this.menuControl.close().then((): void => {
       void this.navControl.navigateForward(url);
     });
   }
+
 
 }

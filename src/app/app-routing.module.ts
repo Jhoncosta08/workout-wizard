@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from './guards/auth.guard';
 
+
 const routes: Routes = [
+  //DEFAULT REDIRECT ROUTE
   {
     path: '',
     redirectTo: 'welcome',
     pathMatch: 'full'
   },
+  //-----
+
+
+  //ADMIN ROUTES
   {
     path: 'admin',
     children: [
@@ -22,6 +28,10 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard]
   },
+  //-----
+
+
+  //AUTH ROUTES
   {
     path: 'welcome',
     loadChildren: () => import('./pages/auth/welcome/welcome.module').then( m => m.WelcomePageModule)
@@ -34,21 +44,10 @@ const routes: Routes = [
     path: 'create-account',
     loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule),
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'user-add-workout',
-    loadChildren: () => import('./pages/user/user-add-workout/user-add-workout.module').then( m => m.UserAddWorkoutPageModule),
-    canActivate: [AuthGuard]
-  },
+  //-----
+
+
+  //EXERCISES ROUTES
   {
     path: 'exercise',
     children: [
@@ -63,6 +62,15 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard]
   },
+  //-----
+
+
+  //WORKOUTS ROUTES
+  {
+    path: 'user-add-workout',
+    loadChildren: () => import('./pages/user/user-add-workout/user-add-workout.module').then( m => m.UserAddWorkoutPageModule),
+    canActivate: [AuthGuard]
+  },
   {
     path: 'user-workout',
     children: [
@@ -73,11 +81,31 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard]
   },
+  //-----
+
+
+  //OTHER ROUTES
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
+  },
+  //-----
+
+
+  //404 ROUTE
   {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
+  //-----
 ];
+
 
 @NgModule({
   imports: [
@@ -85,4 +113,6 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
+
 export class AppRoutingModule { }

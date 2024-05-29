@@ -8,11 +8,13 @@ import {ToastService} from './toast.service';
 import {SpinnerService} from './spinner.service';
 import {BehaviorSubject} from "rxjs";
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public user = new BehaviorSubject<UserInterface | null>(null);
+  public user: BehaviorSubject<UserInterface | null> = new BehaviorSubject<UserInterface | null>(null);
+
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -25,10 +27,9 @@ export class AuthService {
     this.user.next(JSON.parse(localStorage.getItem('user')!));
   }
 
+
   async register(user: UserInterface): Promise<void> {
-    if (!user.password || user.password.trim().length === 0) {
-      return this.toastService.presentErrorToast('User not found!');
-    }
+    if (!user.password || user.password.trim().length === 0) return this.toastService.presentErrorToast('User not found!');
     try {
       this.spinnerControl.show();
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
@@ -56,6 +57,7 @@ export class AuthService {
     }
   }
 
+
   login(user: LoginInterface): void{
     if (!user) {
       void this.toastService.presentErrorToast('User not found!');
@@ -63,9 +65,7 @@ export class AuthService {
       this.spinnerControl.show();
       this.afAuth.signInWithEmailAndPassword(user.email, user.password).then((userCredential: any): void => {
         const userId: string | undefined = userCredential.user?.uid;
-        if (userId && userCredential) {
-          this.setUserLocal(userId, userCredential);
-        }
+        if (userId && userCredential) this.setUserLocal(userId, userCredential);
         this.toastService.presentSuccessToast('Login efetuado com sucesso').then((): void => {
           void this.navControl.navigateForward('/home');
           this.spinnerControl.hide();
@@ -78,10 +78,11 @@ export class AuthService {
     }
   }
 
+
   setUserLocal(userId: string, userCredential: any): void {
     const userRef: AngularFirestoreDocument = this.firestore.collection('users').doc(userId);
     userRef.get().subscribe({
-      next: (userData: any) => {
+      next: (userData: any): void => {
         if (userData) {
           localStorage.setItem('user', JSON.stringify({
             ...userData.data(),
@@ -92,31 +93,30 @@ export class AuthService {
         }
       },
       error: err => {
-        console.error('Error getting user:', err);
+        console.error('Error in setUserLocal getting user:', err);
       }
     });
   }
+
 
   logout(): void {
     this.spinnerControl.show('Saindo...');
     this.menuController.close().then((): void => {
       this.afAuth.signOut().then((): void => {
         localStorage.clear();
-        this.navControl.navigateForward('/login').then((): void => {
-          this.spinnerControl.hide();
-        });
+        this.navControl.navigateForward('/login').then((): void => this.spinnerControl.hide());
       });
     });
   }
+
 
   redirectLoggedUser(): void {
     const user: string | null = localStorage.getItem('user');
     if (user) {
       this.spinnerControl.show('Carregando...');
-      this.navControl.navigateRoot('/home').then((): void => {
-        this.spinnerControl.hide();
-      });
+      this.navControl.navigateRoot('/home').then((): void => this.spinnerControl.hide());
     }
   }
+
 
 }

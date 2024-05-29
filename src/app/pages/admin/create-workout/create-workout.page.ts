@@ -5,6 +5,7 @@ import {NavController} from '@ionic/angular';
 import {WorkoutService} from '../../../services/workout.service';
 import {SpinnerService} from '../../../services/spinner.service';
 
+
 @Component({
   selector: 'app-create-workout',
   templateUrl: './create-workout.page.html',
@@ -13,12 +14,14 @@ import {SpinnerService} from '../../../services/spinner.service';
 export class CreateWorkoutPage {
   workout: FormControl = new FormControl('', Validators.required);
 
+
   constructor(
     private toastService: ToastService,
     private navControl: NavController,
     private workoutService: WorkoutService,
     private spinnerControl: SpinnerService,
   ) {}
+
 
   onSaveWorkout(): void {
     this.spinnerControl.show('Carregando...');
@@ -31,7 +34,7 @@ export class CreateWorkoutPage {
         });
       }).catch(err => {
         this.spinnerControl.hide();
-        console.error('error in create workout: ', err);
+        console.error('error in onSaveWorkout: ', err);
         void this.toastService.presentErrorToast('Ocorreu um erro!');
       })
     } else {
@@ -39,5 +42,6 @@ export class CreateWorkoutPage {
       void this.toastService.presentErrorToast('Formulário inválido!');
     }
   }
+
 
 }

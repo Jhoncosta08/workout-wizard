@@ -1,4 +1,6 @@
 
+
+//THEME VARIABLES
 :root {
   // Warning colors
   --success: #009f3e;
@@ -31,7 +33,10 @@
   --text-black: #000000;
   --text-dark-gray: #343a40;
 }
+//------
 
+
+//FONT ITEMS STYLES
 @font-face {
   font-family: 'Poppins';
   src: url('.././assets/fonts/Poppins-Regular.ttf') format('truetype');
@@ -47,6 +52,8 @@ p, h1, h2, h3, h4, h5, h6, label, button, span, a, small, ul, table {
 ::placeholder {
   font-family: 'Poppins', sans-serif;
 }
+//------
+
 
 //main-background
 .gradient {
@@ -57,15 +64,10 @@ p, h1, h2, h3, h4, h5, h6, label, button, span, a, small, ul, table {
   display: flex;
   flex-direction: column;
 }
+//------
 
-ion-content {
-  --ion-background-color: var(--neutral-white);
-}
 
-ion-refresher.refresher-native ion-spinner {
-  color: var(--primary-green);
-}
-
+//SHARED STYLES
 .title {
   font-size: 2rem;
   letter-spacing: 2px;
@@ -87,6 +89,35 @@ ion-refresher.refresher-native ion-spinner {
   color: var(--neutral-white);
 }
 
+.form-row {
+  background-color: var(--neutral-white);
+  height: 100%;
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding-top: 3rem;
+}
+
+.submit-button {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--primary-green);
+  color: var(--neutral-white);
+  padding: 1rem 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  line-height: 24px;
+}
+//------
+
+
+//IONIC CHANGED STYLES
+ion-content {
+  --ion-background-color: var(--neutral-white);
+}
+
+ion-refresher.refresher-native ion-spinner {
+  color: var(--primary-green);
+}
+
 ion-input.custom-input, ion-textarea.custom-input {
   margin: 1.2rem 0;
   --border-color: var(--primary-dark);
@@ -106,21 +137,4 @@ ion-toast {
   color: var(--neutral-white);
   font-size: 0.8rem;
 }
-
-.form-row {
-  background-color: var(--neutral-white);
-  height: 100%;
-  border-radius: 1.5rem 1.5rem 0 0;
-  padding-top: 3rem;
-}
-
-.submit-button {
-  width: 100%;
-  margin-bottom: 1rem;
-  background-color: var(--primary-green);
-  color: var(--neutral-white);
-  padding: 1rem 0.5rem;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  line-height: 24px;
-}
+//------

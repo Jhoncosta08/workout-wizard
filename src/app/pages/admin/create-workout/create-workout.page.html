@@ -1,25 +1,41 @@
 <ion-content>
   <ion-grid class="gradient">
 
+
     <ion-row>
       <ion-col class="title-box">
         <h1 class="title">Crie seu <br/>Treino</h1>
       </ion-col>
     </ion-row>
 
+
     <ion-row class="form-row">
       <ion-col>
         <form (ngSubmit)="onSaveWorkout()">
+
           <div class="form-group">
-            <ion-input id="workout" type="text" class="custom-input" [formControl]="workout" label="Treino" labelPlacement="stacked" fill="outline" placeholder="Digite o nome do treino"></ion-input>
+            <ion-input
+              id="workout"
+              type="text"
+              class="custom-input"
+              [formControl]="workout"
+              label="Treino"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite o nome do treino">
+            </ion-input>
           </div>
 
           <div class="form-group">
-            <button type="submit" class="submit-button">Salvar</button>
+            <button type="submit" class="submit-button">
+              Salvar
+            </button>
           </div>
+
         </form>
       </ion-col>
     </ion-row>
+
 
   </ion-grid>
 </ion-content>

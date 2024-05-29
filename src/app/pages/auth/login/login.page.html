@@ -1,6 +1,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid class="gradient">
 
+
     <ion-row class="form-title-box">
       <ion-col>
         <h1 class="title">Login</h1>
@@ -10,21 +11,43 @@
     <ion-row class="form-row">
       <ion-col>
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
           <div class="form-group">
-            <ion-input id="email" type="email" class="custom-input" formControlName="email" label="Email" labelPlacement="stacked" fill="outline" placeholder="Digite seu email"></ion-input>
+            <ion-input
+              id="email"
+              type="email"
+              class="custom-input"
+              formControlName="email"
+              label="Email"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite seu email">
+            </ion-input>
           </div>
 
           <div class="form-group">
-            <ion-input id="password" class="custom-input" formControlName="password" type="password" label="Senha" fill="outline" labelPlacement="stacked" placeholder="Digite sua senha">
+            <ion-input
+              id="password"
+              class="custom-input"
+              formControlName="password"
+              type="password"
+              label="Senha"
+              fill="outline"
+              labelPlacement="stacked"
+              placeholder="Digite sua senha">
               <ion-input-password-toggle slot="end" color="dark"></ion-input-password-toggle>
             </ion-input>
           </div>
 
           <div class="form-group">
-            <button type="submit" class="submit-button">Entrar</button>
+            <button type="submit" class="submit-button">
+              Entrar
+            </button>
           </div>
+
         </form>
       </ion-col>
+
       <ion-row class="have-account-row">
         <ion-col class="have-account-container">
           <div class="have-account-box">
@@ -33,6 +56,9 @@
           </div>
         </ion-col>
       </ion-row>
+
     </ion-row>
+
+
   </ion-grid>
 </ion-content>

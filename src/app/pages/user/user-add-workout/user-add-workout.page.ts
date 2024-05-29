@@ -6,6 +6,8 @@ import {UserWorkoutService} from '../../../services/user-workout.service';
 import {NavController} from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import {WorkoutService} from '../../../services/workout.service';
+import {SpinnerService} from '../../../services/spinner.service';
+
 
 @Component({
   selector: 'app-user-add-workout',
@@ -18,12 +20,15 @@ export class UserAddWorkoutPage {
   workoutId: string | null = null;
   userWorkoutId: string | null = null;
 
+
   constructor(
     private userWorkoutService: UserWorkoutService,
     private navControl: NavController,
     private route: ActivatedRoute,
-    private workoutService: WorkoutService
+    private workoutService: WorkoutService,
+    private spinnerService: SpinnerService
   ) {}
+
 
   ionViewWillEnter(): void {
     this.workoutId = this.route.snapshot.paramMap.get('id');
@@ -31,19 +36,18 @@ export class UserAddWorkoutPage {
     if (this.workoutId) {
       this.getUserWorkout();
     } else {
-      if (this.allWorkoutsComponent) {
-        this.allWorkoutsComponent.getAllWorkouts();
-      }
+      if (this.allWorkoutsComponent) this.allWorkoutsComponent.getAllWorkouts();
     }
   }
+
 
   getClickedWorkout(workout: WorkoutInterface): void {
-    if (workout) {
-      this.selectedWorkout = workout;
-    }
+    if (workout) this.selectedWorkout = workout;
   }
 
+
   saveExercises(exercises: ExercisesInterface[]): void {
+    this.spinnerService.show();
     if (this.userWorkoutId && this.workoutId) {
       this.userWorkoutService.getUserWorkout(this.userWorkoutId, this.workoutId).then((userWorkout: WorkoutInterface[]): void => {
         if (userWorkout && userWorkout.length > 0) {
@@ -52,18 +56,22 @@ export class UserAddWorkoutPage {
           this.newWorkoutGroup(exercises);
         }
       }).catch(err => {
-        console.error('Error: ', err);
+        this.spinnerService.hide();
+        console.error('Error in getUserWorkout: ', err);
       });
     } else {
       if (this.selectedWorkout) {
         this.userWorkoutService.saveNewWorkout(this.selectedWorkout.id, this.selectedWorkout.name, exercises).then((): void => {
           void this.navControl.navigateForward('/home');
+          this.spinnerService.hide();
         }).catch(err => {
-          console.error('Error: ', err);
+          this.spinnerService.hide();
+          console.error('Error in saveNewWorkout: ', err);
         });
       }
     }
   }
+
 
   newWorkoutGroup(exercises: ExercisesInterface[]): void {
     if (this.selectedWorkout && this.userWorkoutId) {
@@ -75,33 +83,44 @@ export class UserAddWorkoutPage {
 
       this.userWorkoutService.addNewWorkoutGroup(newWorkout, this.userWorkoutId).then((): void => {
         void this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`);
+        this.spinnerService.hide();
       }).catch(err => {
-        console.error('Error: ', err);
+        this.spinnerService.hide();
+        console.error('Error in addNewWorkoutGroup: ', err);
       });
     }
   }
+
 
   updateWorkoutExercises(exercises: ExercisesInterface[]): void {
     if (this.userWorkoutId && this.workoutId) {
       this.userWorkoutService.updateExercises(this.userWorkoutId, this.workoutId, exercises).then((): void => {
         void this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`);
+        this.spinnerService.hide();
       }).catch(err => {
-        console.error('Error: ', err);
+        this.spinnerService.hide();
+        console.error('Error in updateWorkoutExercises: ', err);
       });
     }
   }
 
+
   getUserWorkout(): void {
     if (this.workoutId) {
+      this.spinnerService.show();
       this.workoutService.getWorkoutById(this.workoutId).subscribe({
         next: (workouts: WorkoutInterface): void => {
           this.selectedWorkout = workouts;
+          this.spinnerService.hide();
         },
         error: err => {
-          console.error('Error: ', err);
+          console.error('Error in getUserWorkout: ', err);
+          this.selectedWorkout = null;
+          this.spinnerService.hide();
         }
       });
     }
   }
+
 
 }

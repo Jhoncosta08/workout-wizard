@@ -17,9 +17,9 @@ export class ExerciseListComponent implements OnInit {
   allSelectedExercises: ExercisesInterface[] = [];
   userWorkoutId: string | null = null;
   workoutId: string | null = null;
-
   showDescriptionToggle: boolean = true;
   exercisesNames: string[] = [];
+
 
   constructor(
     private navControl: NavController,
@@ -30,29 +30,41 @@ export class ExerciseListComponent implements OnInit {
     this.workoutId = this.route.snapshot.paramMap.get('id');
   }
 
+
   ngOnInit(): void {
     this.setExercisesAlreadySaved();
   }
 
+
   onSelectedExercise(exercise: ExercisesInterface): void {
-    const exerciseAlreadyAdded: boolean = this.allSelectedExercises.some((item: ExercisesInterface): boolean => item.name.toLowerCase().trim() === exercise.name.trim().toLowerCase());
+    const exerciseAlreadyAdded: boolean = this.allSelectedExercises.some(
+      (item: ExercisesInterface): boolean =>
+        item.name.toLowerCase().trim() === exercise.name.trim().toLowerCase()
+    );
     if (!exerciseAlreadyAdded) this.allSelectedExercises.push(exercise);
     if (exercise && exercise.name) this.showIconIfIdInList(exercise.name);
   }
 
+
   removeTheSelectedExercise(exercise: ExercisesInterface): void {
-    const index: number = this.allSelectedExercises.findIndex((item: ExercisesInterface): boolean => item.name.trim().toLowerCase() === exercise.name.trim().toLowerCase());
+    const index: number = this.allSelectedExercises.findIndex(
+      (item: ExercisesInterface): boolean =>
+        item.name.trim().toLowerCase() === exercise.name.trim().toLowerCase()
+    );
     if (index !== -1) this.allSelectedExercises.splice(index, 1);
     if (exercise && exercise.name) this.showIconIfIdInList(exercise.name);
   }
+
 
   goToExerciseDetail(exerciseName: string): void {
     void this.navControl.navigateForward(`exercise/detail/${exerciseName}`);
   }
 
+
   showAllDescription(): void {
     this.showDescriptionToggle = !this.showDescriptionToggle;
   }
+
 
   seeMoreBtnAction(exerciseName: string): void {
     switch (this.listType) {
@@ -65,6 +77,7 @@ export class ExerciseListComponent implements OnInit {
     }
   }
 
+
   showIconIfIdInList(exerciseName: string): void {
     const name: string = exerciseName.trim().toLowerCase();
     if (!this.exercisesNames.includes(name)) {
@@ -74,6 +87,7 @@ export class ExerciseListComponent implements OnInit {
       if (index != -1) this.exercisesNames.splice(index, 1);
     }
   }
+
 
   setExercisesAlreadySaved(): void {
     if (this.workoutId && this.userWorkoutId) {

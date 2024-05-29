@@ -4,18 +4,24 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import {ToastService} from '../services/toast.service';
+import firebase from 'firebase/compat';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private toast: ToastService) {}
+
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private toast: ToastService
+  ) {}
+
 
   canActivate(): Observable<boolean> {
-    return this.afAuth.authState.pipe(
-      take(1),
-      map(authState => {
+    return this.afAuth.authState.pipe(take(1), map((authState: firebase.User | null): boolean => {
         if (authState) {
           return true;
         } else {
@@ -27,4 +33,6 @@ export class AuthGuard implements CanActivate {
       })
     );
   }
+
+
 }

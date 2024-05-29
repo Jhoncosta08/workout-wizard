@@ -6,6 +6,8 @@ import { UserAddWorkoutPageRoutingModule } from './user-add-workout-routing.modu
 import { UserAddWorkoutPage } from './user-add-workout.page';
 import {AllWorkoutsComponent} from '../../../components/all-workouts/all-workouts.component';
 import {ExerciseListComponent} from '../../../components/exercise-list/exercise-list.component';
+import {ExerciseImgPipe} from '../../../pipes/exercise-img.pipe';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +19,10 @@ import {ExerciseListComponent} from '../../../components/exercise-list/exercise-
     CommonModule,
     FormsModule,
     IonicModule,
-    UserAddWorkoutPageRoutingModule
+    UserAddWorkoutPageRoutingModule,
+    ExerciseImgPipe
   ]
 })
+
+
 export class UserAddWorkoutPageModule {}

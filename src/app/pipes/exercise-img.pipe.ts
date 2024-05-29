@@ -1,11 +1,11 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
+
 @Pipe({
   name: 'exerciseImg',
   standalone: true
 })
 export class ExerciseImgPipe implements PipeTransform {
-
   private exerciseImages: { [exerciseName: string]: string } = {
     'peito': 'assets/icon/chest.png',
     'costa': 'assets/icon/back.png',
@@ -19,8 +19,10 @@ export class ExerciseImgPipe implements PipeTransform {
     'abdomen': 'assets/icon/abdomen.png',
   };
 
+
   transform(exerciseName: string): string {
     return this.exerciseImages[exerciseName.toLowerCase()] || 'assets/icon/default-workout.png';
   }
+
 
 }

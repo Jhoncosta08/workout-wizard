@@ -10,8 +10,11 @@ import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {environment} from '../environments/environment';
 import {NavModule} from './components/nav/nav.module';
 
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -21,7 +24,12 @@ import {NavModule} from './components/nav/nav.module';
     AngularFirestoreModule,
     NavModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{
+    provide: RouteReuseStrategy,
+    useClass: IonicRouteStrategy
+  }],
   bootstrap: [AppComponent],
 })
+
+
 export class AppModule {}

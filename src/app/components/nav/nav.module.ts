@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavComponent} from './nav.component';
 import {NavItemsComponent} from './nav-items/nav-items.component';
-import {IonicModule} from "@ionic/angular";
-
+import {IonicModule} from '@ionic/angular';
 
 
 @NgModule({

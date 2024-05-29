@@ -1,6 +1,11 @@
 
+
 <ion-card *ngFor="let exercise of exercises">
+
+
   <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name"/>
+
+
   <ion-card-header>
     <div class="exercise-card-header">
       <ion-card-title class="exercise-card-title">{{ exercise.name }}</ion-card-title>
@@ -11,6 +16,7 @@
     </div>
   </ion-card-header>
 
+
   <ion-card-content>
     <p [ngClass]="showDescriptionToggle ? 'card-description' : ''">{{ exercise.description }}</p>
     <div class="see-more-container">
@@ -18,8 +24,13 @@
       <ion-icon [name]="listType === 'detail' ? 'arrow-forward-outline' : showDescriptionToggle ? 'arrow-down-outline' : 'arrow-up-outline'"></ion-icon>
     </div>
   </ion-card-content>
+
+
 </ion-card>
 
+
 <button *ngIf="allSelectedExercises.length > 0" class="submit-button save-exercises" (click)="emitExercises.emit(allSelectedExercises)">
-  {{ userWorkoutId ? 'Atualizar' : 'Salvar' }} {{ allSelectedExercises.length > 0 ? allSelectedExercises.length : '' }} exercício
+  {{ userWorkoutId ? 'Atualizar' : 'Salvar' }}
+  {{ allSelectedExercises.length > 0 ? allSelectedExercises.length : '' }}
+  exercício
 </button>

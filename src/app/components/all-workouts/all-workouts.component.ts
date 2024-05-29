@@ -9,18 +9,20 @@ import {WorkoutInterface} from '../../interfaces/workout.interface';
   styleUrls: ['./all-workouts.component.scss'],
 })
 export class AllWorkoutsComponent {
-  workouts: any[] = [];
+  workouts: WorkoutInterface[] = [];
   @Output() clickedWorkout: EventEmitter<WorkoutInterface> = new EventEmitter<WorkoutInterface>();
+
 
   constructor(
     private workoutService: WorkoutService,
     private spinner: SpinnerService
   ) {}
 
+
   getAllWorkouts(): void {
     this.spinner.show();
     this.workoutService.getAllWorkouts().subscribe({
-      next: (workouts: any[]): void => {
+      next: (workouts: WorkoutInterface[]): void => {
         this.workouts = workouts;
         this.spinner.hide();
       },
@@ -31,7 +33,6 @@ export class AllWorkoutsComponent {
       }
     })
   }
-
 
 
 }

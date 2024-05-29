@@ -5,6 +5,7 @@ import {UserInterface} from '../../../interfaces/user.interface';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
 
+
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.page.html',
@@ -12,6 +13,7 @@ import {NavController} from '@ionic/angular';
 })
 export class CreateAccountPage {
   registerForm: FormGroup;
+
 
   constructor(
     private fb: FormBuilder,
@@ -31,15 +33,15 @@ export class CreateAccountPage {
     });
   }
 
+
   ionViewWillEnter(): void {
     this.authService.redirectLoggedUser();
   }
 
+
   onRegister(): void {
     const user: UserInterface = this.registerForm.value;
-    if (this.registerForm.invalid) {
-      return void this.toastService.presentErrorToast('O formulário está invalido!')
-    }
+    if (this.registerForm.invalid) return void this.toastService.presentErrorToast('O formulário está invalido!');
     if (user.password === user.confirmPassword) {
       void this.authService.register(user);
     } else {
@@ -47,8 +49,10 @@ export class CreateAccountPage {
     }
   }
 
+
   moveRouteBack(url: string): void {
     void this.navControl.navigateBack(url);
   }
+
 
 }

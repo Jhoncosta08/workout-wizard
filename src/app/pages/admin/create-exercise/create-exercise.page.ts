@@ -6,6 +6,7 @@ import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
 import {SpinnerService} from '../../../services/spinner.service';
 
+
 @Component({
   selector: 'app-create-exercise',
   templateUrl: './create-exercise.page.html',
@@ -15,6 +16,7 @@ export class CreateExercisePage {
   exercisesForm: FormGroup;
   workoutId: string | null = null;
   workoutName: string = ''
+
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +35,7 @@ export class CreateExercisePage {
     });
   }
 
+
   onSaveExercise(): void {
     this.spinnerControl.show('Carregando...');
     const exercises = this.exercisesForm.value;
@@ -44,7 +47,7 @@ export class CreateExercisePage {
         })
       }).catch(err => {
         this.spinnerControl.hide();
-        console.error('error: ', err);
+        console.error('Error in onSaveExercise: ', err);
         void this.toastService.presentErrorToast('Ocorreu um erro!');
       });
     } else {
@@ -53,12 +56,19 @@ export class CreateExercisePage {
     }
   }
 
+
   setWorkoutName(): void {
     if (this.workoutId) {
-      this.workoutService.getWorkoutName(this.workoutId).subscribe((workoutName: string): void => {
-        this.workoutName = workoutName;
+      this.workoutService.getWorkoutName(this.workoutId).subscribe({
+        next: (workoutName: string): void => {
+          this.workoutName = workoutName;
+        },
+        error: err => {
+          console.error('Error in setWorkoutName: ', err);
+        }
       });
     }
   }
+
 
 }

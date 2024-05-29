@@ -7,11 +7,13 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {finalize} from 'rxjs';
 import {ToastService} from './toast.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CameraService {
   private user: UserInterface | null = null
+
 
   constructor(
     private authService: AuthService,
@@ -27,12 +29,14 @@ export class CameraService {
 
   async uploadProfilePicture(): Promise<void> {
     try {
+
       const image: Photo = await Camera.getPhoto({
         quality: 100,
         allowEditing: false,
         resultType: CameraResultType.Base64,
         source: CameraSource.Photos
       });
+
       const userId: string | undefined = this.user?.uid;
 
       if (userId) {
@@ -41,23 +45,20 @@ export class CameraService {
         const fileRef: AngularFireStorageReference = this.storage.ref(filePath);
         const task: AngularFireUploadTask = fileRef.putString(base64Image, 'data_url');
 
-        task.snapshotChanges().pipe(
-          finalize(async () => {
-            const downloadURL = await fileRef.getDownloadURL().toPromise();
-            await this.firestore.collection('users').doc(userId).update({ profilePicture: downloadURL });
-            this.authService.setUserLocal(userId, this.user);
-          })
-        ).subscribe();
-      } else {
-        void this.toastService.presentErrorToast('Ocorreu um erro id!');
-      }
+        task.snapshotChanges().pipe(finalize(async (): Promise<void> => {
+          const downloadURL = await fileRef.getDownloadURL().toPromise();
+          await this.firestore.collection('users').doc(userId).update({ profilePicture: downloadURL });
+          this.authService.setUserLocal(userId, this.user);
+        })).subscribe();
 
+      } else {
+        void this.toastService.presentErrorToast('Erro, usuário não encontrado!');
+      }
     } catch (error) {
       void this.toastService.presentErrorToast('Ocorreu um erro!');
-      console.error(error);
+      console.error('Error in uploadProfilePicture', error);
     }
   }
-
 
 
 }

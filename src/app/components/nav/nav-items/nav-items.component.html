@@ -1,9 +1,12 @@
+
+
 <ion-list>
   <ion-item (click)="moveUrlForward('/home')">
     <ion-icon name="home" slot="start" class="nav-item-icon "></ion-icon>
     <ion-label class="text">Início</ion-label>
   </ion-item>
 </ion-list>
+
 
 <ion-list *ngIf="showAdminNav">
   <ion-item (click)="moveUrlForward('/admin/create-workout')">

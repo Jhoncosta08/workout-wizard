@@ -1,3 +1,5 @@
+
+
 <ion-menu contentId="main-content" *ngIf="showNavMenu()">
   <ion-content>
     <app-nav></app-nav>
@@ -5,6 +7,7 @@
 </ion-menu>
 
 <div class="ion-page" id="main-content">
+
   <ion-header *ngIf="showNavMenu()" class="main-header">
     <ion-toolbar color="primary-dark">
       <ion-buttons slot="start">
@@ -16,11 +19,12 @@
   </ion-header>
 
   <ion-content>
-      <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <ion-app>
       <ion-router-outlet></ion-router-outlet>
     </ion-app>
   </ion-content>
+
 </div>

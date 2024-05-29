@@ -1,17 +1,21 @@
+
+
 <ion-grid class="nav-item-grid">
+
 
     <ion-row class="nav-header">
       <ion-col class="profile-info-box" (click)="goToProfile()">
         <div class="profile-img-container">
-          <img [src]="profileImg" alt=""/>
+          <img [src]="profileImg" alt="Profile picture"/>
         </div>
-        <p class="profile-name">{{ user ? user.name : '' }}</p>
+        <p class="profile-name">{{ user ? user.name : '---' }}</p>
       </ion-col>
 
       <ion-col size="auto">
         <ion-icon name="close-outline" size="large" (click)="closeMenu()"></ion-icon>
       </ion-col>
     </ion-row>
+
 
   <ion-row class="nav-item-row">
     <ion-col>
@@ -23,5 +27,6 @@
       <a (click)="onLogout()" class="text">Sair</a>
     </ion-col>
   </ion-row>
+
 
 </ion-grid>

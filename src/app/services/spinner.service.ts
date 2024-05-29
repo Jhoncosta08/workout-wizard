@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {LoadingController} from '@ionic/angular';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,7 +9,11 @@ export class SpinnerService {
   private loading: HTMLIonLoadingElement | null = null;
   private isLoading: boolean = false;
 
-  constructor(private loadingController: LoadingController) { }
+
+  constructor(
+    private loadingController: LoadingController
+  ) { }
+
 
   show(message: string = 'Carregando...'): void {
     if (!this.isLoading) {
@@ -16,13 +21,12 @@ export class SpinnerService {
       this.loadingController.create({message, backdropDismiss: false}).then((loading: HTMLIonLoadingElement): void => {
         this.loading = loading;
         this.loading.present().then((): void => {
-          if (!this.isLoading) {
-            this.loading?.dismiss();
-          }
+          if (!this.isLoading) this.loading?.dismiss();
         });
       });
     }
   }
+
 
   hide(): void {
     if (this.loading) {
@@ -32,5 +36,6 @@ export class SpinnerService {
       });
     }
   }
+
 
 }

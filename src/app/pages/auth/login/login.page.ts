@@ -5,6 +5,7 @@ import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
 import {AuthService} from '../../../services/auth.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -12,6 +13,7 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class LoginPage {
   loginForm: FormGroup;
+
 
   constructor(
     private fb: FormBuilder,
@@ -25,20 +27,22 @@ export class LoginPage {
     });
   }
 
+
   ionViewWillEnter(): void {
     this.authService.redirectLoggedUser();
   }
 
+
   onLogin(): void {
-    if (this.loginForm.invalid) {
-      return void this.toastService.presentErrorToast('O formulário está invalido!');
-    }
+    if (this.loginForm.invalid) return void this.toastService.presentErrorToast('O formulário está invalido!');
     const user: LoginInterface = this.loginForm.value;
     this.authService.login(user);
   }
 
+
   moveRouteBack(url: string): void {
     void this.navControl.navigateBack(url);
   }
+
 
 }
