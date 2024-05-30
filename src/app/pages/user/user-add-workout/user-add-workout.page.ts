@@ -42,6 +42,9 @@ export class UserAddWorkoutPage {
 
 
   getClickedWorkout(workout: WorkoutInterface): void {
+    if (this.userWorkoutId && !this.workoutId) {
+      return void this.navControl.navigateForward(`/user-add-workout/${this.userWorkoutId}/${workout.id}`);
+    }
     if (workout) this.selectedWorkout = workout;
   }
 

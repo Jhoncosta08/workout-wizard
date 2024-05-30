@@ -134,4 +134,23 @@ export class UserWorkoutService {
   }
 
 
+  async deleteWorkoutFromArray(workoutId: string, workoutToRemoveId: string): Promise<void> {
+    const userDoc: AngularFirestoreDocument<any> = this.firestore.collection('userWorkouts').doc(this.userId).collection('workouts').doc(workoutId);
+    const userSnapshot: any = await userDoc.get().toPromise();
+    if (userSnapshot.exists) {
+      const userData = userSnapshot.data();
+      const updatedWorkouts = userData.workouts.filter((workout: WorkoutInterface): boolean => workout.id !== workoutToRemoveId);
+      return userDoc.update({ workouts: updatedWorkouts });
+    } else {
+      throw new Error('User document not found');
+    }
+  }
+
+
+  async deleteWorkout(workoutId: string): Promise<void> {
+    const userDoc: AngularFirestoreDocument<any> = this.firestore.collection('userWorkouts').doc(this.userId).collection('workouts').doc(workoutId);
+    return await userDoc.delete();
+  }
+
+
 }

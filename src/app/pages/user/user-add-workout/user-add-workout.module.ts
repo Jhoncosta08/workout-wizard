@@ -7,13 +7,18 @@ import { UserAddWorkoutPage } from './user-add-workout.page';
 import {AllWorkoutsComponent} from '../../../components/all-workouts/all-workouts.component';
 import {ExerciseListComponent} from '../../../components/exercise-list/exercise-list.component';
 import {ExerciseImgPipe} from '../../../pipes/exercise-img.pipe';
+import {WorkoutIconGroupComponent} from '../../../components/workout-icon-group/workout-icon-group.component';
 
 
 @NgModule({
   declarations: [
     UserAddWorkoutPage,
     AllWorkoutsComponent,
-    ExerciseListComponent
+    ExerciseListComponent,
+    WorkoutIconGroupComponent
+  ],
+  exports: [
+    WorkoutIconGroupComponent
   ],
   imports: [
     CommonModule,

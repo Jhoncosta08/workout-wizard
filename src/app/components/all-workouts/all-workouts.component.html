@@ -9,9 +9,6 @@
 
 <ion-row>
   <ion-col size="6" *ngFor="let workout of workouts">
-    <div class="workout-info-group" (click)="clickedWorkout.emit(workout)">
-      <img [src]="workout.name | exerciseImg" [alt]="workout.name" />
-      <p class="text">{{ workout.name }}</p>
-    </div>
+    <app-workout-icon-group [workout]="workout" (click)="clickedWorkout.emit(workout)"></app-workout-icon-group>
   </ion-col>
 </ion-row>
