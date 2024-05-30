@@ -32,6 +32,8 @@ export class AuthService {
     if (!user.password || user.password.trim().length === 0) return this.toastService.presentErrorToast('User not found!');
     try {
       this.spinnerControl.show();
+      this.user.next(null);
+      localStorage.clear();
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
       const userId: string | undefined = userCredential.user?.uid;
       if (userId) {
@@ -63,6 +65,8 @@ export class AuthService {
       void this.toastService.presentErrorToast('User not found!');
     } else {
       this.spinnerControl.show();
+      this.user.next(null);
+      localStorage.clear();
       this.afAuth.signInWithEmailAndPassword(user.email, user.password).then((userCredential: any): void => {
         const userId: string | undefined = userCredential.user?.uid;
         if (userId && userCredential) this.setUserLocal(userId, userCredential);
@@ -104,6 +108,7 @@ export class AuthService {
     this.menuController.close().then((): void => {
       this.afAuth.signOut().then((): void => {
         localStorage.clear();
+        this.user.next(null);
         this.navControl.navigateForward('/welcome').then((): void => this.spinnerControl.hide());
       });
     });

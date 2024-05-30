@@ -12,7 +12,7 @@
 
     <ion-row class="add-workout-container" *ngIf="selectedWorkout">
       <ion-col>
-        <app-exercise-list [workout]="selectedWorkout" [exercises]="selectedWorkout.exercises" [listType]="'add'" (emitExercises)="saveExercises($event)"></app-exercise-list>
+        <app-exercise-list [user]="user" [workout]="selectedWorkout" [exercises]="selectedWorkout.exercises" [listType]="'add'" (emitExercises)="saveExercises($event)"></app-exercise-list>
       </ion-col>
     </ion-row>
 

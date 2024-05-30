@@ -3,6 +3,7 @@ import {ExercisesInterface} from '../../interfaces/exercises.interface';
 import {ActivatedRoute} from '@angular/router';
 import {UserWorkoutService} from '../../services/user-workout.service';
 import {WorkoutInterface} from '../../interfaces/workout.interface';
+import {UserInterface} from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-exercise-list',
@@ -11,6 +12,7 @@ import {WorkoutInterface} from '../../interfaces/workout.interface';
 })
 export class ExerciseListComponent implements OnInit {
   @Input({required: true}) exercises: ExercisesInterface[] = [];
+  @Input({required: true}) user: UserInterface | null = null;
   @Input({required: true}) workout: WorkoutInterface | null = null;
   @Input({required: true}) listType: 'detail' | 'add' = 'detail';
   @Output() emitExercises: EventEmitter<ExercisesInterface[]> = new EventEmitter<ExercisesInterface[]>();
@@ -68,16 +70,18 @@ export class ExerciseListComponent implements OnInit {
 
   setExercisesAlreadySaved(): void {
     if (this.workoutId && this.userWorkoutId) {
-      this.userWorkoutService.getUserWorkout(this.userWorkoutId, this.workoutId).then((userWorkout: WorkoutInterface[]): void => {
-        const exercises: ExercisesInterface[] = userWorkout[0]?.exercises;
-        if (exercises && exercises.length > 0) {
-          exercises.map((exercise: ExercisesInterface): void => {
-            this.onSelectedExercise(exercise);
-          });
-        }
-      }).catch(err => {
-        console.error('error: ', err);
-      });
+      if (this.user && this.user.uid) {
+        this.userWorkoutService.getUserWorkout(this.userWorkoutId,this.user.uid, this.workoutId).then((userWorkout: WorkoutInterface[]): void => {
+          const exercises: ExercisesInterface[] = userWorkout[0]?.exercises;
+          if (exercises && exercises.length > 0) {
+            exercises.map((exercise: ExercisesInterface): void => {
+              this.onSelectedExercise(exercise);
+            });
+          }
+        }).catch(err => {
+          console.error('error: ', err);
+        });
+      }
     }
   }
 

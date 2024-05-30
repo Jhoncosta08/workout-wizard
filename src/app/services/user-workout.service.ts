@@ -5,29 +5,21 @@ import {UserWorkoutInterface} from '../interfaces/user-workout.interface';
 import 'firebase/compat/firestore';
 import {WorkoutInterface} from '../interfaces/workout.interface';
 import * as firebase from 'firebase/compat/app';
-import {AuthService} from './auth.service';
-import {UserInterface} from '../interfaces/user.interface';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserWorkoutService {
-  userId: string = '';
+
+  constructor(private firestore: AngularFirestore) {}
 
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService) {
-    this.authService.user.subscribe((user: UserInterface | null): void => {
-      if (user && user.uid) this.userId = user.uid;
-    });
-  }
-
-
-  async saveNewWorkout(workoutId: string, workoutName: string, exercises: ExercisesInterface[]): Promise<void> {
-    const userWorkoutsCollection: AngularFirestoreDocument = this.firestore.collection('userWorkouts').doc(this.userId);
+  async saveNewWorkout(workoutId: string, workoutName: string, exercises: ExercisesInterface[],  userId: string): Promise<void> {
+    const userWorkoutsCollection: AngularFirestoreDocument = this.firestore.collection('userWorkouts').doc(userId);
     const workoutsSubCollection: AngularFirestoreCollection = userWorkoutsCollection.collection('workouts');
     const userWorkout: UserWorkoutInterface = {
-      userId: this.userId,
+      userId: userId,
       workouts: [
         {
           id: workoutId,
@@ -43,9 +35,9 @@ export class UserWorkoutService {
   }
 
 
-  addNewWorkoutGroup(newWorkout: WorkoutInterface, workoutDocId: string): Promise<void> {
+  addNewWorkoutGroup(newWorkout: WorkoutInterface, workoutDocId: string, userId: string): Promise<void> {
     const userWorkoutDoc: AngularFirestoreDocument = this.firestore.collection('userWorkouts')
-      .doc(this.userId).collection('workouts')
+      .doc(userId).collection('workouts')
       .doc(workoutDocId);
     return userWorkoutDoc.update({
       workouts: firebase.default.firestore.FieldValue.arrayUnion(newWorkout)
@@ -53,9 +45,9 @@ export class UserWorkoutService {
   }
 
 
-  async updateExercises(workoutDocId: string, workoutId: string, updatedExercises: ExercisesInterface[]): Promise<void> {
+  async updateExercises(workoutDocId: string, workoutId: string, updatedExercises: ExercisesInterface[], userId: string): Promise<void> {
     const userWorkoutDocRef: AngularFirestoreDocument = this.firestore.collection('userWorkouts')
-      .doc(this.userId).collection('workouts')
+      .doc(userId).collection('workouts')
       .doc(workoutDocId);
     try {
       const workoutDoc: any = await userWorkoutDocRef.get().toPromise();
@@ -78,10 +70,10 @@ export class UserWorkoutService {
   }
 
 
-  async getAllUserWorkout(): Promise<any[]> {
+  async getAllUserWorkout(userId: string): Promise<any[]> {
     try {
       const querySnapshot: any = await this.firestore.collection('userWorkouts')
-        .doc(this.userId)
+        .doc(userId)
         .collection('workouts')
         .get()
         .toPromise();
@@ -97,10 +89,10 @@ export class UserWorkoutService {
   }
 
 
-  async getUserWorkoutById(userWorkoutId: string): Promise<UserWorkoutInterface> {
+  async getUserWorkoutById(userWorkoutId: string, userId: string): Promise<UserWorkoutInterface> {
     try {
       const doc: any = await this.firestore.collection('userWorkouts')
-        .doc(this.userId)
+        .doc(userId)
         .collection('workouts')
         .doc(userWorkoutId)
         .get()
@@ -112,10 +104,10 @@ export class UserWorkoutService {
   }
 
 
-  async getUserWorkout(userWorkoutId: string, workoutId?: string): Promise<WorkoutInterface[]> {
+  async getUserWorkout(userWorkoutId: string, userId: string, workoutId?: string): Promise<WorkoutInterface[]> {
     try {
       const doc: any = await this.firestore.collection('userWorkouts')
-        .doc(this.userId)
+        .doc(userId)
         .collection('workouts')
         .doc(userWorkoutId)
         .get()
@@ -134,8 +126,8 @@ export class UserWorkoutService {
   }
 
 
-  async deleteWorkoutFromArray(workoutId: string, workoutToRemoveId: string): Promise<void> {
-    const userDoc: AngularFirestoreDocument<any> = this.firestore.collection('userWorkouts').doc(this.userId).collection('workouts').doc(workoutId);
+  async deleteWorkoutFromArray(workoutId: string, workoutToRemoveId: string, userId: string): Promise<void> {
+    const userDoc: AngularFirestoreDocument<any> = this.firestore.collection('userWorkouts').doc(userId).collection('workouts').doc(workoutId);
     const userSnapshot: any = await userDoc.get().toPromise();
     if (userSnapshot.exists) {
       const userData = userSnapshot.data();
@@ -147,8 +139,8 @@ export class UserWorkoutService {
   }
 
 
-  async deleteWorkout(workoutId: string): Promise<void> {
-    const userDoc: AngularFirestoreDocument<any> = this.firestore.collection('userWorkouts').doc(this.userId).collection('workouts').doc(workoutId);
+  async deleteWorkout(workoutId: string, userId: string): Promise<void> {
+    const userDoc: AngularFirestoreDocument<any> = this.firestore.collection('userWorkouts').doc(userId).collection('workouts').doc(workoutId);
     return await userDoc.delete();
   }
 

@@ -11,6 +11,93 @@
     <ion-row class="form-row">
       <ion-col>
 
+        <form [formGroup]="userForm" (ngSubmit)="onSaveForm()">
+          <div class="form-group">
+            <ion-input
+              id="name"
+              type="text"
+              class="custom-input"
+              formControlName="name"
+              label="Nome"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite seu nome">
+            </ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-input
+              id="email"
+              type="email"
+              class="custom-input"
+              formControlName="email"
+              label="Email"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite seu email">
+            </ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-input
+              id="age"
+              type="number"
+              class="custom-input"
+              formControlName="age"
+              label="Idade"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite sua idade">
+            </ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-input
+              id="weight"
+              type="number"
+              class="custom-input"
+              formControlName="weight"
+              label="Peso"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite seu peso">
+            </ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-input
+              id="height"
+              type="number"
+              class="custom-input"
+              formControlName="height"
+              label="Altura"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Digite sua altura">
+            </ion-input>
+          </div>
+
+          <div class="form-group">
+            <ion-select
+              id="gender"
+              formControlName="gender"
+              label="Sexo"
+              class="custom-input"
+              labelPlacement="stacked"
+              fill="outline"
+              placeholder="Selecione seu sexo">
+              <ion-select-option value="masculino">masculino</ion-select-option>
+              <ion-select-option value="feminino">feminino</ion-select-option>
+            </ion-select>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="submit-button">
+              Atualizar
+            </button>
+          </div>
+        </form>
+
       </ion-col>
     </ion-row>
 

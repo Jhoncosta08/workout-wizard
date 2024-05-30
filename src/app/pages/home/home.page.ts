@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {UserWorkoutService} from '../../services/user-workout.service';
 import {UserWorkoutInterface} from '../../interfaces/user-workout.interface';
+import {UserInterface} from '../../interfaces/user.interface';
+import {AuthService} from '../../services/auth.service';
 
 
 @Component({
@@ -11,11 +13,14 @@ import {UserWorkoutInterface} from '../../interfaces/user-workout.interface';
 })
 export class HomePage {
   userWorkouts: UserWorkoutInterface[] = [];
+  user: UserInterface | null = null;
 
 
   constructor(
     private navControl: NavController,
-    private userWorkoutService: UserWorkoutService
+    private userWorkoutService: UserWorkoutService,
+    private authService: AuthService
+
   ) { }
 
 
@@ -26,18 +31,26 @@ export class HomePage {
 
 
   ionViewWillEnter(): void {
-    this.getAllWorkouts();
+    this.userWorkouts = [];
+    this.authService.user.subscribe((user: UserInterface | null): void => {
+      this.user = user;
+      if (this.user) {
+        this.getAllWorkouts();
+      }
+    });
   }
 
 
   getAllWorkouts(): void {
     this.userWorkouts = [];
-    this.userWorkoutService.getAllUserWorkout().then((workouts: UserWorkoutInterface[]): void => {
-      this.userWorkouts = workouts;
-    }).catch(err => {
-      this.userWorkouts = [];
-      console.error('Error in getAllWorkouts: ', err);
-    });
+    if (this.user && this.user.uid) {
+      this.userWorkoutService.getAllUserWorkout(this.user.uid).then((workouts: UserWorkoutInterface[]): void => {
+        this.userWorkouts = workouts;
+      }).catch(err => {
+        this.userWorkouts = [];
+        console.error('Error in getAllWorkouts: ', err);
+      });
+    }
   }
 
 
