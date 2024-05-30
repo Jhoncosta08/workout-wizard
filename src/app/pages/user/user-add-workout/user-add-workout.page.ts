@@ -70,8 +70,8 @@ export class UserAddWorkoutPage {
       if (this.selectedWorkout) {
         this.userWorkoutService.saveNewWorkout(this.selectedWorkout.id, this.selectedWorkout.name, exercises).then((): void => {
           this.navControl.navigateForward('/home').then((): void => {
-            this.spinnerService.hide();
             void this.toastService.presentSuccessToast('Novo treino cadastrado!');
+            this.spinnerService.hide();
           });
         }).catch(err => {
           this.spinnerService.hide();

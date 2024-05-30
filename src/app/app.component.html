@@ -18,7 +18,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)" [disabled]="!canRefresh">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <ion-app>
       <ion-router-outlet></ion-router-outlet>
     </ion-app>
