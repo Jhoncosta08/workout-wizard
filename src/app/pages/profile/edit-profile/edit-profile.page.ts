@@ -7,6 +7,7 @@ import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
 import {AuthService} from '../../../services/auth.service';
 
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
@@ -29,14 +30,15 @@ export class EditProfilePage {
       this.user = user;
     });
     this.userForm = this.fb.group({
-      name: [this.user?.name ?? '', [Validators.required, Validators.email]],
-      email: [this.user?.email ?? '', [Validators.required]],
+      name: [this.user?.name ?? '', [Validators.required]],
+      email: [{ value: this.user?.email ?? '', disabled: true }, [Validators.required, Validators.email]],
       age: [this.user?.age ?? '', [Validators.required]],
       weight: [this.user?.weight ?? '', [Validators.required]],
       height: [this.user?.height ?? '', [Validators.required]],
       gender: [this.user?.gender ?? '', [Validators.required]],
     });
   }
+
 
   onSaveForm(): void {
     if (this.userForm.valid) {

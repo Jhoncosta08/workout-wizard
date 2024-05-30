@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 import {UserInterface} from '../interfaces/user.interface';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class UserService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private authService: AuthService
   ) { }
 
 
@@ -18,9 +20,10 @@ export class UserService {
     try {
       const user: any = await this.afAuth.currentUser;
       if (user) {
-        await user.updateEmail(userInfo.email);
-        const userDocRef: AngularFirestoreDocument = this.firestore.collection('users').doc(userInfo.uid);
-        return await userDocRef.update(userInfo);
+        const userDocRef: AngularFirestoreDocument = this.firestore.collection('users').doc(user.uid);
+        await userDocRef.update(userInfo);
+        this.authService.setUserLocal(user.uid, user);
+        return Promise.resolve();
       }
     } catch (error) {
       console.log("Error in update user:", error);
