@@ -103,6 +103,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'imc',
+    loadChildren: () => import('./pages/imc/imc.module').then( m => m.ImcPageModule)
+  },
+  {
+    path: 'physical-assessment',
+    loadChildren: () => import('./pages/physical-assessment/physical-assessment.module').then( m => m.PhysicalAssessmentPageModule)
+  },
   //-----
 
 
@@ -110,7 +118,7 @@ const routes: Routes = [
   {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
-  }
+  },
   //-----
 ];
 

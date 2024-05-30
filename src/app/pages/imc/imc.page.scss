@@ -1,0 +1,88 @@
+
+
+.imc-sub-title-box, .imc-box, .imc-result-box, .imc-title-box {
+  text-align: center;
+}
+
+.imc-sub-title-box img {
+  height: 3rem;
+  width: auto;
+}
+
+.imc-title-box {
+  padding: 1rem;
+}
+
+.imc-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: var(--primary-green);
+}
+
+.imc-box {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-white);
+  text-align: center;
+  margin: 4rem auto;
+}
+
+.imc-result-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+}
+
+.imc-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+}
+
+.imc-detail ion-icon {
+  margin-left: 0.5rem;
+}
+
+.imc-table-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imc-table-data, .imc-table-data-type {
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 24px;
+  border-top: 1px solid var(--primary-green);
+}
+
+.imc-table-data {
+  text-align: end;
+}
+
+.imc-table-data-type {
+  color: var(--primary-green);
+}
+
+.imc-small-detail {
+  color: var(--primary-dark);
+  letter-spacing: 1px;
+  line-height: 24px;
+  font-weight: normal;
+  font-size: 0.6rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--primary-green);
+  padding: 0.5rem 0;
+}

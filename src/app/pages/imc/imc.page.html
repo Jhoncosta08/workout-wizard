@@ -1,0 +1,59 @@
+
+<ion-content>
+  <ion-grid class="gradient">
+
+
+    <ion-row>
+      <ion-col class="imc-title-box">
+        <h1 class="title">IMC</h1>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="form-row">
+      <ion-col>
+
+        <div class="imc-sub-title-box">
+          <img src="assets/icon/profile-icons/weight.png" alt="imc">
+          <p class="imc-text">Seu imc é:</p>
+        </div>
+
+        <div class="imc-box" [style]="{background: checkImcResult('color')}">
+          <p>{{ userImc }}</p>
+        </div>
+
+        <div class="imc-result-box">
+          <p class="imc-text">Quer dizer que sua classificação é</p>
+          <p class="imc-result-text" [style]="{color: checkImcResult('color')}">{{ checkImcResult('imcResult') }}</p>
+        </div>
+
+        <div>
+          <a class="imc-detail" (click)="toggleDetail()">Ver detalhes
+            <ion-icon [name]="showImcDetail ? 'arrow-up-outline' : 'arrow-down-outline'"></ion-icon>
+          </a>
+        </div>
+
+        <div *ngIf="showImcDetail">
+          <ion-row *ngFor="let imcDataTable of imcTableData">
+            <ion-col>
+              <p class="imc-table-data-type">{{ imcDataTable.imcBase }}</p>
+            </ion-col>
+
+            <ion-col>
+              <p class="imc-table-data" [style]="{color: checkImcTableDataColor(imcDataTable.imcResult)}">{{ imcDataTable.imcResult }}</p>
+            </ion-col>
+          </ion-row>
+
+          <p class="imc-small-detail">
+            O Índice de Massa Corporal (IMC) é uma ferramenta útil como ponto de partida, porém,
+            para uma compreensão mais precisa e completa da saúde física,
+            é essencial preencher uma avaliação física detalhada.
+          </p>
+        </div>
+
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>

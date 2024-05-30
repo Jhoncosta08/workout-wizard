@@ -2,15 +2,30 @@
 
 <ion-list>
   <ion-item (click)="moveUrlForward('/home')">
-    <ion-icon name="home" slot="start" class="nav-item-icon "></ion-icon>
+    <ion-icon name="home" slot="start" class="nav-item-icon"></ion-icon>
     <ion-label class="text">Início</ion-label>
   </ion-item>
 </ion-list>
 
+<ion-list>
+  <ion-item (click)="moveUrlForward('/imc')">
+    <ion-icon name="body-outline" slot="start" class="nav-item-icon"></ion-icon>
+    <ion-label class="text">Meu Imc</ion-label>
+  </ion-item>
+</ion-list>
 
+<ion-list>
+  <ion-item (click)="moveUrlForward('/physical-assessment')">
+    <ion-icon name="fitness-outline" slot="start" class="nav-item-icon"></ion-icon>
+    <ion-label class="text">Minhas Avaliações</ion-label>
+  </ion-item>
+</ion-list>
+
+
+<!--ADMIN NAV ITEMS-->
 <ion-list *ngIf="showAdminNav">
   <ion-item (click)="moveUrlForward('/admin/create-workout')">
-    <ion-icon name="code-outline" slot="start" class="nav-item-icon "></ion-icon>
-    <ion-label class="text">Adicionar novo Exercício</ion-label>
+    <ion-icon name="code-outline" slot="start" class="nav-item-icon"></ion-icon>
+    <ion-label class="text">Adicionar Novo Exercício</ion-label>
   </ion-item>
 </ion-list>

@@ -4,9 +4,9 @@ export interface UserInterface {
   password?: string;
   confirmPassword?: string;
   name: string;
-  age: string;
-  weight: string;
-  height: string;
+  age: number;
+  weight: number;
+  height: number;
   gender: string;
   uid?: string;
   token?: string;
