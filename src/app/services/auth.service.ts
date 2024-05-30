@@ -104,7 +104,7 @@ export class AuthService {
     this.menuController.close().then((): void => {
       this.afAuth.signOut().then((): void => {
         localStorage.clear();
-        this.navControl.navigateForward('/login').then((): void => this.spinnerControl.hide());
+        this.navControl.navigateForward('/welcome').then((): void => this.spinnerControl.hide());
       });
     });
   }

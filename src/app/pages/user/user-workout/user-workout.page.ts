@@ -4,6 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import {UserWorkoutInterface} from '../../../interfaces/user-workout.interface';
 import {WorkoutInterface} from '../../../interfaces/workout.interface';
 import {NavController} from '@ionic/angular';
+import {SpinnerService} from '../../../services/spinner.service';
+import {ToastService} from '../../../services/toast.service';
 
 
 @Component({
@@ -20,7 +22,9 @@ export class UserWorkoutPage {
   constructor(
     private userWorkoutService: UserWorkoutService,
     private route: ActivatedRoute,
-    private navControl: NavController
+    private navControl: NavController,
+    private spinnerService: SpinnerService,
+    private toastService: ToastService
   ) { }
 
 
@@ -53,13 +57,18 @@ export class UserWorkoutPage {
 
   deleteWorkout(workoutToRemoveId: string): void {
     if (this.userWorkout && this.userWorkout.id) {
+      this.spinnerService.show('Excluindo...');
       const workoutId: string = this.userWorkout.id;
       this.userWorkoutService.deleteWorkoutFromArray(workoutId, workoutToRemoveId).then((): void => {
         this.workouts = [];
         this.userWorkout = null;
         this.getUserWorkoutDoc();
+        this.spinnerService.hide();
+        void this.toastService.presentSuccessToast('Treino excluido com sucesso!');
       }).catch(err => {
         console.error('Error in deleteWorkout', err);
+        this.spinnerService.hide();
+        void this.toastService.presentErrorToast('Erro ao excluir o treino!');
       });
     }
   }
@@ -67,10 +76,14 @@ export class UserWorkoutPage {
 
   deleteAllWorkout(): void {
     if (this.userWorkout && this.userWorkout.id) {
+      this.spinnerService.show('Excluindo todo o treino...');
       this.userWorkoutService.deleteWorkout(this.userWorkout.id).then((): void => {
-        void this.navControl.navigateForward('/home');
+        void this.toastService.presentSuccessToast('Todo o treino foi excluido!');
+        this.navControl.navigateForward('/home').then(() => this.spinnerService.hide());
       }).catch(err => {
+        this.spinnerService.hide();
         console.error('Error in deleteWorkout', err);
+        void this.toastService.presentErrorToast('Erro ao excluir o treino todo!');
       });
     }
   }

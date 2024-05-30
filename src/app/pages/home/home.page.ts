@@ -15,7 +15,7 @@ export class HomePage {
 
   constructor(
     private navControl: NavController,
-    private userWorkoutService: UserWorkoutService,
+    private userWorkoutService: UserWorkoutService
   ) { }
 
 
@@ -31,6 +31,7 @@ export class HomePage {
 
 
   getAllWorkouts(): void {
+    this.userWorkouts = [];
     this.userWorkoutService.getAllUserWorkout().then((workouts: UserWorkoutInterface[]): void => {
       this.userWorkouts = workouts;
     }).catch(err => {

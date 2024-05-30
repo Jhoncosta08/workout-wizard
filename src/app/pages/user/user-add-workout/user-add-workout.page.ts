@@ -7,6 +7,7 @@ import {NavController} from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import {WorkoutService} from '../../../services/workout.service';
 import {SpinnerService} from '../../../services/spinner.service';
+import {ToastService} from '../../../services/toast.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class UserAddWorkoutPage {
     private navControl: NavController,
     private route: ActivatedRoute,
     private workoutService: WorkoutService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private toastService: ToastService
   ) {}
 
 
@@ -42,6 +44,7 @@ export class UserAddWorkoutPage {
 
 
   getClickedWorkout(workout: WorkoutInterface): void {
+    this.selectedWorkout = null;
     if (this.userWorkoutId && !this.workoutId) {
       return void this.navControl.navigateForward(`/user-add-workout/${this.userWorkoutId}/${workout.id}`);
     }
@@ -60,13 +63,16 @@ export class UserAddWorkoutPage {
         }
       }).catch(err => {
         this.spinnerService.hide();
+        void this.toastService.presentErrorToast('Ocorreu um erro!');
         console.error('Error in getUserWorkout: ', err);
       });
     } else {
       if (this.selectedWorkout) {
         this.userWorkoutService.saveNewWorkout(this.selectedWorkout.id, this.selectedWorkout.name, exercises).then((): void => {
-          void this.navControl.navigateForward('/home');
-          this.spinnerService.hide();
+          this.navControl.navigateForward('/home').then((): void => {
+            this.spinnerService.hide();
+            void this.toastService.presentSuccessToast('Novo treino cadastrado!');
+          });
         }).catch(err => {
           this.spinnerService.hide();
           console.error('Error in saveNewWorkout: ', err);
@@ -85,10 +91,13 @@ export class UserAddWorkoutPage {
       } as WorkoutInterface;
 
       this.userWorkoutService.addNewWorkoutGroup(newWorkout, this.userWorkoutId).then((): void => {
-        void this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`);
-        this.spinnerService.hide();
+        this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`).then((): void => {
+          this.spinnerService.hide();
+          void this.toastService.presentSuccessToast('Novo grupo de treino adicionado!');
+        });
       }).catch(err => {
         this.spinnerService.hide();
+        void this.toastService.presentErrorToast('Ocorreu um erro!');
         console.error('Error in addNewWorkoutGroup: ', err);
       });
     }
@@ -98,10 +107,13 @@ export class UserAddWorkoutPage {
   updateWorkoutExercises(exercises: ExercisesInterface[]): void {
     if (this.userWorkoutId && this.workoutId) {
       this.userWorkoutService.updateExercises(this.userWorkoutId, this.workoutId, exercises).then((): void => {
-        void this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`);
-        this.spinnerService.hide();
+        this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`).then((): void => {
+          this.spinnerService.hide();
+          void this.toastService.presentSuccessToast('Treino atualizado!');
+        });
       }).catch(err => {
         this.spinnerService.hide();
+        void this.toastService.presentErrorToast('Ocorreu um erro!');
         console.error('Error in updateWorkoutExercises: ', err);
       });
     }
@@ -123,6 +135,11 @@ export class UserAddWorkoutPage {
         }
       });
     }
+  }
+
+
+  ionViewWillLeave(): void {
+    this.selectedWorkout = null;
   }
 
 

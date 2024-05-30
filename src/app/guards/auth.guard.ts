@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import {ToastService} from '../services/toast.service';
 import firebase from 'firebase/compat';
+import {AuthService} from '../services/auth.service';
 
 
 @Injectable({
@@ -15,8 +15,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private router: Router,
-    private toast: ToastService
+    private authService: AuthService
   ) {}
 
 
@@ -25,9 +24,7 @@ export class AuthGuard implements CanActivate {
         if (authState) {
           return true;
         } else {
-          this.router.navigate(['/login']).then((): void => {
-            void this.toast.presentErrorToast('Usuário não logado!');
-          })
+          this.authService.logout();
           return false;
         }
       })
