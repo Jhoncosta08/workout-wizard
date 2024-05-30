@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {NavController} from '@ionic/angular';
 import {UserWorkoutService} from '../../services/user-workout.service';
 import {UserWorkoutInterface} from '../../interfaces/user-workout.interface';
-import {SpinnerService} from '../../services/spinner.service';
 
 
 @Component({
@@ -17,7 +16,6 @@ export class HomePage {
   constructor(
     private navControl: NavController,
     private userWorkoutService: UserWorkoutService,
-    private spinnerService: SpinnerService
   ) { }
 
 
@@ -33,13 +31,10 @@ export class HomePage {
 
 
   getAllWorkouts(): void {
-    this.spinnerService.show();
     this.userWorkoutService.getAllUserWorkout().then((workouts: UserWorkoutInterface[]): void => {
       this.userWorkouts = workouts;
-      this.spinnerService.hide();
     }).catch(err => {
       this.userWorkouts = [];
-      this.spinnerService.hide();
       console.error('Error in getAllWorkouts: ', err);
     });
   }

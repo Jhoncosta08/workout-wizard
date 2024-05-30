@@ -45,7 +45,7 @@ export class UserAddWorkoutPage {
     if (this.userWorkoutId && !this.workoutId) {
       return void this.navControl.navigateForward(`/user-add-workout/${this.userWorkoutId}/${workout.id}`);
     }
-    if (workout) this.selectedWorkout = workout;
+    if (workout && !this.workoutId) this.selectedWorkout = workout;
   }
 
 
