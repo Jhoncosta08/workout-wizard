@@ -1,6 +1,11 @@
 
+<ion-row *ngIf="workout">
+  <ion-col>
+    <app-workout-icon-group [workout]="workout"></app-workout-icon-group>
+  </ion-col>
+</ion-row>
 
-<ion-card *ngFor="let exercise of exercises">
+<ion-card *ngFor="let exercise of exercises" class="exercise-card-container">
 
 
   <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name"/>
@@ -18,10 +23,12 @@
 
 
   <ion-card-content>
-    <p [ngClass]="showDescriptionToggle ? 'card-description' : ''">{{ exercise.description }}</p>
+    <p [ngClass]="!seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'card-description' : ''">{{ exercise.description }}</p>
     <div class="see-more-container">
-      <a (click)="seeMoreBtnAction(exercise.id ? exercise.id : '')" class="exercise-card-btn">{{ showDescriptionToggle ? 'ver mais' : 'ver menos'}}</a>
-      <ion-icon [name]="listType === 'detail' ? 'arrow-forward-outline' : showDescriptionToggle ? 'arrow-down-outline' : 'arrow-up-outline'"></ion-icon>
+      <a (click)="addOrRemoveItemToArray(seeMoreName, exercise.name)" class="exercise-card-btn">
+        {{ !seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'ver mais' : 'ver menos'}}
+      </a>
+      <ion-icon [name]="listType === 'detail' ? 'arrow-forward-outline' : !seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'arrow-down-outline' : 'arrow-up-outline'"></ion-icon>
     </div>
   </ion-card-content>
 

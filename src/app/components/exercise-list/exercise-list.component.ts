@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ExercisesInterface} from '../../interfaces/exercises.interface';
-import {NavController} from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import {UserWorkoutService} from '../../services/user-workout.service';
 import {WorkoutInterface} from '../../interfaces/workout.interface';
@@ -12,17 +11,17 @@ import {WorkoutInterface} from '../../interfaces/workout.interface';
 })
 export class ExerciseListComponent implements OnInit {
   @Input({required: true}) exercises: ExercisesInterface[] = [];
+  @Input({required: true}) workout: WorkoutInterface | null = null;
   @Input({required: true}) listType: 'detail' | 'add' = 'detail';
   @Output() emitExercises: EventEmitter<ExercisesInterface[]> = new EventEmitter<ExercisesInterface[]>();
   allSelectedExercises: ExercisesInterface[] = [];
   userWorkoutId: string | null = null;
   workoutId: string | null = null;
-  showDescriptionToggle: boolean = true;
   exercisesNames: string[] = [];
+  seeMoreName: string[] = [];
 
 
   constructor(
-    private navControl: NavController,
     private route: ActivatedRoute,
     private userWorkoutService: UserWorkoutService,
     ) {
@@ -42,7 +41,7 @@ export class ExerciseListComponent implements OnInit {
         item.name.toLowerCase().trim() === exercise.name.trim().toLowerCase()
     );
     if (!exerciseAlreadyAdded) this.allSelectedExercises.push(exercise);
-    if (exercise && exercise.name) this.showIconIfIdInList(exercise.name);
+    if (exercise && exercise.name) this.addOrRemoveItemToArray(this.exercisesNames, exercise.name);
   }
 
 
@@ -52,39 +51,17 @@ export class ExerciseListComponent implements OnInit {
         item.name.trim().toLowerCase() === exercise.name.trim().toLowerCase()
     );
     if (index !== -1) this.allSelectedExercises.splice(index, 1);
-    if (exercise && exercise.name) this.showIconIfIdInList(exercise.name);
+    if (exercise && exercise.name) this.addOrRemoveItemToArray(this.exercisesNames, exercise.name);
   }
 
 
-  goToExerciseDetail(exerciseName: string): void {
-    void this.navControl.navigateForward(`exercise/detail/${exerciseName}`);
-  }
-
-
-  showAllDescription(): void {
-    this.showDescriptionToggle = !this.showDescriptionToggle;
-  }
-
-
-  seeMoreBtnAction(exerciseName: string): void {
-    switch (this.listType) {
-      case "add":
-        this.showAllDescription();
-        break;
-      case "detail":
-        this.goToExerciseDetail(exerciseName);
-        break;
-    }
-  }
-
-
-  showIconIfIdInList(exerciseName: string): void {
-    const name: string = exerciseName.trim().toLowerCase();
-    if (!this.exercisesNames.includes(name)) {
-      this.exercisesNames.push(name);
+  addOrRemoveItemToArray(array: string[], itemName: string): void {
+    const name: string = itemName.trim().toLowerCase();
+    if (!array.includes(name)) {
+      array.push(name);
     } else {
-      const index: number = this.exercisesNames.indexOf(name);
-      if (index != -1) this.exercisesNames.splice(index, 1);
+      const index: number = array.indexOf(name);
+      if (index != -1) array.splice(index, 1);
     }
   }
 

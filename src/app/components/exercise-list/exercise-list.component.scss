@@ -1,4 +1,8 @@
 
+.exercise-card-container {
+  margin: 1rem;
+}
+
 .exercise-card-header {
   display: flex;
   justify-content: space-between;
@@ -54,4 +58,6 @@
 .save-exercises {
   position: fixed;
   bottom: 0;
+  margin-bottom: 0;
+  margin-left: -0.375rem;
 }
