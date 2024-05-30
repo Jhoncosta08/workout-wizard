@@ -1,8 +1,16 @@
 
+.profile-grid {
+  overflow: hidden;
+}
+
 .profile-picture-container {
   display: flex;
   justify-content: center;
   margin-top: 0.7rem;
+}
+
+.user-info-row {
+  padding-top: 1rem;
 }
 
 .profile-img {
@@ -22,19 +30,34 @@
   text-align: center;
 }
 
-.profile-info-text {
-  font-weight: 600;
+.profile-info-img {
+  width: auto;
+  height: 2.5rem;
+  overflow: hidden;
+}
+
+.profile-info-thumb {
+  margin: 0;
+  align-items: center;
+  display: flex;
+}
+
+.profile-info-card {
+  margin: 0 0 1rem 0;
+}
+
+.profile-info-card-content {
+  padding-left: 0;
 }
 
 .profile-info-value {
-  font-weight: 400;
-  font-size: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-green);
 }
 
-.profile-info-text, .profile-info-value  {
+.profile-info-value small {
   font-size: 0.7rem;
-  letter-spacing: 1px;
-  line-height: 24px;
-  margin: 0.5rem 0 0.5rem 0.5rem;
-  color: var(--neutral-white);
+  font-weight: 700;
+  color: var(--primary-dark);
 }

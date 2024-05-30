@@ -56,7 +56,7 @@ export class CameraService {
       }
     } catch (error) {
       void this.toastService.presentErrorToast('Ocorreu um erro!');
-      console.error('Error in uploadProfilePicture', error);
+      throw error;
     }
   }
 

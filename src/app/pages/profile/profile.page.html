@@ -1,45 +1,95 @@
 
 
 <ion-content>
-  <ion-grid class="gradient">
+  <ion-grid class="gradient profile-grid">
 
 
     <ion-row>
       <ion-col class="profile-picture-container">
-        <div class="profile-img">
-          <a (click)="onUploadProfilePicture()">
+        <div class="profile-img" *ngIf="!disableCam">
             <img [src]="profileImg" alt="profile picture"/>
-          </a>
         </div>
+        <ion-spinner name="crescent" color="light" *ngIf="disableCam"></ion-spinner>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col class="profile-name">
+        <ion-icon name="camera-outline" size="large" color="light" (click)="onUploadProfilePicture()"></ion-icon>
         <p class="text">{{ user ? user.name : '---'  }}</p>
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <p class="profile-info-text">Email:
-          <span class="profile-info-value">{{ user ? user.email : '---'  }}</span>
-        </p>
-        <p class="profile-info-text">Idade:
-          <span class="profile-info-value">{{ user ? user.age : '---'  }}</span>
-        </p>
-        <p class="profile-info-text">Sexo:
-          <span class="profile-info-value">{{ user ? user.gender : '---'  }}</span>
-        </p>
-        <p class="profile-info-text">Peso:
-          <span class="profile-info-value">{{ user ? user.weight : '---'  }}</span>
-        </p>
-        <p class="profile-info-text">Altura:
-          <span class="profile-info-value">{{ user ? user.height : '---'  }}</span>
-        </p>
+    <ion-row class="form-row user-info-row">
+      <ion-col *ngIf="user">
+        <ion-card class="profile-info-card">
+          <ion-card-content class="profile-info-card-content">
+            <ion-list>
+
+              <ion-item>
+                <ion-thumbnail slot="start" class="profile-info-thumb">
+                  <img class="profile-info-img" src="assets/icon/profile-icons/email.png" alt="profile-email"/>
+                </ion-thumbnail>
+                <ion-label class="profile-info-value">
+                  <small>Email: </small><br/>
+                  {{ user.email }}
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-thumbnail slot="start" class="profile-info-thumb">
+                  <img class="profile-info-img" src="assets/icon/profile-icons/age.png" alt="profile-age"/>
+                </ion-thumbnail>
+                <ion-label class="profile-info-value">
+                  <small>Idade: </small><br/>
+                  {{ user.age }}
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-thumbnail slot="start" class="profile-info-thumb">
+                  <img class="profile-info-img" src="assets/icon/profile-icons/gender.png" alt="profile-gender"/>
+                </ion-thumbnail>
+                <ion-label class="profile-info-value">
+                  <small>Sexo: </small><br/>
+                  {{ user.gender  }}
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-thumbnail slot="start" class="profile-info-thumb">
+                  <img class="profile-info-img" src="assets/icon/profile-icons/weight.png" alt="profile-weight"/>
+                </ion-thumbnail>
+                <ion-label class="profile-info-value">
+                  <small>Peso: </small><br/>
+                  {{ user.weight }}
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-thumbnail slot="start" class="profile-info-thumb">
+                  <img class="profile-info-img" src="assets/icon/profile-icons/height.png" alt="profile-height"/>
+                </ion-thumbnail>
+                <ion-label class="profile-info-value">
+                  <small>Altura: </small><br/>
+                  {{ user.height }}
+                </ion-label>
+              </ion-item>
+
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-row>
+          <ion-col>
+            <button class="submit-button" (click)="goToEditProfile()">
+              Editar Informações
+            </button>
+          </ion-col>
+        </ion-row>
       </ion-col>
+
+
     </ion-row>
-
-
   </ion-grid>
 </ion-content>

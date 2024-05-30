@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {CameraService} from '../../services/camera.service';
 import {UserInterface} from '../../interfaces/user.interface';
+import {NavController} from '@ionic/angular';
 
 
 @Component({
@@ -12,12 +13,14 @@ import {UserInterface} from '../../interfaces/user.interface';
 export class ProfilePage {
   public user: UserInterface | null = null;
   public profileImg: string = 'https://ionicframework.com/docs/img/demos/avatar.svg';
+  disableCam: boolean = false;
 
 
   constructor(
     private authService: AuthService,
     private cameraService: CameraService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private navControl: NavController
   ) {}
 
 
@@ -28,9 +31,11 @@ export class ProfilePage {
         if ( this.user && this.user.profilePicture) {
           this.profileImg = this.user.profilePicture;
           this.changeDetectorRef.detectChanges();
+          this.disableCam = false;
         }
       },
       error: err => {
+        this.disableCam = false;
         console.error('Error in get user info', err);
       }
     });
@@ -38,7 +43,16 @@ export class ProfilePage {
 
 
   async onUploadProfilePicture(): Promise<void> {
-    await this.cameraService.uploadProfilePicture();
+    this.disableCam = true;
+    await this.cameraService.uploadProfilePicture().catch(err => {
+      this.disableCam = false;
+      console.error('Error in onUploadProfilePicture', err);
+    });
+  }
+
+
+  goToEditProfile(): void {
+    void this.navControl.navigateForward('edit-profile');
   }
 
 
