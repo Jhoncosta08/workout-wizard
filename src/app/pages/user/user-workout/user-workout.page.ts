@@ -38,6 +38,7 @@ export class UserWorkoutPage {
       this.user = user;
     });
     this.getUserWorkoutDoc();
+    this.spinnerService.hide();
   }
 
 
@@ -99,6 +100,11 @@ export class UserWorkoutPage {
         });
       }
     }
+  }
+
+
+  ionViewWillLeave(): void {
+    this.spinnerService.hide();
   }
 
 

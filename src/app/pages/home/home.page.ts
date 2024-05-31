@@ -20,7 +20,6 @@ export class HomePage {
     private navControl: NavController,
     private userWorkoutService: UserWorkoutService,
     private authService: AuthService
-
   ) { }
 
 

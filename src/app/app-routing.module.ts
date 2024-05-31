@@ -45,25 +45,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule),
   },
   //-----
-
-
-  //EXERCISES ROUTES
-  {
-    path: 'exercise',
-    children: [
-      {
-        path: ':id',
-        loadChildren: () => import('./pages/exercise/exercises/exercises.module').then( m => m.ExercisesPageModule)
-      },
-      {
-        path: 'detail/:name',
-        loadChildren: () => import('./pages/exercise/exercise-detail/exercise-detail.module').then( m => m.ExerciseDetailPageModule)
-      },
-    ],
-    canActivate: [AuthGuard]
-  },
-  //-----
-
+  
 
   //WORKOUTS ROUTES
   {

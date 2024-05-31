@@ -47,6 +47,7 @@ export class UserAddWorkoutPage {
     } else {
       if (this.allWorkoutsComponent) this.allWorkoutsComponent.getAllWorkouts();
     }
+    this.spinnerService.hide();
   }
 
 
@@ -155,6 +156,7 @@ export class UserAddWorkoutPage {
 
   ionViewWillLeave(): void {
     this.selectedWorkout = null;
+    this.spinnerService.hide();
   }
 
 
