@@ -3,13 +3,20 @@
   <ion-grid class="gradient">
 
     <ion-row>
-      <ion-col>
+      <ion-col class="physical-title-box">
         <h1 class="title">Avaliação fisica</h1>
       </ion-col>
     </ion-row>
 
-    <ion-row class="form-row">
+    <ion-row class="form-row physical-form-container">
+
       <ion-col>
+
+        <ion-row>
+          <ion-col class="physical-icon-box">
+            <img class="physical-img" src="assets/icon/default-workout.png" alt="physical-assessment-icon"/>
+          </ion-col>
+        </ion-row>
 
         <form (ngSubmit)="onSavePhysycalForm()" [formGroup]="physicalAssessmentForm">
           <app-general-info-form [parentForm]="physicalAssessmentForm"></app-general-info-form>

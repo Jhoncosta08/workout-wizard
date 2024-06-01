@@ -26,7 +26,7 @@ export class UserService {
         return Promise.resolve();
       }
     } catch (error) {
-      console.log("Error in update user:", error);
+      console.error("Error in update user:", error);
       throw error;
     }
   }
