@@ -1,13 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>physical-assessment</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">physical-assessment</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-grid class="gradient">
+
+    <ion-row>
+      <ion-col>
+        <h1 class="title">Avaliação fisica</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="form-row">
+      <ion-col>
+
+        <form (ngSubmit)="onSavePhysycalForm()" [formGroup]="physicalAssessmentForm">
+          <app-general-info-form [parentForm]="physicalAssessmentForm"></app-general-info-form>
+          <app-body-composition-form [parentForm]="physicalAssessmentForm"></app-body-composition-form>
+          <app-anthropometry-form [parentForm]="physicalAssessmentForm"></app-anthropometry-form>
+          <app-medical-history-form [parentForm]="physicalAssessmentForm"></app-medical-history-form>
+          <button type="submit" class="submit-button">Salvar avaliação</button>
+        </form>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
