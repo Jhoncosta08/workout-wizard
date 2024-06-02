@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
+
 @Component({
   selector: 'app-body-composition-form',
   templateUrl: './body-composition-form.component.html',
@@ -10,9 +11,8 @@ export class BodyCompositionFormComponent implements OnChanges {
   @Input() parentForm!: FormGroup;
   bodyCompositionForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
 
-  }
+  constructor(private fb: FormBuilder) {}
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -38,5 +38,6 @@ export class BodyCompositionFormComponent implements OnChanges {
       this.parentForm.addControl('bodyComposition', this.bodyCompositionForm);
     }
   }
+
 
 }

@@ -6,7 +6,7 @@ import { PhysicalAssessmentPage } from './physical-assessment.page';
 const routes: Routes = [
   {
     path: '',
-    component: PhysicalAssessmentPage
+    component: PhysicalAssessmentPage,
   },
   {
     path: 'physical-assessment-list',

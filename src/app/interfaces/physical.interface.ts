@@ -50,8 +50,8 @@ export interface MedicalHistory {
   dailyDisposition: number;
   weeklyTrainingFrequency: number;
   availableTime: number;
-  arthrosis: string;
-  eatingHabit: number;
+  osteoarthritis: string;
+  eatingHabitScore: number;
   pain: number;
 }
 

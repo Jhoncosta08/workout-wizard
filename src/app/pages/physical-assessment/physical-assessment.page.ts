@@ -35,6 +35,7 @@ export class PhysicalAssessmentPage {
     this.authService.user.subscribe((user: UserInterface | null): void => {
       this.user = user;
     });
+    this.spinner.hide();
   }
 
 
@@ -44,17 +45,27 @@ export class PhysicalAssessmentPage {
       const formData: PhysicalInterface = this.physicalAssessmentForm.value;
       if (this.user && this.user.uid) {
         this.physicalService.saveNewUserPhysicalAssessment(this.user.uid, formData).then((): void => {
-          this.spinner.hide();
-          this.toast.presentSuccessToast('Avaliação salva').then((): void => {
-            void this.navControl.navigateForward('/physical-assessment/physical-assessment-list');
-          });
+          this.saveOrUpdateSuccessHandle('Salva');
         }).catch(err => {
-          this.spinner.hide();
-          console.error('Error in onSavePhysycalForm', err);
-          void this.toast.presentErrorToast('Ocorreu um erro!');
+          this.errorHandle(err, 'Error in saveNewUserPhysicalAssessment');
         });
       }
     }
+  }
+
+
+  saveOrUpdateSuccessHandle(handleMessage: 'Salva' | 'Atualizada'): void {
+    this.spinner.hide();
+    this.toast.presentSuccessToast(`Avaliação ${handleMessage}`).then((): void => {
+      void this.navControl.navigateForward('/physical-assessment/physical-assessment-list');
+    });
+  }
+
+
+  errorHandle(err: any, errorMessage: string): void {
+    this.spinner.hide();
+    console.error(errorMessage, err);
+    void this.toast.presentErrorToast('Ocorreu um erro!');
   }
 
 

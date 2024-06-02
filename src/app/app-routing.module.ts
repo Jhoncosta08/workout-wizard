@@ -45,7 +45,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/create-account/create-account.module').then( m => m.CreateAccountPageModule),
   },
   //-----
-  
+
 
   //WORKOUTS ROUTES
   {
@@ -75,6 +75,7 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     loadChildren: () => import('./pages/profile/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule),
+    canActivate: [AuthGuard]
   },
   //-----
 
@@ -87,11 +88,13 @@ const routes: Routes = [
   },
   {
     path: 'imc',
-    loadChildren: () => import('./pages/imc/imc.module').then( m => m.ImcPageModule)
+    loadChildren: () => import('./pages/imc/imc.module').then( m => m.ImcPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'physical-assessment',
-    loadChildren: () => import('./pages/physical-assessment/physical-assessment.module').then( m => m.PhysicalAssessmentPageModule)
+    loadChildren: () => import('./pages/physical-assessment/physical-assessment.module').then( m => m.PhysicalAssessmentPageModule),
+    canActivate: [AuthGuard]
   },
   //-----
 

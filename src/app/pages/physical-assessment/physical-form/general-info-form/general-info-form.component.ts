@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
+
 @Component({
   selector: 'app-general-info-form',
   templateUrl: './general-info-form.component.html',
@@ -10,10 +11,8 @@ export class GeneralInfoFormComponent implements OnChanges {
   @Input() parentForm!: FormGroup;
   generalInfoForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
 
-  }
-
+  constructor(private fb: FormBuilder) {}
 
 
   ngOnChanges(changes: SimpleChanges): void {
