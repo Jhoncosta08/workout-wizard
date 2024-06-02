@@ -1,0 +1,116 @@
+<div class="physical-info" *ngIf="bodyInfo">
+  <p class="physical-info-title">COMPOSIÇÃO CORPORAL</p>
+
+  <div class="info-group">
+    <div class="info">
+      <p class="info-title">% Gordura</p>
+      <p class="info-value">{{ bodyInfo.fat.toFixed(2) }} %</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Massa Gordura</p>
+      <p class="info-value">{{ bodyInfo.fatMass.toFixed(2) }} kg</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Massa Magra</p>
+      <p class="info-value">{{ bodyInfo.leanMass.toFixed(2) }} kg</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Bíceps</p>
+      <p class="info-value">{{ bodyInfo.biceps.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Tríceps</p>
+      <p class="info-value">{{ bodyInfo.triceps.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Peito</p>
+      <p class="info-value">{{ bodyInfo.chest.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Axilar Média</p>
+      <p class="info-value">{{ bodyInfo.midAxillary.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Subescapular</p>
+      <p class="info-value">{{ bodyInfo.subscapular.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Suprailíca</p>
+      <p class="info-value">{{ bodyInfo.suprailiac.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Abdomen</p>
+      <p class="info-value">{{ bodyInfo.abdomen.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Coxa</p>
+      <p class="info-value">{{ bodyInfo.thigh.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Panturrilha</p>
+      <p class="info-value">{{ bodyInfo.calf.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Punho</p>
+      <p class="info-value">{{ bodyInfo.wrist.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Fêmur</p>
+      <p class="info-value">{{ bodyInfo.femur.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Úmero</p>
+      <p class="info-value">{{ bodyInfo.humerus.toFixed(2) }}</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Tornozelo</p>
+      <p class="info-value">{{ bodyInfo.ankle.toFixed(2) }}</p>
+    </div>
+
+  </div>
+</div>

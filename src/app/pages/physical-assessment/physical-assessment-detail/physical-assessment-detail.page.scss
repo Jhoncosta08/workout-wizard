@@ -40,3 +40,68 @@
   letter-spacing: 1px;
   line-height: 24px;
 }
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-title, .info-value {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  line-height: 24px;
+}
+
+.info-title {
+  color: var(--primary-dark);
+  font-weight: 400;
+  text-align: left;
+}
+
+.info-value {
+  color: var(--primary-green);
+  font-weight: 600;
+  text-align: right;
+}
+
+.info-group {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 var(--primary-green);
+}
+
+.physical-info-title {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  line-height: 24px;
+  color: var(--primary-green);
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+
+.delete-physical-row {
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.delete-physical-icon {
+  text-align: center;
+}
+
+.physical-icon-box {
+  text-align: center;
+}
+
+.physical-img {
+  width: auto;
+  height: 100%;
+  max-height: 3rem;
+  margin-top: 1rem;
+}
+
+.form-row {
+  padding-top: 0;
+}
+

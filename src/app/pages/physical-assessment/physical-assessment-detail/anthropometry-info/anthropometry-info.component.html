@@ -1,0 +1,58 @@
+<div class="physical-info" *ngIf="anthropometryInfo">
+  <p class="physical-info-title">ANTROPOMETRIA</p>
+  <div class="info-group">
+    <div class="info">
+      <p class="info-title">Ombro</p>
+      <p class="info-value">{{ anthropometryInfo.shoulder }} cm</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Cintura</p>
+      <p class="info-value">{{ anthropometryInfo.waist }} cm</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Abdomen</p>
+      <p class="info-value">{{ anthropometryInfo.abdomen }} cm</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Quadril</p>
+      <p class="info-value">{{ anthropometryInfo.hip }} cm</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Coxa</p>
+      <p class="info-value">{{ anthropometryInfo.relaxedThigh }} cm</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Panturrilha</p>
+      <p class="info-value">{{ anthropometryInfo.calf }} cm</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Braço relaxado</p>
+      <p class="info-value">{{ anthropometryInfo.relaxedArm }} cm</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Braço Contraído</p>
+      <p class="info-value">{{ anthropometryInfo.contractedArm }} cm</p>
+    </div>
+  </div>
+</div>

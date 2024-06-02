@@ -31,15 +31,27 @@
 
 
     <ion-row class="form-row">
-
-      <ion-col>
-        <p *ngIf="!physicalAssessment" class="physical-not-found">Avaliação não encontrada!</p>
+      <ion-col *ngIf="!physicalAssessment">
+        <p class="physical-not-found">Avaliação não encontrada!</p>
       </ion-col>
 
       <ion-col *ngIf="physicalAssessment">
-
+        <ion-row>
+          <ion-col class="physical-icon-box">
+            <img class="physical-img" src="assets/icon/default-workout.png" alt="physical-assessment-icon"/>
+          </ion-col>
+        </ion-row>
+        <app-general-info [generalInfo]="physicalAssessment.generalInfo"></app-general-info>
+        <app-body-info [bodyInfo]="physicalAssessment.bodyComposition"></app-body-info>
+        <app-anthropometry-info [anthropometryInfo]="physicalAssessment.anthropometry"></app-anthropometry-info>
+        <app-medical-info [medicalInfo]="physicalAssessment.medicalHistory"></app-medical-info>
       </ion-col>
 
+      <ion-row class="delete-physical-row" *ngIf="physicalAssessment && physicalAssessment.id">
+        <ion-col class="delete-physical-icon">
+          <ion-icon name="trash-outline" size="large" color="danger" (click)="deletePhysicalAssessment(physicalAssessment.id)"></ion-icon>
+        </ion-col>
+      </ion-row>
     </ion-row>
 
 

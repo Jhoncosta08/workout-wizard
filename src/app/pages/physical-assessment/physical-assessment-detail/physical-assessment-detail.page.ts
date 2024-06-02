@@ -4,6 +4,8 @@ import {PhysicalAssessmentService} from '../../../services/physical-assessment.s
 import {AuthService} from '../../../services/auth.service';
 import {ActivatedRoute} from '@angular/router';
 import {PhysicalInterface} from '../../../interfaces/physical.interface';
+import {ToastService} from '../../../services/toast.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-physical-assessment-detail',
@@ -20,6 +22,8 @@ export class PhysicalAssessmentDetailPage  {
     private physicalService: PhysicalAssessmentService,
     private authService: AuthService,
     private route: ActivatedRoute,
+    private toast: ToastService,
+    private navControl: NavController
   ) { }
 
 
@@ -36,10 +40,22 @@ export class PhysicalAssessmentDetailPage  {
     if (this.user && this.user.uid && this.physicalId) {
       this.physicalService.getUserPhysicalAssessmentById(this.user.uid, this.physicalId).then((physicalAssessment: PhysicalInterface | null): void => {
         this.physicalAssessment = physicalAssessment;
-        console.log('data: ', this.physicalAssessment);
       }).catch(err => {
         console.error('Error in getPhysicalAssessmentDetail', err);
       })
+    }
+  }
+
+
+  deletePhysicalAssessment(id: string): void {
+    if (this.user && this.user.uid && id) {
+      this.physicalService.deleteUserPhysicalAssessment(this.user.uid, id).then((): void => {
+        this.toast.presentSuccessToast('Avaliação Excluida').then((): void => {})
+        void this.navControl.navigateBack('/physical-assessment/physical-assessment-list');
+      }).catch(err => {
+        void this.toast.presentErrorToast('Ocorreu um erro');
+        console.error('Error in deletePhysicalAssessment', err);
+      });
     }
   }
 

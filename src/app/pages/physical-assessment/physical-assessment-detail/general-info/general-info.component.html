@@ -1,0 +1,16 @@
+<div class="physical-info" *ngIf="generalInfo">
+  <p class="physical-info-title">GERAL</p>
+  <div class="info-group">
+    <div class="info">
+      <p class="info-title">Peso</p>
+      <p class="info-value">{{ generalInfo.weight }} kg</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="info-title">Estatura</p>
+      <p class="info-value">{{ generalInfo.height }} cm</p>
+    </div>
+  </div>
+</div>
