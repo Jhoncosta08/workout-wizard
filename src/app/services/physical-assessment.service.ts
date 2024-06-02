@@ -18,7 +18,19 @@ export class PhysicalAssessmentService {
     const docRef: any = await physicalCollection.add(physicalAssessment);
     const id: string = docRef.id;
     const date: string = new Date().toLocaleDateString('pt-br');
-    const data: {id: string, createdAt: string} = {id: id, createdAt: date};
+    const [day, month, year] = date.split('/').map(Number);
+    const initialDate: Date = new Date(year, month - 1, day);
+    initialDate.setMonth(initialDate.getMonth() + 1);
+    const nextAssessmentDate: string = initialDate.toLocaleDateString('pt-br');
+    const data: {
+      id: string,
+      createdAt: string,
+      nextAssessment: string
+    } = {
+      id: id,
+      createdAt: date,
+      nextAssessment: nextAssessmentDate
+    };
     return await docRef.update(data);
   }
 
