@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>physical-assessment-list</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-grid class="gradient">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">physical-assessment-list</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-row>
+      <ion-col class="physical-title-container">
+        <h1 class="title">Avaliações</h1>
+        <ion-icon name="add" size="large" (click)="moveToPhysicalAssessment('/physical-assessment')"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="form-row">
+      <ion-col>
+
+        <ion-row *ngFor="let physicalAssessment of physicalAssessmentList">
+          <ion-col class="physical-card">
+            <div class="assessment-box">
+              <p class="assessment-card-title">Avaliação</p>
+              <p class="assessment-card-title">Peso: {{ physicalAssessment.generalInfo.weight }}kg</p>
+            </div>
+
+            <div class="next-assessment-box">
+              <p class="assessment-card-sub-title">{{ physicalAssessment.createdAt }}</p>
+              <p class="assessment-card-sub-title">Reavaliação: {{ physicalAssessment.nextAssessment }}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

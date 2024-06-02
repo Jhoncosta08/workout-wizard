@@ -33,7 +33,7 @@ export class UserAddWorkoutPage {
     private spinnerService: SpinnerService,
     private toastService: ToastService,
     private authService: AuthService
-  ) {}
+  ) {this.spinnerService.hide();}
 
 
   ionViewWillEnter(): void {
@@ -151,6 +151,7 @@ export class UserAddWorkoutPage {
         }
       });
     }
+    this.spinnerService.hide();
   }
 
 

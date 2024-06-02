@@ -3,6 +3,8 @@ export interface PhysicalInterface {
   bodyComposition: BodyComposition;
   medicalHistory: MedicalHistory;
   anthropometry: Anthropometry;
+  createdAt?: string;
+  nextAssessment?: string;
 }
 
 export interface GeneralInfo {

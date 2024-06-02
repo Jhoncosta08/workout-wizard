@@ -20,7 +20,7 @@ export class PhysicalAssessmentService {
     const date: string = new Date().toLocaleDateString('pt-br');
     const [day, month, year] = date.split('/').map(Number);
     const initialDate: Date = new Date(year, month - 1, day);
-    initialDate.setMonth(initialDate.getMonth() + 1);
+    initialDate.setMonth(initialDate.getMonth() + 3);
     const nextAssessmentDate: string = initialDate.toLocaleDateString('pt-br');
     const data: {
       id: string,
