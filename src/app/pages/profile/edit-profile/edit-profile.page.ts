@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {UserInterface} from '../../../interfaces/user.interface';
-import {SpinnerService} from '../../../services/spinner.service';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
 import {AuthService} from '../../../services/auth.service';
@@ -21,7 +20,6 @@ export class EditProfilePage {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private spinnerService: SpinnerService,
     private toastService: ToastService,
     private navControl: NavController,
     private authService: AuthService
@@ -42,16 +40,12 @@ export class EditProfilePage {
 
   onSaveForm(): void {
     if (this.userForm.valid) {
-      this.spinnerService.show('Atualizando usuário...');
       const formValues: UserInterface = this.userForm.value;
       this.userService.updateUser(formValues).then((): void => {
         void this.toastService.presentSuccessToast('Usuário atualizado com sucesso!');
-        this.navControl.navigateBack('/profile').then((): void => {
-          this.spinnerService.hide();
-        });
+        void this.navControl.navigateBack('/profile')
       }).catch(err => {
         void this.toastService.presentSuccessToast('Ocorreu um erro!');
-        this.spinnerService.hide();
         console.error('Error in update user', err);
       });
     }

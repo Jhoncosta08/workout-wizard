@@ -6,7 +6,6 @@ import {UserWorkoutService} from '../../../services/user-workout.service';
 import {NavController} from '@ionic/angular';
 import {ActivatedRoute} from '@angular/router';
 import {WorkoutService} from '../../../services/workout.service';
-import {SpinnerService} from '../../../services/spinner.service';
 import {ToastService} from '../../../services/toast.service';
 import {UserInterface} from '../../../interfaces/user.interface';
 import {AuthService} from '../../../services/auth.service';
@@ -30,10 +29,9 @@ export class UserAddWorkoutPage {
     private navControl: NavController,
     private route: ActivatedRoute,
     private workoutService: WorkoutService,
-    private spinnerService: SpinnerService,
     private toastService: ToastService,
     private authService: AuthService
-  ) {this.spinnerService.hide();}
+  ) {}
 
 
   ionViewWillEnter(): void {
@@ -47,7 +45,6 @@ export class UserAddWorkoutPage {
     } else {
       if (this.allWorkoutsComponent) this.allWorkoutsComponent.getAllWorkouts();
     }
-    this.spinnerService.hide();
   }
 
 
@@ -61,7 +58,6 @@ export class UserAddWorkoutPage {
 
 
   saveExercises(exercises: ExercisesInterface[]): void {
-    this.spinnerService.show();
     if (this.userWorkoutId && this.workoutId) {
       if (this.user && this.user.uid) {
         this.userWorkoutService.getUserWorkout(this.userWorkoutId, this.user.uid, this.workoutId).then((userWorkout: WorkoutInterface[]): void => {
@@ -71,7 +67,6 @@ export class UserAddWorkoutPage {
             this.newWorkoutGroup(exercises);
           }
         }).catch(err => {
-          this.spinnerService.hide();
           void this.toastService.presentErrorToast('Ocorreu um erro!');
           console.error('Error in getUserWorkout: ', err);
         });
@@ -82,10 +77,8 @@ export class UserAddWorkoutPage {
           this.userWorkoutService.saveNewWorkout(this.selectedWorkout.id, this.selectedWorkout.name, exercises, this.user.uid).then((): void => {
             this.navControl.navigateForward('/home').then((): void => {
               void this.toastService.presentSuccessToast('Novo treino cadastrado!');
-              this.spinnerService.hide();
             });
           }).catch(err => {
-            this.spinnerService.hide();
             console.error('Error in saveNewWorkout: ', err);
           });
         }
@@ -105,11 +98,9 @@ export class UserAddWorkoutPage {
       if (this.user && this.user.uid) {
         this.userWorkoutService.addNewWorkoutGroup(newWorkout, this.userWorkoutId, this.user.uid).then((): void => {
           this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`).then((): void => {
-            this.spinnerService.hide();
             void this.toastService.presentSuccessToast('Novo grupo de treino adicionado!');
           });
         }).catch(err => {
-          this.spinnerService.hide();
           void this.toastService.presentErrorToast('Ocorreu um erro!');
           console.error('Error in addNewWorkoutGroup: ', err);
         });
@@ -123,11 +114,9 @@ export class UserAddWorkoutPage {
       if (this.user && this.user.uid) {
         this.userWorkoutService.updateExercises(this.userWorkoutId, this.workoutId, exercises, this.user.uid).then((): void => {
           this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`).then((): void => {
-            this.spinnerService.hide();
             void this.toastService.presentSuccessToast('Treino atualizado!');
           });
         }).catch(err => {
-          this.spinnerService.hide();
           void this.toastService.presentErrorToast('Ocorreu um erro!');
           console.error('Error in updateWorkoutExercises: ', err);
         });
@@ -138,26 +127,21 @@ export class UserAddWorkoutPage {
 
   getUserWorkout(): void {
     if (this.workoutId) {
-      this.spinnerService.show();
       this.workoutService.getWorkoutById(this.workoutId).subscribe({
         next: (workouts: WorkoutInterface): void => {
           this.selectedWorkout = workouts;
-          this.spinnerService.hide();
         },
         error: err => {
           console.error('Error in getUserWorkout: ', err);
           this.selectedWorkout = null;
-          this.spinnerService.hide();
         }
       });
     }
-    this.spinnerService.hide();
   }
 
 
   ionViewWillLeave(): void {
     this.selectedWorkout = null;
-    this.spinnerService.hide();
   }
 
 

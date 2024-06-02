@@ -5,7 +5,6 @@ import {UserInterface} from '../interfaces/user.interface';
 import {LoginInterface} from '../interfaces/login.interface';
 import {MenuController, NavController} from '@ionic/angular';
 import {ToastService} from './toast.service';
-import {SpinnerService} from './spinner.service';
 import {BehaviorSubject} from "rxjs";
 
 
@@ -21,7 +20,6 @@ export class AuthService {
     private firestore: AngularFirestore,
     public navControl: NavController,
     private toastService: ToastService,
-    private spinnerControl: SpinnerService,
     private menuController: MenuController
   ) {
     this.user.next(JSON.parse(localStorage.getItem('user')!));
@@ -31,7 +29,6 @@ export class AuthService {
   async register(user: UserInterface): Promise<void> {
     if (!user.password || user.password.trim().length === 0) return this.toastService.presentErrorToast('User not found!');
     try {
-      this.spinnerControl.show();
       this.user.next(null);
       localStorage.clear();
       const userCredential = await this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
@@ -50,10 +47,8 @@ export class AuthService {
         await this.toastService.presentSuccessToast('Usuário criado com sucesso');
         this.setUserLocal(userId, userCredential);
         await this.navControl.navigateForward('/home');
-        this.spinnerControl.hide();
       }
     } catch (err) {
-      this.spinnerControl.hide();
       void this.toastService.presentErrorToast('Error in create user');
       console.error('Error in create user', err);
     }
@@ -64,7 +59,6 @@ export class AuthService {
     if (!user) {
       void this.toastService.presentErrorToast('User not found!');
     } else {
-      this.spinnerControl.show();
       this.user.next(null);
       localStorage.clear();
       this.afAuth.signInWithEmailAndPassword(user.email, user.password).then((userCredential: any): void => {
@@ -72,12 +66,10 @@ export class AuthService {
         if (userId && userCredential) this.setUserLocal(userId, userCredential);
         this.toastService.presentSuccessToast('Login efetuado com sucesso').then((): void => {
           void this.navControl.navigateForward('/home');
-          this.spinnerControl.hide();
         })
       }).catch(err => {
         console.error('Erro no login!:', err);
         void this.toastService.presentErrorToast('Erro no login!');
-        this.spinnerControl.hide();
       });
     }
   }
@@ -104,12 +96,11 @@ export class AuthService {
 
 
   logout(): void {
-    this.spinnerControl.show('Saindo...');
     this.menuController.close().then((): void => {
       this.afAuth.signOut().then((): void => {
         localStorage.clear();
         this.user.next(null);
-        this.navControl.navigateForward('/welcome').then((): void => this.spinnerControl.hide());
+        void this.navControl.navigateForward('/welcome');
       });
     });
   }
@@ -118,8 +109,7 @@ export class AuthService {
   redirectLoggedUser(): void {
     const user: string | null = localStorage.getItem('user');
     if (user) {
-      this.spinnerControl.show('Carregando...');
-      this.navControl.navigateRoot('/home').then((): void => this.spinnerControl.hide());
+      void this.navControl.navigateRoot('/home');
     }
   }
 

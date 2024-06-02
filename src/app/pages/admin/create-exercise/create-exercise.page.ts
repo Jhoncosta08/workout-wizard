@@ -4,7 +4,6 @@ import {WorkoutService} from '../../../services/workout.service';
 import {ActivatedRoute} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
-import {SpinnerService} from '../../../services/spinner.service';
 
 
 @Component({
@@ -23,8 +22,7 @@ export class CreateExercisePage {
     private workoutService: WorkoutService,
     private route: ActivatedRoute,
     private toastService: ToastService,
-    private navControl: NavController,
-    private spinnerControl: SpinnerService,
+    private navControl: NavController
   ) {
     this.workoutId = this.route.snapshot.paramMap.get('id');
     this.setWorkoutName();
@@ -37,21 +35,17 @@ export class CreateExercisePage {
 
 
   onSaveExercise(): void {
-    this.spinnerControl.show('Carregando...');
     const exercises = this.exercisesForm.value;
     if (!this.exercisesForm.invalid && this.workoutId) {
       this.workoutService.addWorkoutExercises(this.workoutId, exercises).then((): void => {
         this.toastService.presentSuccessToast('Exercicio cadastrado com sucesso.').then((): void => {
           void this.navControl.navigateForward('/home');
-          this.spinnerControl.hide();
         })
       }).catch(err => {
-        this.spinnerControl.hide();
         console.error('Error in onSaveExercise: ', err);
         void this.toastService.presentErrorToast('Ocorreu um erro!');
       });
     } else {
-      this.spinnerControl.hide();
       void this.toastService.presentErrorToast('Formulário inválido!');
     }
   }
