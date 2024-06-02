@@ -10,6 +10,12 @@
       </ion-col>
     </ion-row>
 
+    <ion-row *ngIf="userWorkouts.length === 0">
+      <ion-col class="workout-not-found">
+        <p>Nenhum treino encontrado</p>
+      </ion-col>
+    </ion-row>
+
 
     <ion-row class="workout-card-container" *ngFor="let workout of userWorkouts">
       <ion-col class="workout-card">

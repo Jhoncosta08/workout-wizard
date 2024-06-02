@@ -9,8 +9,12 @@
     </ion-row>
 
     <ion-row class="form-row">
-      <ion-col>
 
+      <ion-col *ngIf="physicalAssessmentList.length === 0" class="physical-not-found">
+        <p>Nenhuma Avaliação encontrada</p>
+      </ion-col>
+
+      <ion-col *ngIf="physicalAssessmentList.length > 0">
         <ion-row *ngFor="let physicalAssessment of physicalAssessmentList">
           <ion-col class="physical-card">
             <div class="assessment-box">
@@ -24,8 +28,8 @@
             </div>
           </ion-col>
         </ion-row>
-
       </ion-col>
+
     </ion-row>
 
   </ion-grid>
