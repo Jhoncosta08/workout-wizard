@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -18,10 +18,10 @@ export class GeneralInfoFormComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['parentForm'] && this.parentForm) {
       this.generalInfoForm = this.fb.group({
-        weight: [''],
-        height: ['']
+        weight: ['', [Validators.required]],
+        height: ['', [Validators.required]]
       });
-      this.parentForm.addControl('generalInfoForm', this.generalInfoForm);
+      this.parentForm.addControl('generalInfo', this.generalInfoForm);
     }
   }
 

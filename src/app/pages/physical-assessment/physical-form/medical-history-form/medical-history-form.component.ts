@@ -42,7 +42,7 @@ export class MedicalHistoryFormComponent implements OnChanges {
         eatingHabitScore: [''],
         painLevel: ['']
       });
-      this.parentForm.addControl('medicalHistoryForm', this.medicalHistoryForm);
+      this.parentForm.addControl('medicalHistory', this.medicalHistoryForm);
     }
   }
 

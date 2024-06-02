@@ -20,14 +20,14 @@ export class PhysicalAssessmentListPage{
     private authService: AuthService,
     private toast: ToastService,
     private spinner: SpinnerService,
-  ) { }
+  ) { this.spinner.hide() }
 
   ionViewWillEnter(): void {
+    this.spinner.hide();
     this.authService.user.subscribe((user: UserInterface | null): void => {
       this.user = user;
     });
     this.getAllPhysicalAssessment();
-    this.spinner.hide();
   }
 
 

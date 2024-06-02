@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {PhysicalInterface} from '../../interfaces/physical.interface';
+import {BodyComposition, PhysicalInterface} from '../../interfaces/physical.interface';
 import {UserInterface} from '../../interfaces/user.interface';
 import {PhysicalAssessmentService} from '../../services/physical-assessment.service';
 import {AuthService} from '../../services/auth.service';
@@ -44,6 +44,7 @@ export class PhysicalAssessmentPage {
       this.spinner.show();
       const formData: PhysicalInterface = this.physicalAssessmentForm.value;
       if (this.user && this.user.uid) {
+        void this.calcFat(formData);
         this.physicalService.saveNewUserPhysicalAssessment(this.user.uid, formData).then((): void => {
           this.saveOrUpdateSuccessHandle('Salva');
         }).catch(err => {
@@ -54,10 +55,28 @@ export class PhysicalAssessmentPage {
   }
 
 
+  async calcFat(formData: PhysicalInterface): Promise<void> {
+    if (this.user && this.user.age) {
+      const body: BodyComposition = formData.bodyComposition;
+      const sumOfSkinFolds: number = body?.biceps + body?.triceps + body?.subscapular + body?.suprailiac;
+      const age: number = this.user.age;
+      const bodyDensity: number = 1.097 - (0.00046971 * sumOfSkinFolds) + (0.00000056 * Math.pow(sumOfSkinFolds, 2)) - (0.00012828 * age);
+      const bodyFatPercentage: number = ((4.95 / bodyDensity) - 4.5) * 100;
+      const weight: number = formData.generalInfo?.weight;
+      const fatMassKg: number = (bodyFatPercentage / 100) * weight;
+      formData.bodyComposition.fat = bodyFatPercentage;
+      formData.bodyComposition.fatMass = fatMassKg;
+      formData.bodyComposition.leanMass = weight - fatMassKg;
+    }
+  }
+
+
   saveOrUpdateSuccessHandle(handleMessage: 'Salva' | 'Atualizada'): void {
     this.spinner.hide();
     this.toast.presentSuccessToast(`Avaliação ${handleMessage}`).then((): void => {
-      void this.navControl.navigateForward('/physical-assessment/physical-assessment-list');
+      this.navControl.navigateForward('/physical-assessment/physical-assessment-list').then(() => {
+        this.spinner.hide();
+      });
     });
   }
 

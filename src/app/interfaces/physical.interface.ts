@@ -6,7 +6,7 @@ export interface PhysicalInterface {
 }
 
 export interface GeneralInfo {
-  weight: string;
+  weight: number;
   height: number;
 }
 

@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -21,15 +21,15 @@ export class BodyCompositionFormComponent implements OnChanges {
         fat: [''],
         fatMass: [''],
         leanMass: [''],
-        biceps: [''],
-        triceps: [''],
-        chest: [''],
-        midAxillary: [''],
-        subscapular: [''],
-        suprailiac: [''],
-        abdomen: [''],
-        thigh: [''],
-        calf: [''],
+        biceps: ['', [Validators.required]],
+        triceps: ['', [Validators.required]],
+        chest: ['', [Validators.required]],
+        midAxillary: ['', [Validators.required]],
+        subscapular: ['', [Validators.required]],
+        suprailiac: ['', [Validators.required]],
+        abdomen: ['', [Validators.required]],
+        thigh: ['', [Validators.required]],
+        calf: ['', [Validators.required]],
         wrist: [''],
         femur: [''],
         humerus: [''],
