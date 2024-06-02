@@ -5,6 +5,7 @@ export interface PhysicalInterface {
   anthropometry: Anthropometry;
   createdAt?: string;
   nextAssessment?: string;
+  id?: string;
 }
 
 export interface GeneralInfo {

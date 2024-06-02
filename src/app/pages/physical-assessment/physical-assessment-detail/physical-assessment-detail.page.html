@@ -1,0 +1,47 @@
+<ion-content>
+  <ion-grid class="gradient">
+
+
+    <ion-row>
+      <ion-col class="physical-detal-title">
+        <h1 class="title">Minha Avaliação</h1>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row *ngIf="physicalAssessment">
+      <ion-col>
+        <ion-row class="physical-detal-header-card">
+          <ion-col>
+            <div class="physical-detal-header">
+              <p>Avaliação: </p>
+              <p>{{ physicalAssessment.createdAt }}</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="physical-detal-header">
+              <p>Reavaliação: </p>
+              <p>{{ physicalAssessment.nextAssessment }}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="form-row">
+
+      <ion-col>
+        <p *ngIf="!physicalAssessment" class="physical-not-found">Avaliação não encontrada!</p>
+      </ion-col>
+
+      <ion-col *ngIf="physicalAssessment">
+
+      </ion-col>
+
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>

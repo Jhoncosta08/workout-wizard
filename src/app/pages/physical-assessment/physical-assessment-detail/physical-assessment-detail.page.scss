@@ -1,0 +1,42 @@
+
+.physical-detal-title {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.physical-detal-header-card {
+  padding: 1rem;
+  margin: 1rem 1rem 1.5rem 1rem;
+  background-color: var(--neutral-white);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 var(--neutral-white);
+}
+
+.physical-detal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.physical-detal-header p {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--primary-green);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary-green);
+  margin: 0.5rem 0;
+}
+
+.physical-not-found {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--primary-green);
+  letter-spacing: 1px;
+  line-height: 24px;
+}

@@ -4,7 +4,7 @@
     <ion-row>
       <ion-col class="physical-title-container">
         <h1 class="title">Avaliações</h1>
-        <ion-icon name="add" size="large" (click)="moveToPhysicalAssessment('/physical-assessment')"></ion-icon>
+        <ion-icon name="add" size="large" (click)="moveRouteForward('/physical-assessment')"></ion-icon>
       </ion-col>
     </ion-row>
 
@@ -16,7 +16,7 @@
 
       <ion-col *ngIf="physicalAssessmentList.length > 0">
         <ion-row *ngFor="let physicalAssessment of physicalAssessmentList">
-          <ion-col class="physical-card">
+          <ion-col class="physical-card" (click)="moveRouteForward('/physical-assessment/physical-assessment-detail', physicalAssessment.id)">
             <div class="assessment-box">
               <p class="assessment-card-title">Avaliação</p>
               <p class="assessment-card-title">Peso: {{ physicalAssessment.generalInfo.weight }}kg</p>

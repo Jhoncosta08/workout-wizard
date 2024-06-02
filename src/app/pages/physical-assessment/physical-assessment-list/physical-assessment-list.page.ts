@@ -41,7 +41,8 @@ export class PhysicalAssessmentListPage{
     }
   }
 
-  moveToPhysicalAssessment(url: string): void {
+  moveRouteForward(routeUrl: string, param?: string): void {
+    const url: string = param ? `${routeUrl}/${param}` : routeUrl
     void this.navControl.navigateForward(url);
   }
 
