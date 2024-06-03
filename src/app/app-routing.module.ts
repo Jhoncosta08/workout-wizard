@@ -96,6 +96,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/physical-assessment/physical-assessment.module').then( m => m.PhysicalAssessmentPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'start-training',
+    loadChildren: () => import('./pages/training/start-training/start-training.module').then( m => m.StartTrainingPageModule)
+  },
+  {
+    path: 'select-training',
+    loadChildren: () => import('./pages/training/select-training/select-training.module').then( m => m.SelectTrainingPageModule)
+  },
   //-----
 
 

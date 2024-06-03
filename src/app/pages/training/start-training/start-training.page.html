@@ -1,0 +1,70 @@
+<ion-content>
+  <ion-grid class="gradient">
+
+    <ion-row>
+      <ion-col class="start-training-title">
+        <h1 class="title">Treino Iniciado</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let workout of workout?.workouts" class="training-icon-box">
+      <ion-col size="3">
+        <div class="workout-info-group">
+          <img [src]="workout.name | exerciseImg" [alt]="workout.name" />
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="form-row">
+      <ion-col>
+
+        <p *ngIf="!currentWorkout" class="text">Nenhum treino encontrado</p>
+
+        <ion-row *ngIf="currentWorkout">
+          <ion-col class="workout-count-box">
+            <p>Treino: {{ activeWork + 1 }} de {{ exercises.length }}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="currentWorkout">
+          <ion-col>
+            <ion-card class="training-card" [ngStyle]="{opacity: finishedWorkouts.includes(currentWorkout.name) ? 0.4 : 1}">
+              <img [src]="currentWorkout.photo" [alt]="currentWorkout.name"/>
+              <ion-card-header>
+                <ion-card-title>{{ currentWorkout.name }}</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="currentWorkout" class="training-chevron-box">
+          <ion-col class="chevron-forward-box">
+            <ion-icon name="chevron-back-outline" class="training-chevron-icon" (click)="previewWorkout()"></ion-icon>
+          </ion-col>
+
+          <ion-col *ngIf="!finishedWorkouts.includes(currentWorkout.name)">
+            <button class="submit-button" (click)="setFinishedWorkouts()">Concluir</button>
+          </ion-col>
+
+          <ion-col *ngIf="finishedWorkouts.includes(currentWorkout.name)">
+            <button class="submit-button restart-workout" (click)="restartWorkout()">Recomeçar</button>
+          </ion-col>
+
+          <ion-col class="chevron-forward-box">
+            <ion-icon name="chevron-forward-outline" class="training-chevron-icon" (click)="nextWorkout()"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="currentWorkout" class="finish-workout-box">
+          <ion-col>
+            <button [ngStyle]="{opacity: this.finishedWorkouts.length !== this.exercises.length ? 0.4 : 1}" [disabled]="this.finishedWorkouts.length !== this.exercises.length" class="submit-button" (click)="finishTheWorkout()">
+              Finalizar Treino
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

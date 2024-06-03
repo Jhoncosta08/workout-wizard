@@ -1,0 +1,68 @@
+
+.start-training-title {
+  text-align: center;
+  padding: 1rem;
+}
+
+.form-row {
+  margin: 0;
+}
+
+.training-chevron-box {
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.submit-button {
+  margin: 0;
+}
+
+.chevron-forward-box {
+  text-align: center;
+}
+
+.workout-count-box {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  line-height: 24px;
+  text-align: center;
+  color: var(--primary-green);
+}
+
+.training-chevron-icon {
+  background-color: var(--secondary-dark-gray);
+  padding: 0.7rem;
+  border-radius: 50%;
+  color: var(--neutral-white);
+}
+
+.restart-workout {
+  background-color: var(--primary-dark);
+}
+
+.finish-workout-box {
+  margin-top: 2rem;
+}
+
+.text {
+  text-align: center;
+  color: var(--primary-green);
+}
+
+.workout-info-group {
+  text-align: center;
+  border-radius: 50%;
+}
+
+.workout-info-group img {
+  background-color: var(--neutral-white);
+  height: 3rem;
+  width: auto;
+  padding: 0.2rem;
+  margin: 0 0.3rem;
+  border-radius: 50%;
+}
+
+.training-icon-box {
+  justify-content: center;
+}

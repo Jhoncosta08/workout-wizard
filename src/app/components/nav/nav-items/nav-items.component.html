@@ -21,6 +21,13 @@
   </ion-item>
 </ion-list>
 
+<ion-list>
+  <ion-item (click)="moveUrlForward('/select-training')">
+    <ion-icon name="barbell-outline" slot="start" class="nav-item-icon"></ion-icon>
+    <ion-label class="text">Iniciar Treino</ion-label>
+  </ion-item>
+</ion-list>
+
 
 <!--ADMIN NAV ITEMS-->
 <ion-list *ngIf="showAdminNav">
