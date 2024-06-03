@@ -1,16 +1,41 @@
 <ion-content>
   <ion-grid class="gradient">
 
+    <ion-row *ngIf="workoutType === 'update'">
+      <ion-row>
+        <ion-col class="all-workout-title-container">
+          <h1 class="title">Todos os Treinos</h1>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
+      <ion-col size="6" *ngFor="let workout of workouts">
+        <div class="workout-info-group" (click)="getClickedWorkout(workout)">
+          <img [src]="workout.name | exerciseImg" [alt]="workout.name" />
+          <p class="text">{{ workout.name }}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row *ngIf="workoutType !== 'update'">
       <ion-col class="title-box">
         <h1 class="title">Crie seu <br/>Treino</h1>
       </ion-col>
     </ion-row>
 
 
-    <ion-row class="form-row">
-      <ion-col>
+    <ion-row class="form-row" *ngIf="workoutType !== 'update'">
+      <ion-col *ngIf="workoutType === ''">
+        <button class="submit-button" (click)="changeActionType('add')">
+          Novo Treino
+        </button>
+
+        <button class="submit-button" (click)="changeActionType('update')">
+          Atualizar Treino
+        </button>
+      </ion-col>
+
+      <ion-col *ngIf="workoutType === 'add'">
         <form (ngSubmit)="onSaveWorkout()">
 
           <div class="form-group">
@@ -29,6 +54,10 @@
           <div class="form-group">
             <button type="submit" class="submit-button">
               Salvar
+            </button>
+
+            <button class="submit-button cancel-btn" (click)="changeActionType('')">
+              Cancelar
             </button>
           </div>
 

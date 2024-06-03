@@ -4,6 +4,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CreateWorkoutPageRoutingModule } from './create-workout-routing.module';
 import { CreateWorkoutPage } from './create-workout.page';
+import {UserAddWorkoutPageModule} from '../../user/user-add-workout/user-add-workout.module';
+import {ExerciseImgPipe} from '../../../pipes/exercise-img.pipe';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { CreateWorkoutPage } from './create-workout.page';
     FormsModule,
     IonicModule,
     CreateWorkoutPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UserAddWorkoutPageModule,
+    ExerciseImgPipe,
   ],
 })
 

@@ -2,3 +2,29 @@
 .title-box {
   padding: 1rem 0.5rem;
 }
+
+.cancel-btn {
+  background-color: var(--primary-dark);
+}
+
+
+.workout-info-group {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.workout-info-group img {
+  background-color: var(--neutral-white);
+  height: 3rem;
+  width: auto;
+  padding: 0.2rem;
+  margin: 0 0.3rem;
+  border-radius: 50%;
+}
+
+.all-workout-title-container {
+  text-align: center;
+  padding: 1rem;
+}
+

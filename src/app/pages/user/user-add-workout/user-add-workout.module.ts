@@ -18,7 +18,8 @@ import {WorkoutIconGroupComponent} from '../../../components/workout-icon-group/
     WorkoutIconGroupComponent
   ],
   exports: [
-    WorkoutIconGroupComponent
+    WorkoutIconGroupComponent,
+    AllWorkoutsComponent
   ],
   imports: [
     CommonModule,

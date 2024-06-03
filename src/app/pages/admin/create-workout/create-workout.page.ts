@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {ToastService} from '../../../services/toast.service';
 import {NavController} from '@ionic/angular';
 import {WorkoutService} from '../../../services/workout.service';
+import {WorkoutInterface} from '../../../interfaces/workout.interface';
 
 
 @Component({
@@ -12,6 +13,8 @@ import {WorkoutService} from '../../../services/workout.service';
 })
 export class CreateWorkoutPage {
   workout: FormControl = new FormControl('', Validators.required);
+  workoutType: 'add' | 'update' | '' = '';
+  workouts: WorkoutInterface[] = [];
 
 
   constructor(
@@ -19,6 +22,11 @@ export class CreateWorkoutPage {
     private navControl: NavController,
     private workoutService: WorkoutService
   ) {}
+
+
+  ionViewWillEnter(): void {
+    this.getAllWorkouts();
+  }
 
 
   onSaveWorkout(): void {
@@ -35,6 +43,31 @@ export class CreateWorkoutPage {
     } else {
       void this.toastService.presentErrorToast('Formulário inválido!');
     }
+  }
+
+
+  getClickedWorkout(workout: WorkoutInterface): void {
+    if (workout) {
+      void this.navControl.navigateForward(`/admin/create-exercise/${workout.id}`);
+    }
+  }
+
+
+  changeActionType(actionType: 'add' | 'update' | ''): void {
+    this.workoutType = actionType;
+  }
+
+
+  getAllWorkouts(): void {
+    this.workoutService.getAllWorkouts().subscribe({
+      next: (workouts: WorkoutInterface[]): void => {
+        this.workouts = workouts;
+      },
+      error: err => {
+        this.workouts = [];
+        console.error('Error in get all workouts: ', err);
+      }
+    })
   }
 
 
