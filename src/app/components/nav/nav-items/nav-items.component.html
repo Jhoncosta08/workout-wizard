@@ -28,6 +28,13 @@
   </ion-item>
 </ion-list>
 
+<ion-list>
+  <ion-item (click)="moveUrlForward('/all-workouts')">
+    <ion-icon name="barbell-outline" slot="start" class="nav-item-icon"></ion-icon>
+    <ion-label class="text">Todos os Treinos</ion-label>
+  </ion-item>
+</ion-list>
+
 
 <!--ADMIN NAV ITEMS-->
 <ion-list *ngIf="showAdminNav">

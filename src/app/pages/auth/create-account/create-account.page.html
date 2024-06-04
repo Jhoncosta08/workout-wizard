@@ -1,15 +1,17 @@
 <ion-content>
   <ion-grid class="gradient">
 
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
 
-    <ion-row class="create-account-title-box">
+
+    <ion-row class="create-account-title-box" *ngIf="!showSpinner">
       <ion-col>
         <h1 class="title">Crie sua <br/> conta</h1>
       </ion-col>
     </ion-row>
 
 
-    <ion-row class="create-account-form-row">
+    <ion-row class="create-account-form-row" *ngIf="!showSpinner">
       <ion-col>
 
         <form [formGroup]="registerForm" (ngSubmit)="onRegister()">

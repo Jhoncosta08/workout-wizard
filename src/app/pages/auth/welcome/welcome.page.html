@@ -1,6 +1,9 @@
 <ion-content>
   <ion-grid class="gradient">
-    <ion-row class="welcome-container">
+
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
+
+    <ion-row class="welcome-container" *ngIf="!showSpinner">
 
       <ion-col class="welcome-box">
         <div class="full-item">
@@ -24,5 +27,7 @@
       </ion-col>
 
     </ion-row>
+
+
   </ion-grid>
 </ion-content>

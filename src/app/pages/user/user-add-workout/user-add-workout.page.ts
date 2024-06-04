@@ -22,6 +22,7 @@ export class UserAddWorkoutPage {
   workoutId: string | null = null;
   userWorkoutId: string | null = null;
   user: UserInterface | null = null;
+  showSpinner: boolean = true;
 
 
   constructor(
@@ -35,6 +36,7 @@ export class UserAddWorkoutPage {
 
 
   ionViewWillEnter(): void {
+    this.showSpinner = true;
     this.workoutId = this.route.snapshot.paramMap.get('id');
     this.userWorkoutId = this.route.snapshot.paramMap.get('workoutId');
     this.authService.user.subscribe((user: UserInterface | null): void => {
@@ -43,7 +45,12 @@ export class UserAddWorkoutPage {
     if (this.workoutId) {
       this.getUserWorkout();
     } else {
-      if (this.allWorkoutsComponent) this.allWorkoutsComponent.getAllWorkouts();
+      if (this.allWorkoutsComponent) {
+        this.allWorkoutsComponent.getAllWorkouts();
+        this.showSpinner = false;
+      } else {
+        this.showSpinner = false;
+      }
     }
   }
 
@@ -51,15 +58,22 @@ export class UserAddWorkoutPage {
   getClickedWorkout(workout: WorkoutInterface): void {
     this.selectedWorkout = null;
     if (this.userWorkoutId && !this.workoutId) {
+      this.showSpinner = false;
       return void this.navControl.navigateForward(`/user-add-workout/${this.userWorkoutId}/${workout.id}`);
     }
-    if (workout && !this.workoutId) this.selectedWorkout = workout;
+    if (workout && !this.workoutId) {
+      this.selectedWorkout = workout;
+      this.showSpinner = false;
+    } else {
+      this.showSpinner = false;
+    }
   }
 
 
   saveExercises(exercises: ExercisesInterface[]): void {
     if (this.userWorkoutId && this.workoutId) {
       if (this.user && this.user.uid) {
+        this.showSpinner = true;
         this.userWorkoutService.getUserWorkout(this.userWorkoutId, this.user.uid, this.workoutId).then((userWorkout: WorkoutInterface[]): void => {
           if (userWorkout && userWorkout.length > 0) {
             this.updateWorkoutExercises(exercises);
@@ -67,6 +81,7 @@ export class UserAddWorkoutPage {
             this.newWorkoutGroup(exercises);
           }
         }).catch(err => {
+          this.showSpinner = false;
           void this.toastService.presentErrorToast('Ocorreu um erro!');
           console.error('Error in getUserWorkout: ', err);
         });
@@ -98,13 +113,19 @@ export class UserAddWorkoutPage {
       if (this.user && this.user.uid) {
         this.userWorkoutService.addNewWorkoutGroup(newWorkout, this.userWorkoutId, this.user.uid).then((): void => {
           this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`).then((): void => {
+            this.showSpinner = false;
             void this.toastService.presentSuccessToast('Novo grupo de treino adicionado!');
           });
         }).catch(err => {
+          this.showSpinner = false;
           void this.toastService.presentErrorToast('Ocorreu um erro!');
           console.error('Error in addNewWorkoutGroup: ', err);
         });
+      } else {
+        this.showSpinner = false;
       }
+    } else {
+      this.showSpinner = false;
     }
   }
 
@@ -114,13 +135,19 @@ export class UserAddWorkoutPage {
       if (this.user && this.user.uid) {
         this.userWorkoutService.updateExercises(this.userWorkoutId, this.workoutId, exercises, this.user.uid).then((): void => {
           this.navControl.navigateBack(`/user-workout/${this.userWorkoutId}`).then((): void => {
+            this.showSpinner = false;
             void this.toastService.presentSuccessToast('Treino atualizado!');
           });
         }).catch(err => {
+          this.showSpinner = false;
           void this.toastService.presentErrorToast('Ocorreu um erro!');
           console.error('Error in updateWorkoutExercises: ', err);
         });
+      } else {
+        this.showSpinner = false;
       }
+    } else {
+      this.showSpinner = false;
     }
   }
 
@@ -130,18 +157,23 @@ export class UserAddWorkoutPage {
       this.workoutService.getWorkoutById(this.workoutId).subscribe({
         next: (workouts: WorkoutInterface): void => {
           this.selectedWorkout = workouts;
+          this.showSpinner = false;
         },
         error: err => {
           console.error('Error in getUserWorkout: ', err);
           this.selectedWorkout = null;
+          this.showSpinner = false;
         }
       });
+    } else {
+      this.showSpinner = false;
     }
   }
 
 
   ionViewWillLeave(): void {
     this.selectedWorkout = null;
+    this.showSpinner = false;
   }
 
 

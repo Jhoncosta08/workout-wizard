@@ -1,43 +1,49 @@
+<app-page-spinner *ngIf="showSpinner"></app-page-spinner>
 
-<ion-row *ngIf="workout">
+<ion-row *ngIf="!showSpinner">
   <ion-col>
-    <app-workout-icon-group [workout]="workout"></app-workout-icon-group>
+    <ion-row *ngIf="workout">
+      <ion-col>
+        <app-workout-icon-group [workout]="workout"></app-workout-icon-group>
+      </ion-col>
+    </ion-row>
+
+    <ion-card *ngFor="let exercise of exercises" class="exercise-card-container">
+
+
+      <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name"/>
+
+
+      <ion-card-header>
+        <div class="exercise-card-header">
+          <ion-card-title class="exercise-card-title">{{ exercise.name }}</ion-card-title>
+          <div *ngIf="listType === 'add'" class="add-icons-group">
+            <ion-icon *ngIf="!exercisesNames.includes(exercise.name.trim().toLowerCase())" class="add-exercise-icon" name="add" size="large" (click)="onSelectedExercise(exercise)"></ion-icon>
+            <ion-icon *ngIf="exercisesNames.includes(exercise.name.trim().toLowerCase())" class="remove-exercise-icon" name="close" size="large" (click)="removeTheSelectedExercise(exercise)"></ion-icon>
+          </div>
+        </div>
+      </ion-card-header>
+
+
+      <ion-card-content>
+        <p [ngClass]="!seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'card-description' : ''">{{ exercise.description }}</p>
+        <div class="see-more-container">
+          <a (click)="addOrRemoveItemToArray(seeMoreName, exercise.name)" class="exercise-card-btn">
+            {{ !seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'ver mais' : 'ver menos'}}
+          </a>
+          <ion-icon [name]="listType === 'detail' ? 'arrow-forward-outline' : !seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'arrow-down-outline' : 'arrow-up-outline'"></ion-icon>
+        </div>
+      </ion-card-content>
+
+
+    </ion-card>
+
+
+    <button *ngIf="allSelectedExercises.length > 0" class="submit-button save-exercises" (click)="emitExercises.emit(allSelectedExercises)">
+      {{ userWorkoutId ? 'Atualizar' : 'Salvar' }}
+      {{ allSelectedExercises.length > 0 ? allSelectedExercises.length : '' }}
+      exercício
+    </button>
   </ion-col>
 </ion-row>
 
-<ion-card *ngFor="let exercise of exercises" class="exercise-card-container">
-
-
-  <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name"/>
-
-
-  <ion-card-header>
-    <div class="exercise-card-header">
-      <ion-card-title class="exercise-card-title">{{ exercise.name }}</ion-card-title>
-      <div *ngIf="listType === 'add'" class="add-icons-group">
-        <ion-icon *ngIf="!exercisesNames.includes(exercise.name.trim().toLowerCase())" class="add-exercise-icon" name="add" size="large" (click)="onSelectedExercise(exercise)"></ion-icon>
-        <ion-icon *ngIf="exercisesNames.includes(exercise.name.trim().toLowerCase())" class="remove-exercise-icon" name="close" size="large" (click)="removeTheSelectedExercise(exercise)"></ion-icon>
-      </div>
-    </div>
-  </ion-card-header>
-
-
-  <ion-card-content>
-    <p [ngClass]="!seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'card-description' : ''">{{ exercise.description }}</p>
-    <div class="see-more-container">
-      <a (click)="addOrRemoveItemToArray(seeMoreName, exercise.name)" class="exercise-card-btn">
-        {{ !seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'ver mais' : 'ver menos'}}
-      </a>
-      <ion-icon [name]="listType === 'detail' ? 'arrow-forward-outline' : !seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'arrow-down-outline' : 'arrow-up-outline'"></ion-icon>
-    </div>
-  </ion-card-content>
-
-
-</ion-card>
-
-
-<button *ngIf="allSelectedExercises.length > 0" class="submit-button save-exercises" (click)="emitExercises.emit(allSelectedExercises)">
-  {{ userWorkoutId ? 'Atualizar' : 'Salvar' }}
-  {{ allSelectedExercises.length > 0 ? allSelectedExercises.length : '' }}
-  exercício
-</button>

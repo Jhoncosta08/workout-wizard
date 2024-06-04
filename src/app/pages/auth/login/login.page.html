@@ -1,14 +1,16 @@
 <ion-content>
   <ion-grid class="gradient">
 
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
 
-    <ion-row class="form-title-box">
+
+    <ion-row class="form-title-box" *ngIf="!showSpinner">
       <ion-col>
         <h1 class="title">Login</h1>
       </ion-col>
     </ion-row>
 
-    <ion-row class="form-row">
+    <ion-row class="form-row" *ngIf="!showSpinner">
       <ion-col>
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 

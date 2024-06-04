@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import {ExerciseImgPipe} from '../../pipes/exercise-img.pipe';
+import {PageSpinnerModule} from '../../components/page-spinner/page-spinner.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {ExerciseImgPipe} from '../../pipes/exercise-img.pipe';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    ExerciseImgPipe
+    ExerciseImgPipe,
+    PageSpinnerModule
   ],
 })
 

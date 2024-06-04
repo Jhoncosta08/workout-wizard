@@ -21,6 +21,7 @@ export class ExerciseListComponent implements OnInit {
   workoutId: string | null = null;
   exercisesNames: string[] = [];
   seeMoreName: string[] = [];
+  showSpinner: boolean = false;
 
 
   constructor(
@@ -33,6 +34,7 @@ export class ExerciseListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.showSpinner = false;
     this.setExercisesAlreadySaved();
   }
 
@@ -71,17 +73,25 @@ export class ExerciseListComponent implements OnInit {
   setExercisesAlreadySaved(): void {
     if (this.workoutId && this.userWorkoutId) {
       if (this.user && this.user.uid) {
+        this.showSpinner = true;
         this.userWorkoutService.getUserWorkout(this.userWorkoutId,this.user.uid, this.workoutId).then((userWorkout: WorkoutInterface[]): void => {
           const exercises: ExercisesInterface[] = userWorkout[0]?.exercises;
           if (exercises && exercises.length > 0) {
             exercises.map((exercise: ExercisesInterface): void => {
               this.onSelectedExercise(exercise);
             });
+            this.showSpinner = false;
+          } else {
+            this.showSpinner = false;
           }
         }).catch(err => {
-          console.error('error: ', err);
+          this.showSpinner = false;
         });
+      } else {
+        this.showSpinner = false;
       }
+    } else {
+      this.showSpinner = false;
     }
   }
 

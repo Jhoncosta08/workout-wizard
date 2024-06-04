@@ -14,6 +14,7 @@ import {AuthService} from '../../services/auth.service';
 export class HomePage {
   userWorkouts: UserWorkoutInterface[] = [];
   user: UserInterface | null = null;
+  showSpinner: boolean = true;
 
 
   constructor(
@@ -25,16 +26,21 @@ export class HomePage {
 
   moveRouteForward(url: string, params?: string): void {
     const route: string = params ? `${url}/${params}` : url;
-    void this.navControl.navigateForward(route);
+    this.navControl.navigateForward(route).then((): void => {
+      this.showSpinner = false;
+    });
   }
 
 
   ionViewWillEnter(): void {
+    this.showSpinner = true;
     this.userWorkouts = [];
     this.authService.user.subscribe((user: UserInterface | null): void => {
       this.user = user;
       if (this.user) {
         this.getAllWorkouts();
+      } else {
+        this.showSpinner = false;
       }
     });
   }
@@ -45,11 +51,18 @@ export class HomePage {
     if (this.user && this.user.uid) {
       this.userWorkoutService.getAllUserWorkout(this.user.uid).then((workouts: UserWorkoutInterface[]): void => {
         this.userWorkouts = workouts;
+        this.showSpinner = false;
       }).catch(err => {
         this.userWorkouts = [];
+        this.showSpinner = false;
         console.error('Error in getAllWorkouts: ', err);
       });
     }
+  }
+
+
+  ionViewWillLeave(): void {
+    this.showSpinner = false;
   }
 
 

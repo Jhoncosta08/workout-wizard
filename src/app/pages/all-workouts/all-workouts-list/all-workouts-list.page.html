@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-grid class="gradient workout-grid">
+
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
+
+    <ion-row *ngIf="!showSpinner">
+      <ion-col>
+        <ion-card *ngFor="let exercise of exercises" class="exercise-card-container">
+          <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name"/>
+          <ion-card-header>
+            <div class="exercise-card-header">
+              <ion-card-title class="exercise-card-title">{{ exercise.name }}</ion-card-title>
+            </div>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p [ngClass]="!seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'card-description' : ''">{{ exercise.description }}</p>
+            <div class="see-more-container">
+              <a (click)="addOrRemoveItemToArray(seeMoreName, exercise.name)" class="exercise-card-btn">
+                {{ !seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'ver mais' : 'ver menos'}}
+              </a>
+              <ion-icon [name]="!seeMoreName.includes(exercise.name.trim().toLowerCase()) ? 'arrow-down-outline' : 'arrow-up-outline'"></ion-icon>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>

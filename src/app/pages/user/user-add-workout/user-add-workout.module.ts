@@ -8,6 +8,7 @@ import {AllWorkoutsComponent} from '../../../components/all-workouts/all-workout
 import {ExerciseListComponent} from '../../../components/exercise-list/exercise-list.component';
 import {ExerciseImgPipe} from '../../../pipes/exercise-img.pipe';
 import {WorkoutIconGroupComponent} from '../../../components/workout-icon-group/workout-icon-group.component';
+import {PageSpinnerModule} from '../../../components/page-spinner/page-spinner.module';
 
 
 @NgModule({
@@ -21,13 +22,14 @@ import {WorkoutIconGroupComponent} from '../../../components/workout-icon-group/
     WorkoutIconGroupComponent,
     AllWorkoutsComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    UserAddWorkoutPageRoutingModule,
-    ExerciseImgPipe
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        UserAddWorkoutPageRoutingModule,
+        ExerciseImgPipe,
+        PageSpinnerModule
+    ]
 })
 
 

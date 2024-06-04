@@ -2,13 +2,15 @@
 <ion-content>
   <ion-grid class="gradient">
 
-    <ion-row>
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
+
+    <ion-row *ngIf="!showSpinner">
       <ion-col class="physical-title-box">
         <h1 class="title">Avaliação fisica</h1>
       </ion-col>
     </ion-row>
 
-    <ion-row class="form-row physical-form-container">
+    <ion-row class="form-row physical-form-container" *ngIf="!showSpinner">
 
       <ion-col>
 

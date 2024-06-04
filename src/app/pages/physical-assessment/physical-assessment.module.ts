@@ -8,6 +8,7 @@ import {AnthropometryFormComponent} from './physical-form/anthropometry-form/ant
 import {BodyCompositionFormComponent} from './physical-form/body-composition-form/body-composition-form.component';
 import {GeneralInfoFormComponent} from './physical-form/general-info-form/general-info-form.component';
 import {MedicalHistoryFormComponent} from './physical-form/medical-history-form/medical-history-form.component';
+import {PageSpinnerModule} from '../../components/page-spinner/page-spinner.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,13 @@ import {MedicalHistoryFormComponent} from './physical-form/medical-history-form/
     GeneralInfoFormComponent,
     MedicalHistoryFormComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PhysicalAssessmentPageRoutingModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        PhysicalAssessmentPageRoutingModule,
+        ReactiveFormsModule,
+        PageSpinnerModule
+    ],
 })
 export class PhysicalAssessmentPageModule {}

@@ -8,6 +8,7 @@ import {AnthropometryInfoComponent} from './anthropometry-info/anthropometry-inf
 import {BodyInfoComponent} from './body-info/body-info.component';
 import {GeneralInfoComponent} from './general-info/general-info.component';
 import {MedicalInfoComponent} from './medical-info/medical-info.component';
+import {PageSpinnerModule} from '../../../components/page-spinner/page-spinner.module';
 
 
 @NgModule({
@@ -18,12 +19,13 @@ import {MedicalInfoComponent} from './medical-info/medical-info.component';
     GeneralInfoComponent,
     MedicalInfoComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PhysicalAssessmentDetailPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        PhysicalAssessmentDetailPageRoutingModule,
+        PageSpinnerModule
+    ],
 })
 
 

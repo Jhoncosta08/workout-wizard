@@ -13,6 +13,7 @@ import {NavController} from '@ionic/angular';
 })
 export class CreateAccountPage {
   registerForm: FormGroup;
+  showSpinner: boolean = true;
 
 
   constructor(
@@ -35,7 +36,12 @@ export class CreateAccountPage {
 
 
   ionViewWillEnter(): void {
-    this.authService.redirectLoggedUser();
+    this.showSpinner = true;
+    this.authService.redirectLoggedUser().then((): void => {
+      setTimeout(() => this.showSpinner = false, 1000);
+    }).catch((): void => {
+      setTimeout(() => this.showSpinner = false, 1000);
+    });
   }
 
 

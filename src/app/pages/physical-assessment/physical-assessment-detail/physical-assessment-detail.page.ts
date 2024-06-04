@@ -16,6 +16,7 @@ export class PhysicalAssessmentDetailPage  {
   user: UserInterface | null = null;
   physicalId: string | null = null;
   physicalAssessment: PhysicalInterface | null = null;
+  showSpinner: boolean = true;
 
 
   constructor(
@@ -28,6 +29,7 @@ export class PhysicalAssessmentDetailPage  {
 
 
   ionViewWillEnter(): void {
+    this.showSpinner = true;
     this.physicalId = this.route.snapshot.paramMap.get('id');
     this.authService.user.subscribe((user: UserInterface | null): void => {
       this.user = user;
@@ -40,23 +42,38 @@ export class PhysicalAssessmentDetailPage  {
     if (this.user && this.user.uid && this.physicalId) {
       this.physicalService.getUserPhysicalAssessmentById(this.user.uid, this.physicalId).then((physicalAssessment: PhysicalInterface | null): void => {
         this.physicalAssessment = physicalAssessment;
+        this.showSpinner = false;
       }).catch(err => {
+        this.showSpinner = false;
         console.error('Error in getPhysicalAssessmentDetail', err);
       })
+    } else {
+      this.showSpinner = false;
     }
   }
 
 
   deletePhysicalAssessment(id: string): void {
     if (this.user && this.user.uid && id) {
+      this.showSpinner = true;
       this.physicalService.deleteUserPhysicalAssessment(this.user.uid, id).then((): void => {
         this.toast.presentSuccessToast('Avaliação Excluida').then((): void => {})
-        void this.navControl.navigateBack('/physical-assessment/physical-assessment-list');
+        this.navControl.navigateBack('/physical-assessment/physical-assessment-list').then(() => {
+          this.showSpinner = false;
+        });
       }).catch(err => {
+        this.showSpinner = false;
         void this.toast.presentErrorToast('Ocorreu um erro');
         console.error('Error in deletePhysicalAssessment', err);
       });
+    } else {
+      this.showSpinner = false;
     }
+  }
+
+
+  ionViewWillLeave(): void {
+    this.showSpinner = false;
   }
 
 

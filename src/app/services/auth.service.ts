@@ -106,10 +106,14 @@ export class AuthService {
   }
 
 
-  redirectLoggedUser(): void {
+  async redirectLoggedUser(): Promise<void> {
     const user: string | null = localStorage.getItem('user');
     if (user) {
-      void this.navControl.navigateRoot('/home');
+      this.navControl.navigateRoot('/home').then((): void => {
+       void Promise.resolve();
+      });
+    } else {
+      void Promise.resolve();
     }
   }
 

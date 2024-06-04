@@ -3,56 +3,65 @@
 <ion-content>
   <ion-grid class="gradient user-workout-container">
 
-    <ion-row>
-      <ion-col class="user-workout-title-container">
-        <h1 class="title">Meu treino</h1>
-        <ion-icon name="add" size="large" (click)="moveRouteToEditWorkout()"></ion-icon>
-      </ion-col>
-    </ion-row>
 
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
 
-    <ion-row>
-      <ion-col *ngFor="let workout of workouts">
-        <app-workout-icon-group [workout]="workout"></app-workout-icon-group>
-      </ion-col>
-    </ion-row>
-
-
-    <ion-row>
+    <ion-row *ngIf="!showSpinner">
       <ion-col>
+        <ion-row>
+          <ion-col class="user-workout-title-container">
+            <h1 class="title">Meu treino</h1>
+            <ion-icon name="add" size="large" (click)="moveRouteToEditWorkout()"></ion-icon>
+          </ion-col>
+        </ion-row>
 
-        <ion-card *ngFor="let workout of workouts">
-          <ion-card-header>
-            <ion-card-title class="workout-card-title">
-              Treino de {{ workout.name }}
-              <ion-icon size="large" name="create-outline" (click)="moveRouteToEditWorkout(workout.id)"></ion-icon>
-            </ion-card-title>
-          </ion-card-header>
 
-          <ion-card-content>
-            <ion-list>
-              <ion-item *ngFor="let exercise of workout.exercises">
-                <ion-thumbnail slot="start">
-                  <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/thumbnail.svg'" [alt]="exercise.name"  />
-                </ion-thumbnail>
-                <ion-label>{{ exercise.name }}</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
+        <ion-row>
+          <ion-col *ngFor="let workout of workouts">
+            <app-workout-icon-group [workout]="workout"></app-workout-icon-group>
+          </ion-col>
+        </ion-row>
 
-          <div class="delete-workout-icon">
-            <ion-icon name="trash-outline" size="large" color="danger" (click)="deleteWorkout(workout.id)"></ion-icon>
-          </div>
-        </ion-card>
 
+        <ion-row>
+          <ion-col>
+
+            <ion-card *ngFor="let workout of workouts">
+              <ion-card-header>
+                <ion-card-title class="workout-card-title">
+                  Treino de {{ workout.name }}
+                  <ion-icon size="large" name="create-outline" (click)="moveRouteToEditWorkout(workout.id)"></ion-icon>
+                </ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-list>
+                  <ion-item *ngFor="let exercise of workout.exercises">
+                    <ion-thumbnail slot="start">
+                      <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/thumbnail.svg'" [alt]="exercise.name"  />
+                    </ion-thumbnail>
+                    <ion-label>{{ exercise.name }}</ion-label>
+                  </ion-item>
+                </ion-list>
+              </ion-card-content>
+
+              <div class="delete-workout-icon">
+                <ion-icon name="trash-outline" size="large" color="danger" (click)="deleteWorkout(workout.id)"></ion-icon>
+              </div>
+            </ion-card>
+
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="delete-all-workout-container">
+          <ion-col>
+            <button class="submit-button delete-all-workout" (click)="deleteAllWorkout()">Excluir todo treino</button>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
 
 
-    <ion-row class="delete-all-workout-container">
-      <ion-col>
-        <button class="submit-button delete-all-workout" (click)="deleteAllWorkout()">Excluir todo treino</button>
-      </ion-col>
-    </ion-row>
   </ion-grid>
 </ion-content>

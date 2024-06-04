@@ -16,6 +16,7 @@ import {NavController} from '@ionic/angular';
 export class PhysicalAssessmentPage {
   physicalAssessmentForm: FormGroup;
   user: UserInterface | null = null;
+  showSpinner: boolean = false;
 
 
   constructor(
@@ -38,14 +39,19 @@ export class PhysicalAssessmentPage {
 
   onSavePhysycalForm(): void {
     if (this.physicalAssessmentForm.valid) {
+      this.showSpinner = true;
       const formData: PhysicalInterface = this.physicalAssessmentForm.value;
       if (this.user && this.user.uid) {
         void this.calcFat(formData);
         this.physicalService.saveNewUserPhysicalAssessment(this.user.uid, formData).then((): void => {
           this.saveOrUpdateSuccessHandle('Salva');
+          this.showSpinner = false;
         }).catch(err => {
+          this.showSpinner = false;
           this.errorHandle(err, 'Error in saveNewUserPhysicalAssessment');
         });
+      } else {
+        this.showSpinner = false;
       }
     }
   }

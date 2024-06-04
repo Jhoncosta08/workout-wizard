@@ -13,6 +13,7 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class LoginPage {
   loginForm: FormGroup;
+  showSpinner: boolean = true;
 
 
   constructor(
@@ -29,7 +30,12 @@ export class LoginPage {
 
 
   ionViewWillEnter(): void {
-    this.authService.redirectLoggedUser();
+    this.showSpinner = true;
+    this.authService.redirectLoggedUser().then((): void => {
+      setTimeout(() => this.showSpinner = false, 1000);
+    }).catch((): void => {
+      setTimeout(() => this.showSpinner = false, 1000);
+    });
   }
 
 

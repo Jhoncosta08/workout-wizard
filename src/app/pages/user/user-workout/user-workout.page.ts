@@ -19,6 +19,7 @@ export class UserWorkoutPage {
   userWorkout: UserWorkoutInterface | null = null;
   workouts: WorkoutInterface[] = [];
   user: UserInterface | null = null;
+  showSpinner: boolean = true;
 
 
   constructor(
@@ -31,6 +32,7 @@ export class UserWorkoutPage {
 
 
   ionViewWillEnter(): void {
+    this.showSpinner = true;
     this.workoutId = this.route.snapshot.paramMap.get('id');
     this.authService.user.subscribe((user: UserInterface | null): void => {
       this.user = user;
@@ -45,10 +47,15 @@ export class UserWorkoutPage {
         this.userWorkoutService.getUserWorkoutById(this.workoutId, this.user.uid).then((workout: UserWorkoutInterface): void => {
           this.userWorkout = workout;
           this.workouts = workout.workouts as unknown as WorkoutInterface[];
+          this.showSpinner = false;
         }).catch(err => {
+          this.workouts = [];
+          this.showSpinner = false;
           console.error('Error in getUserWorkoutDoc: ', err);
         });
       }
+    } else {
+      this.showSpinner = false;
     }
   }
 
@@ -65,6 +72,7 @@ export class UserWorkoutPage {
   deleteWorkout(workoutToRemoveId: string): void {
     if (this.userWorkout && this.userWorkout.id) {
       if (this.user && this.user.uid) {
+        this.showSpinner = true;
         const workoutId: string = this.userWorkout.id;
         this.userWorkoutService.deleteWorkoutFromArray(workoutId, workoutToRemoveId, this.user.uid).then((): void => {
           this.workouts = [];
@@ -72,6 +80,7 @@ export class UserWorkoutPage {
           this.getUserWorkoutDoc();
           void this.toastService.presentSuccessToast('Treino excluido com sucesso!');
         }).catch(err => {
+          this.showSpinner = false;
           console.error('Error in deleteWorkout', err);
           void this.toastService.presentErrorToast('Erro ao excluir o treino!');
         });
@@ -83,15 +92,22 @@ export class UserWorkoutPage {
   deleteAllWorkout(): void {
     if (this.userWorkout && this.userWorkout.id) {
       if (this.user && this.user.uid) {
+        this.showSpinner = true;
         this.userWorkoutService.deleteWorkout(this.userWorkout.id, this.user.uid).then((): void => {
           void this.toastService.presentSuccessToast('Todo o treino foi excluido!');
-          void this.navControl.navigateForward('/home');
+          this.navControl.navigateForward('/home').then(() => this.showSpinner = false);
         }).catch(err => {
           console.error('Error in deleteWorkout', err);
+          this.showSpinner = false;
           void this.toastService.presentErrorToast('Erro ao excluir o treino todo!');
         });
       }
     }
+  }
+
+
+  ionViewWillLeave(): void {
+    this.showSpinner = false;
   }
 
 

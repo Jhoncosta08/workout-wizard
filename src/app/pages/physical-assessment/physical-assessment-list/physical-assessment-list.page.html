@@ -1,14 +1,16 @@
 <ion-content>
   <ion-grid class="gradient">
 
-    <ion-row>
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
+
+    <ion-row *ngIf="!showSpinner">
       <ion-col class="physical-title-container">
         <h1 class="title">Avaliações</h1>
         <ion-icon name="add" size="large" (click)="moveRouteForward('/physical-assessment')"></ion-icon>
       </ion-col>
     </ion-row>
 
-    <ion-row class="form-row">
+    <ion-row class="form-row" *ngIf="!showSpinner">
 
       <ion-col *ngIf="physicalAssessmentList.length === 0" class="physical-not-found">
         <p>Nenhuma Avaliação encontrada</p>

@@ -3,16 +3,21 @@
 <ion-content>
   <ion-grid class="gradient add-workout-grid">
 
+    <app-page-spinner *ngIf="showSpinner"></app-page-spinner>
 
-    <ion-row class="all-workouts-container" *ngIf="!selectedWorkout">
+    <ion-row>
       <ion-col>
-        <app-all-workouts (clickedWorkout)="getClickedWorkout($event)"></app-all-workouts>
-      </ion-col>
-    </ion-row>
+        <ion-row class="all-workouts-container" *ngIf="!selectedWorkout">
+          <ion-col>
+            <app-all-workouts (clickedWorkout)="getClickedWorkout($event)"></app-all-workouts>
+          </ion-col>
+        </ion-row>
 
-    <ion-row class="add-workout-container" *ngIf="selectedWorkout">
-      <ion-col>
-        <app-exercise-list [user]="user" [workout]="selectedWorkout" [exercises]="selectedWorkout.exercises" [listType]="'add'" (emitExercises)="saveExercises($event)"></app-exercise-list>
+        <ion-row class="add-workout-container" *ngIf="selectedWorkout && !showSpinner">
+          <ion-col>
+            <app-exercise-list [user]="user" [workout]="selectedWorkout" [exercises]="selectedWorkout.exercises" [listType]="'add'" (emitExercises)="saveExercises($event)"></app-exercise-list>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
 

@@ -104,6 +104,10 @@ const routes: Routes = [
     path: 'select-training',
     loadChildren: () => import('./pages/training/select-training/select-training.module').then( m => m.SelectTrainingPageModule)
   },
+  {
+    path: 'all-workouts',
+    loadChildren: () => import('./pages/all-workouts/all-workouts.module').then( m => m.AllWorkoutsPageModule)
+  },
   //-----
 
 

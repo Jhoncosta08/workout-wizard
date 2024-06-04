@@ -14,6 +14,7 @@ import {NavController} from '@ionic/angular';
 export class PhysicalAssessmentListPage{
   user: UserInterface | null = null;
   physicalAssessmentList: PhysicalInterface[] = [];
+  showSpinner: boolean = true;
 
 
   constructor(
@@ -24,6 +25,7 @@ export class PhysicalAssessmentListPage{
 
 
   ionViewWillEnter(): void {
+    this.showSpinner = true;
     this.authService.user.subscribe((user: UserInterface | null): void => {
       this.user = user;
     });
@@ -35,15 +37,24 @@ export class PhysicalAssessmentListPage{
     if (this.user && this.user.uid) {
       this.physicalService.getAllUserPhysicalAssessment(this.user.uid).then((physicalAssessment : PhysicalInterface[]): void => {
         this.physicalAssessmentList = physicalAssessment;
+        this.showSpinner = false;
       }).catch(err => {
+        this.showSpinner = false;
         console.error('Error in getAllPhysicalAssessment', err);
       });
+    } else {
+      this.showSpinner = false;
     }
   }
 
   moveRouteForward(routeUrl: string, param?: string): void {
     const url: string = param ? `${routeUrl}/${param}` : routeUrl
     void this.navControl.navigateForward(url);
+  }
+
+
+  ionViewWillLeave(): void {
+    this.showSpinner = false;
   }
 
 
