@@ -23,7 +23,7 @@
 | `ion-content`         | Container with spacing on the sides (width: 1200px).                           |
 | `ion-grid`            | Ionic grid.                                                                    |
 | `ion-row`             | Single div, must be used as a parent div that will have 1 to 12 col child divs |
-| `ion-col`             | Single div, must be used as a parent div that will have 1 to 12 child divs     | 
+| `ion-col`             | Single div, must be used as a child div that will have 1 to 12 divs            | 
 
 >***The pattern shown above in the table shows the structure of the project's html pages, new pages must follow the pattern.***
 
@@ -65,3 +65,26 @@
 > Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Preview app
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-1.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-2.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-3.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-4.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-5.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-6.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-7.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-8.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-9.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-10.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-11.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-12.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-13.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-14.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-15.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-16.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-17.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-18.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-19.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-20.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-21.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-22.png)
+![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/preview-23.png)
