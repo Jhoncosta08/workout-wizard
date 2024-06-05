@@ -1,4 +1,4 @@
-# Lol Guide
+# Workout Wizard
 
 ## About the project
 >The application is an interactive platform based on the game League of Legends, designed to provide a rich and detailed experience for fans of the game. Users can create accounts and log in to access an extensive list of champions. Upon selecting a champion, detailed information is presented, including the lane where the champion plays, their abilities with illustrative videos, the character's lore, and available skins. This functionality allows players to deepen their knowledge of their favorite champions and explore new characters in an engaging and informative way.
