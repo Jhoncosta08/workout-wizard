@@ -7,7 +7,7 @@
 >Additionally, the application features a dedicated page for the game's runes. In this section, users can explore a comprehensive list of runes, and by clicking on one, they can access explanatory videos, information about associated minor runes, and detailed descriptions of each. For administrators, the system offers advanced features such as creating and editing champions, managing runes, and assigning specific runes to champions. These administrative tools ensure that the app's content is always up-to-date and aligned with the latest changes in the game, providing a consistently relevant experience for users.
 
 ## Project Url:
-[Lol Guide](https://lol-guide-web.web.app)
+[Workout Wizard](https://workout-wizard-app.web.app/)
 
 ## Main technologies used in the project
 >* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.2.
