@@ -17,7 +17,7 @@
       <ion-col class="workout-card">
 
         <ion-row class="workout-icons-group">
-          <ion-col *ngFor="let workoutList of workout.workouts" class="workout-item" size="3">
+          <ion-col *ngFor="let workoutList of workout.workouts" class="workout-item" size="4">
             <img [src]="workoutList.name | exerciseImg" alt="" />
             <p>{{ workoutList.name }}</p>
           </ion-col>
