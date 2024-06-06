@@ -2,9 +2,41 @@
 ![image](https://github.com/Jhoncosta08/workout-wizard/blob/master/src/assets/previews/logo.png)
 
 ## About the project
->The application is an interactive platform based on the game League of Legends, designed to provide a rich and detailed experience for fans of the game. Users can create accounts and log in to access an extensive list of champions. Upon selecting a champion, detailed information is presented, including the lane where the champion plays, their abilities with illustrative videos, the character's lore, and available skins. This functionality allows players to deepen their knowledge of their favorite champions and explore new characters in an engaging and informative way.
 
->Additionally, the application features a dedicated page for the game's runes. In this section, users can explore a comprehensive list of runes, and by clicking on one, they can access explanatory videos, information about associated minor runes, and detailed descriptions of each. For administrators, the system offers advanced features such as creating and editing champions, managing runes, and assigning specific runes to champions. These administrative tools ensure that the app's content is always up-to-date and aligned with the latest changes in the game, providing a consistently relevant experience for users.
+### App Overview
+
+**Workout Wizard** is a mobile application focused on creating personalized workout plans for the gym. This app allows users to create and manage their own workout routines, tailoring them to their individual needs and goals. The main feature of Workout Wizard is its emphasis on individuality, giving each user complete control over their workouts.
+
+### Key Features
+
+#### Workout Creation
+- **Total Personalization**: Users can create their own workouts by choosing from a variety of exercises available in the system.
+- **Workout Groups**: Each workout can be divided into one or more groups of exercises. For example:
+  - Workout 1: Chest and Shoulders
+  - Workout 2: Back and Abs
+  - Workout 3: Legs
+- **Flexibility**: Workouts can be easily edited, allowing users to add new groups of exercises or remove exercises already added.
+
+#### Workout Management
+- **Workout Viewing**: A dedicated page allows users to see all the workouts they have created.
+- **Workout Editing**: Existing workouts can be edited by adding or removing exercises and workout groups as needed.
+
+#### User Profile
+- **Profile Page**: Contains all the information added during the user's registration.
+- **Information Editing**: Users can edit their personal information directly on this page.
+- **Photo Upload**: Ability to upload a profile picture to further personalize the app experience.
+
+#### Health Monitoring
+- **BMI**: Based on the registration data, the app calculates and displays the user's Body Mass Index (BMI) on the dedicated BMI screen.
+
+#### Physical Evaluation
+- **Self-Assessment**: A specific screen allows users to add and monitor their own physical evaluations.
+- **Evaluation Reminder**: The app shows the date for the next physical evaluation based on the last one conducted, helping users to regularly track their progress.
+
+### Conclusion
+
+Workout Wizard is a powerful tool for anyone looking to take control of their workout routine. With the ability to create, personalize, and manage their own workouts, monitor their physical progress, and keep their personal information up to date, the app becomes an essential companion for those seeking to achieve their fitness goals in an organized and efficient manner.
+
 
 ## Project Url:
 [Workout Wizard](https://workout-wizard-app.web.app/)
