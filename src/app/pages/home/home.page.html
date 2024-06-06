@@ -27,7 +27,7 @@
             <ion-row class="workout-icons-group">
               <ion-col *ngFor="let workoutList of workout.workouts" class="workout-item" size="4">
                 <img [src]="workoutList.name | exerciseImg" alt="" />
-                <p>{{ workoutList.name }}</p>
+                <p>{{ workoutList.name === 'antebraco' ? 'antebraço': workoutList.name }}</p>
               </ion-col>
             </ion-row>
 

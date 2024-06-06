@@ -7,8 +7,8 @@
       </ion-col>
     </ion-row>
 
-    <ion-row *ngFor="let workout of workout?.workouts" class="training-icon-box">
-      <ion-col size="3">
+    <ion-row class="training-icon-box">
+      <ion-col *ngFor="let workout of workout?.workouts"  size="3">
         <div class="workout-info-group">
           <img [src]="workout.name | exerciseImg" [alt]="workout.name" />
         </div>

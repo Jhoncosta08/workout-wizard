@@ -2,5 +2,5 @@
 
 <div class="workout-info-group">
   <img [src]="workout.name | exerciseImg" [alt]="workout.name" />
-  <p class="text">{{ workout.name }}</p>
+  <p class="text">{{ workout.name === 'antebraco' ? 'antebraço': workout.name }}</p>
 </div>

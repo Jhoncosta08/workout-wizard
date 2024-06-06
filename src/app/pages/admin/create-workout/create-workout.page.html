@@ -11,7 +11,7 @@
       <ion-col size="6" *ngFor="let workout of workouts">
         <div class="workout-info-group" (click)="getClickedWorkout(workout)">
           <img [src]="workout.name | exerciseImg" [alt]="workout.name" />
-          <p class="text">{{ workout.name }}</p>
+          <p class="text">{{ workout.name === 'antebraco' ? 'antebraço': workout.name }}</p>
         </div>
       </ion-col>
     </ion-row>
