@@ -49,7 +49,7 @@ Workout Wizard is a powerful tool for anyone looking to take control of their wo
 >* This project has implemented [Ionic](https://ionicframework.com/docs) version 8.0.0
 >* This project has implemented [Capacitor](https://capacitorjs.com/) version 6.0.0
 
-## About bootstrap
+## best practices and responsiveness
 >For standardization, best practices and responsiveness, when developing new pages, think about the structure of rows and columns following the grid pattern.
 
 **Example:**
