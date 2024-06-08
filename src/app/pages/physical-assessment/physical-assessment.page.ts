@@ -60,15 +60,29 @@ export class PhysicalAssessmentPage {
   async calcFat(formData: PhysicalInterface): Promise<void> {
     if (this.user && this.user.age) {
       const body: BodyComposition = formData.bodyComposition;
-      const sumOfSkinFolds: number = body?.biceps + body?.triceps + body?.subscapular + body?.suprailiac;
+      const sumOfSkinFolds: number =
+        body.biceps +
+        body.triceps +
+        body.subscapular +
+        body.suprailiac +
+        body.chest +
+        body.abdomen +
+        body.thigh +
+        body.midAxillary;
       const age: number = this.user.age;
-      const bodyDensity: number = 1.097 - (0.00046971 * sumOfSkinFolds) + (0.00000056 * Math.pow(sumOfSkinFolds, 2)) - (0.00012828 * age);
-      const bodyFatPercentage: number = ((4.95 / bodyDensity) - 4.5) * 100;
-      const weight: number = formData.generalInfo?.weight;
+      let bodyDensity: number;
+      if (this.user.gender === 'masculino') {
+        bodyDensity = 1.112 - (0.00043499 * sumOfSkinFolds) + (0.00000055 * Math.pow(sumOfSkinFolds, 2)) - (0.00028826 * age);
+      } else {
+        bodyDensity = 1.097 - (0.00046971 * sumOfSkinFolds) + (0.00000056 * Math.pow(sumOfSkinFolds, 2)) - (0.00012828 * age);
+      }
+      const bodyFatPercentage: number = ((495 / bodyDensity) - 450);
+      const weight: number = formData.generalInfo.weight;
       const fatMassKg: number = (bodyFatPercentage / 100) * weight;
+      const leanMassKg: number = weight - fatMassKg;
       formData.bodyComposition.fat = bodyFatPercentage;
       formData.bodyComposition.fatMass = fatMassKg;
-      formData.bodyComposition.leanMass = weight - fatMassKg;
+      formData.bodyComposition.leanMass = leanMassKg;
     }
   }
 

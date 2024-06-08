@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {WorkoutInterface} from '../../../interfaces/workout.interface';
 import {NavController} from '@ionic/angular';
 import {UserInterface} from '../../../interfaces/user.interface';
 import {UserWorkoutService} from '../../../services/user-workout.service';
