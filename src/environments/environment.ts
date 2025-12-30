@@ -2,11 +2,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyDUR5nWOeWmK_g_gKU2vN7rEttp8b4Uioc",
-    authDomain: "workout-wizard-app.firebaseapp.com",
-    projectId: "workout-wizard-app",
-    storageBucket: "workout-wizard-app.appspot.com",
-    messagingSenderId: "384472738830",
-    appId: "1:384472738830:web:a14ecc704a26a066e7e05f"
+    apiKey: "AIzaSyAZIK4cnppeCmmy1M3h53hZRV9b7zePewI",
+    authDomain: "mago-do-treino.firebaseapp.com",
+    projectId: "mago-do-treino",
+    storageBucket: "mago-do-treino.firebasestorage.app",
+    messagingSenderId: "59047505952",
+    appId: "1:59047505952:web:bd2e9a4b322912716f0c45"
   }
 };
