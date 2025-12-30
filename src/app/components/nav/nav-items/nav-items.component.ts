@@ -21,7 +21,7 @@ export class NavItemsComponent {
   ) {
     this.authService.user.subscribe((userData: UserInterface | null): void => {
       this.userData = userData;
-      this.showAdminNav = this.userData?.uid === 'ZyUFjKqr07fqmUUTw1WnQJAIbjW2';
+      this.showAdminNav = this.userData?.uid === 'A3aNbrycSvYpvtket5nAHJV1jRk2';
     });
   }
 
