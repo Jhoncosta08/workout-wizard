@@ -39,7 +39,7 @@ Workout Wizard is a powerful tool for anyone looking to take control of their wo
 
 
 ## Project Url:
-[Workout Wizard](https://workout-wizard-app.web.app/)
+[Workout Wizard](https://mago-do-treino.web.app/)
 
 ## Main technologies used in the project
 >* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.2.
