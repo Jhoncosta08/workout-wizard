@@ -41,9 +41,6 @@ Workout Wizard is a powerful tool for anyone looking to take control of their wo
 ## Project Url:
 [Workout Wizard](https://workout-wizard-app.web.app/)
 
-## Project APK:
-[Workout-Wizard download APK](https://raw.githubusercontent.com/Jhoncosta08/workout-wizard/master/src/assets/previews/workout-wizard.apk)
-
 ## Main technologies used in the project
 >* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.2.
 >* This project has implemented [Ionic](https://ionicframework.com/docs) version 8.0.0
