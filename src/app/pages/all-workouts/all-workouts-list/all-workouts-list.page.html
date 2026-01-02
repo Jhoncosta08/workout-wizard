@@ -6,7 +6,13 @@
     <ion-row *ngIf="!showSpinner">
       <ion-col>
         <ion-card *ngFor="let exercise of exercises" class="exercise-card-container">
-          <img [ngSrc]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name" width="200px" height="auto"/>
+          <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/thumbnail.svg'"
+               [alt]="exercise.name"
+               width="100%"
+               height="auto"
+               loading="lazy"
+          />
+
           <ion-card-header>
             <div class="exercise-card-header">
               <ion-card-title class="exercise-card-title">{{ exercise.name }}</ion-card-title>
