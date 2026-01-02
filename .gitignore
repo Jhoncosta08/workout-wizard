@@ -61,7 +61,6 @@ yarn-error.log
 /.nx
 /.nx/cache
 /connect.lock
-/coverage
 /libpeerconnection.log
 testem.log
 /typings
@@ -69,3 +68,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+#Android files
+/android
+/.idea
+/.firebase
