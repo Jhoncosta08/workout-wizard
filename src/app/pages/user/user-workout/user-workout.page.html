@@ -38,7 +38,8 @@
                 <ion-list>
                   <ion-item *ngFor="let exercise of workout.exercises">
                     <ion-thumbnail slot="start">
-                      <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/thumbnail.svg'" [alt]="exercise.name"  />
+                      <img
+                        [ngSrc]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/thumbnail.svg'" [alt]="exercise.name" fill/>
                     </ion-thumbnail>
                     <ion-label>{{ exercise.name }}</ion-label>
                   </ion-item>

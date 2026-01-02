@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
@@ -10,13 +10,14 @@ import { AllWorkoutsListPage } from './all-workouts-list.page';
 import {PageSpinnerModule} from '../../../components/page-spinner/page-spinner.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        AllWorkoutsListPageRoutingModule,
-        PageSpinnerModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    AllWorkoutsListPageRoutingModule,
+    PageSpinnerModule,
+    NgOptimizedImage
+  ],
   declarations: [AllWorkoutsListPage]
 })
 export class AllWorkoutsListPageModule {}

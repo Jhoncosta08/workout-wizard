@@ -11,7 +11,7 @@
     <ion-card *ngFor="let exercise of exercises" class="exercise-card-container">
 
 
-      <img [src]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name"/>
+      <img [ngSrc]="exercise.photo ? exercise.photo : 'https://ionicframework.com/docs/img/demos/card-media.png'" [alt]="exercise.name" fill/>
 
 
       <ion-card-header>

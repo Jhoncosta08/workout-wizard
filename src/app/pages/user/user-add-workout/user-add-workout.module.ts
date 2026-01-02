@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { UserAddWorkoutPageRoutingModule } from './user-add-workout-routing.module';
@@ -28,7 +28,8 @@ import {PageSpinnerModule} from '../../../components/page-spinner/page-spinner.m
         IonicModule,
         UserAddWorkoutPageRoutingModule,
         ExerciseImgPipe,
-        PageSpinnerModule
+        PageSpinnerModule,
+        NgOptimizedImage
     ]
 })
 
